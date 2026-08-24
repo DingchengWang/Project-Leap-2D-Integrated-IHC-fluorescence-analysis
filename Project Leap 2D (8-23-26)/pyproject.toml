@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "project-leap-2d"
+version = "1.0.0"
+requires-python = "==3.9.*"
+description = "Modular astrocyte Whole, Soma, Processes, Fiji review, and raw fluorescence analysis"
+dependencies = [
+    "cellpose==4.2.1.1",
+    "imagecodecs==2024.9.22",
+    "matplotlib==3.9.4",
+    "numpy==1.26.4",
+    "opencv-python-headless==4.11.0.86",
+    "openpyxl==3.1.5",
+    "Pillow==11.3.0",
+    "scikit-image==0.24.0",
+    "scipy==1.13.1",
+    "tifffile==2024.8.30",
+    "torch==2.8.0",
+    "torchvision==0.23.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["project_leap_2d*"]
+
+[tool.setuptools.package-data]
+project_leap_2d = [
+    "fiji_review/resources/*.groovy",
+    "resources/models/*.json",
+    "resources/models/*.pt",
+]

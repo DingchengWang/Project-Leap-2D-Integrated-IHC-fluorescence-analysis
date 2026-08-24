@@ -1,0 +1,9 @@
+# Normalize repository-level text files to LF.
+* text=auto eol=lf
+
+# Treat model and release archives as binary.
+*.pt binary
+*.zip binary
+
+# Preserve every byte of the validated inner package.
+"/Project Leap 2D (8-23-26)/**" -text -eol

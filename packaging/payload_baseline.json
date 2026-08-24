@@ -1,0 +1,665 @@
+{
+  "schema_version": 1,
+  "project_name": "Project Leap 2D",
+  "project_version": "1.0.0",
+  "release_folder": "Project Leap 2D (8-23-26)",
+  "release_date": "2026-08-23",
+  "copyright_holder": "Dingcheng Wang",
+  "project_license": "Apache-2.0",
+  "immutable_baseline_sha256": "27eda031ca00c3152d5d2d39bed2ce10ccbff65ebd5b6bd313fb49d7e973b554",
+  "release_package_manifest_sha256": "86b93b266b38161b18f16a85e9c10b41179413a2c23cbfc8d4232a24c001b2ce",
+  "file_count": 127,
+  "required_directories": [
+    "Original Image",
+    "Result",
+    "Runtime",
+    "Runtime/locks",
+    "Runtime/recovery",
+    "Runtime/staging",
+    "Runtime/matplotlib"
+  ],
+  "executable_files": [
+    "run_project_leap_2d.command",
+    "Installation/macOS/install_macos.command",
+    "Installation/macOS/bootstrap_macos.sh",
+    "Installation/macOS/environment_doctor.sh",
+    "Installation/macOS/environment_installer.sh"
+  ],
+  "files": {
+    "AGENTS.md": {
+      "bytes": 3038,
+      "sha256": "9d9cc918ba2c03cc0d0b883aae1512ab291cf84184bed6ddc091f527feacee46",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/bootstrap_macos.sh": {
+      "bytes": 7040,
+      "sha256": "0757b79210a5c351144cdaf9dbd4d1e1fab4e7befc3fa611f9d483f4650af50d",
+      "git_mode": "100755"
+    },
+    "Installation/macOS/component_manifest.sh": {
+      "bytes": 1188,
+      "sha256": "36b6e2a421f301e17ee3a4d42240d7f70ea8642ec1c72009ce3c5762f1631974",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/environment_contract.txt": {
+      "bytes": 65,
+      "sha256": "d93a370168848e0caddc39207c6689c976873c3251f000f1a7f4213879bd8acb",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/environment_doctor.py": {
+      "bytes": 37199,
+      "sha256": "3a97f1ef525e707c585eb6db8602c829fbd9f7803ea26ea59b40f79763093a4a",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/environment_doctor.sh": {
+      "bytes": 1765,
+      "sha256": "f3c989f3ecea8dac4f7772b34b2e884a607c3a6febf2116f0fb5197a14c46ccb",
+      "git_mode": "100755"
+    },
+    "Installation/macOS/environment_installer.sh": {
+      "bytes": 21882,
+      "sha256": "7d8f93b9546b84033b2e668214c8b35b03e067dfa45aed1a490fa5a59007c887",
+      "git_mode": "100755"
+    },
+    "Installation/macOS/fiji_tree_integrity.json": {
+      "bytes": 425,
+      "sha256": "dd4d945b5db14642d0bf734979fe41afc50d64034fa681c0414b806f9cf0a7e5",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/install_macos.command": {
+      "bytes": 1237,
+      "sha256": "d3ec4022d1351b21184413beb0aa5c13a37e26b5de241d60f0789717bb9aaa51",
+      "git_mode": "100755"
+    },
+    "Installation/macOS/installer_integrity_manifest.sh": {
+      "bytes": 1045,
+      "sha256": "2984cca1132be096369fc6637069698be648ca2b20db51df04d1dfa08089dcea",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/managed_python_integrity.json": {
+      "bytes": 413,
+      "sha256": "f4b612f2e410142f53c93d8099069affb915686cdd01bc8c5a0cdb748973c987",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/python_wheel_integrity.json": {
+      "bytes": 12138,
+      "sha256": "5c2987fccb41781cc0bc35d563027e8fd44ec5fdf873db47fb664301fde4d52d",
+      "git_mode": "100644"
+    },
+    "Installation/macOS/requirements_macos_arm64.lock.txt": {
+      "bytes": 901,
+      "sha256": "48c59884b99fc75622d207b18704bc8014377eb2c3df03cb931cf6f3102aa536",
+      "git_mode": "100644"
+    },
+    "MODULE_MAP_ENGLISH.md": {
+      "bytes": 18008,
+      "sha256": "a68e0c3a4570ea02c4bd69636641b4b30aa445b17d1e224e22ec3c5295c695c4",
+      "git_mode": "100644"
+    },
+    "MODULE_MAP_中文.md": {
+      "bytes": 16008,
+      "sha256": "a41ad49c5aeeac9410b7bb320c3d416ea6402fb3873ceb9e9fcc49c0caca19c4",
+      "git_mode": "100644"
+    },
+    "README_English.md": {
+      "bytes": 8958,
+      "sha256": "63724b33803e11c73b198586dad0b28b4b970f103adc74413631a922a23f22e9",
+      "git_mode": "100644"
+    },
+    "README_中文.md": {
+      "bytes": 8094,
+      "sha256": "6754a63c5daebd2109f69c8a93eae1869427ffe08f8d09c6ba11fd1b6f55790c",
+      "git_mode": "100644"
+    },
+    "RUN_COMMAND.txt": {
+      "bytes": 194,
+      "sha256": "9c278bd4db007efae0e591490b66f2a994aa23876ff286144eda17ead751124c",
+      "git_mode": "100644"
+    },
+    "VERSION": {
+      "bytes": 6,
+      "sha256": "59854984853104df5c353e2f681a15fc7924742f9a2e468c29af248dce45ce03",
+      "git_mode": "100644"
+    },
+    "fallback/single_file_fallback.py": {
+      "bytes": 633075,
+      "sha256": "d55834a97baac6d01fafdc5bbe6905dffec6067af8016cb1b2bdd53d4953143c",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/__init__.py": {
+      "bytes": 362,
+      "sha256": "cf6b50833ff79a24d693fe2bff3301c5d52981a429ada88b2722d5c921e338d6",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/__main__.py": {
+      "bytes": 671,
+      "sha256": "e0feddd2b46736aad74fde9553270eec8eb9ab7244f22b246158ec4d908400a9",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_controller.py": {
+      "bytes": 42702,
+      "sha256": "637dc5856262b15b7d636a4f9c19068992a960875f135b5670f1bbacfa6b9ed6",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/__init__.py": {
+      "bytes": 37,
+      "sha256": "a3480316bfaafe93a22da780c9426ce8cd9c44bccb3d49421e3a6afc37adaa15",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/gfap_only/__init__.py": {
+      "bytes": 1166,
+      "sha256": "daef610f82560e8f5885be3aeb4dc61ae029560fa8a601e9230871f1261389b4",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/gfap_only/gfap_compartments.py": {
+      "bytes": 10761,
+      "sha256": "e978e0687d2257226dfe41b9a44bf6a4d01b0ae223f5a63c7277d5e9c1278173",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/gfap_only/gfap_nucleus_ownership.py": {
+      "bytes": 39374,
+      "sha256": "99f1bd465e1c117c9994535aaed5045a5bb4398fd69db69de8b8f3f7f1e635db",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/gfap_only/gfap_only_analysis.py": {
+      "bytes": 20169,
+      "sha256": "ba592632862bc8336f686d927e7ce1890b905a215c924b1349207f1dd43c7fd5",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/gfap_only/gfap_only_pipeline.py": {
+      "bytes": 20275,
+      "sha256": "c7ec146cabee73124d49987f5768563014cfdf37b5f0483c2ca49f431adc59b3",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/gfap_only/gfap_post_compartment_quality.py": {
+      "bytes": 13119,
+      "sha256": "776a9996682a619cfebabfe20cfda0ef66b26e288fb434054604e7bec2f85e8c",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/gfap_only/gfap_structure.py": {
+      "bytes": 7676,
+      "sha256": "c20d1c99fe3d5bfb90db567812692884b3e5bddc58faf83b24dbedb8ccbe17af",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_modes/structural_fluorescence.py": {
+      "bytes": 23184,
+      "sha256": "e92a516a4b384ab9bf7d7fcc724739ef52e0a2f0dae221ef12e54746784e1d21",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/analysis_workflow.py": {
+      "bytes": 34860,
+      "sha256": "d8a5074f4f0aaae3f939e674ea72cd74d5a7c11bc8b41992f72f1484c32e9481",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/command_line.py": {
+      "bytes": 2105,
+      "sha256": "870a9f467ca77be2531084b79f0133c81d4ab9af5644a6ca781700851a07222f",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compartments/__init__.py": {
+      "bytes": 57,
+      "sha256": "dd3ee386da89804d944f7fb619e45baf39e5ff19a784e52a4cc2c5af63e4d0e5",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compartments/cell_separation.py": {
+      "bytes": 37271,
+      "sha256": "c6254bd0a81aa2be768349445a05a9bb0a6487e617d8648eef95a6e73397861a",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compartments/compartment_validation.py": {
+      "bytes": 22860,
+      "sha256": "4f480ea6300d05090c32f84268679a59371abb8e754b372c45b51423916115e7",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compartments/selected_cell_split.py": {
+      "bytes": 45718,
+      "sha256": "8ba213cc129f83ba409f20aff59f83ae4b840939eb4e3f02f944798b6209731e",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compartments/selected_soma_enlargement.py": {
+      "bytes": 23225,
+      "sha256": "14b468f73f53435d8f1d78b16beadac85266a571630f740b70ca87e2b69d6234",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compartments/soma_and_processes.py": {
+      "bytes": 37426,
+      "sha256": "54d45882bf26e528a81afb070b3dc3daf41b187ed1b89e79c889231da00c05da",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compartments/soma_completion.py": {
+      "bytes": 117955,
+      "sha256": "1ef7fa99444f88ef46d941bd149b44c64a65d8acbb7ac4595f9743b36af50ba2",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/compatibility_entrypoint.py": {
+      "bytes": 1037,
+      "sha256": "730d7153e965aa4b1d381cb220703e51e2bceaac6f0eb0666ac6578b721879e6",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/data_structures.py": {
+      "bytes": 16723,
+      "sha256": "6d8a24bd24c68646b37324ce73cc0f44b0690e9869b57d0a0fe4208ba1c1cd52",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/__init__.py": {
+      "bytes": 53,
+      "sha256": "14eb303c9cb3e6a126a02b5f7adccfc6408f3e0b8dcd024b95a5652d0eb00db8",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/cell_edit_context.py": {
+      "bytes": 41891,
+      "sha256": "e83e0725eff13b6623be4c8d240714350548859a9beaa963a64cb2f413ef9128",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/cell_edit_fiji_bridge.py": {
+      "bytes": 12567,
+      "sha256": "f028e975c55eac66c689eb02a350b7326265526888d4a44752e37012f34238bf",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/cell_edit_transactions.py": {
+      "bytes": 34450,
+      "sha256": "499b5133b49441dd820799bd13815cea41fd92a90837de09c3814b6bfea108da",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/cell_edit_worker.py": {
+      "bytes": 40222,
+      "sha256": "778c1c4b6f4702ad6314eb7548ba28a740fd9ee397e748c3f92c70da5f36a6f5",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/cell_editing.py": {
+      "bytes": 17366,
+      "sha256": "690aa9cb54ce0bb244c135460e86055b8454b55913730a6a90afac0cea3c4a39",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/failed_run_retention.py": {
+      "bytes": 1338,
+      "sha256": "22380060b1e82aac9ff86bc5cf3d3db7c786e2eb62a02d99e9de1a0583c6ee15",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/fiji_launcher.py": {
+      "bytes": 4801,
+      "sha256": "c0d496f604d185cac5aa295a366990c0dd46716da2498e9f22a0bfba1b3d5925",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/measurement_result_validation.py": {
+      "bytes": 5736,
+      "sha256": "201c7c984ed20e390c09d2884b8f57ef101f4193bad7ff07ccb88bb22d192b65",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/resources/astrocyte_roi_reviewer.groovy": {
+      "bytes": 75955,
+      "sha256": "f5fb02810fb2564d8df7445e06f433904cd97fb5fe2da7df6e6f5aa6a0366d20",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/review_protocol.py": {
+      "bytes": 4583,
+      "sha256": "d56f09cc10747252f8b915565a3761c1a466e7a0cc7570f9d015d993f87e1658",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/fiji_review/review_validation.py": {
+      "bytes": 4600,
+      "sha256": "e89c2da7adcf116e3a6b9e472dfdfe699b807419024d2646157d6b75087a8d2d",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/images/__init__.py": {
+      "bytes": 78,
+      "sha256": "2e3b79407bb1fb12b32c1f19ab26c9e473fe4e9716fad06f02cafc9775e9db05",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/images/channel_files.py": {
+      "bytes": 5378,
+      "sha256": "66f8ed5e833372ce9b716f7fca7b9ef3fd0b5afe4fa7eb7813887f6172f26cb6",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/images/image_loading.py": {
+      "bytes": 5030,
+      "sha256": "acd41648590919cc5b03bd43001f118ec8bb17009c86a35ce8aebcd8bdfc4ab0",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/images/image_processing.py": {
+      "bytes": 9966,
+      "sha256": "f0f2a45a7eda021e21a4fd6ed707c9d25ff7561c1660fe538cd51a9fce5921d6",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/nuclei/__init__.py": {
+      "bytes": 67,
+      "sha256": "8fa21267abaaaa97c7674dec0ac095b45688dd6b1aead1ef0357af8544b77fa2",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/nuclei/dapi_3d_inventory.py": {
+      "bytes": 72071,
+      "sha256": "9d7da4986c6ee5fff0ec72991779e79fe3c81a1ad8cfd8f1063edce4f669970f",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/nuclei/dapi_nuclei.py": {
+      "bytes": 3491,
+      "sha256": "f1dbe9fa0ca1e08b8f1041c1582e725e295065d439bab669f0fe0f4c6cf739a7",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/nuclei/instanseg_nucleus_detection.py": {
+      "bytes": 17866,
+      "sha256": "5df5791460e080075c73e52e5e1116a826f5629c6ecf35f2d91957e63174558d",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/nuclei/nucleus_ownership.py": {
+      "bytes": 32240,
+      "sha256": "fe185adfea2f25a3c55dc869a80b4bacead65ce0a22388f1288cd74aa083f4b1",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/reporting/__init__.py": {
+      "bytes": 55,
+      "sha256": "888297d068a529c96fb601fab916a4a99a2dbd30f8693e074be499741d71aa67",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/reporting/analysis_report.py": {
+      "bytes": 29451,
+      "sha256": "bb1826c761660706344dbabc9f4f3c3da1d99fda846591ef7c606c6dc6ae7576",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/reporting/excel_results.py": {
+      "bytes": 6945,
+      "sha256": "adfd2cd05cdbbe28a7f1066f7db7235108dcd06c9cd648b8879bca507cd6a399",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/resources/models/instanseg_single_channel_nuclei.json": {
+      "bytes": 1038,
+      "sha256": "fd2b8e7af2f06fad2237f8401fa840b275b6b65c66b40c34faf1229fe84f0220",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/resources/models/instanseg_single_channel_nuclei.pt": {
+      "bytes": 15783485,
+      "sha256": "118066231fb7753ffb048bcd2164186397bcc5c8fc4ad7f826efe928b515794c",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/run_state.py": {
+      "bytes": 4459,
+      "sha256": "56b4cc3883971bce1ad40087d7465233b72746f72aba9a797a39f938e08fe635",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/runtime_attributes.py": {
+      "bytes": 949,
+      "sha256": "7d2eb7d2193e5fb037f5ced40c0d38e3a115b6e6b811e59ebfbab0b6721dcdc8",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/runtime_loader.py": {
+      "bytes": 3142,
+      "sha256": "b68d082112ff94b28fbf8ac3bce932d80e256711050112b2dbd19b945eeb033e",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/runtime_manifest.py": {
+      "bytes": 1720,
+      "sha256": "8e563d37b2fd435a7614dbbd27174f5633873d807173c5fdee239be735ce0c6d",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/__init__.py": {
+      "bytes": 58,
+      "sha256": "32149458f030c4854fc1d88d2bf082cfbf2224da7266514ba1cba57ad76409ee",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/candidate_catalog.py": {
+      "bytes": 2380,
+      "sha256": "ed9be3e63f37827bc5e61b822b95030457d5b28a282deef13813a1eb2b82983a",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/candidate_evaluation.py": {
+      "bytes": 54032,
+      "sha256": "56b6c8d4eb9f0075f57382f17e25cfac17179dfb72806beee87192c282a5ade4",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/candidate_features.py": {
+      "bytes": 28046,
+      "sha256": "73fa502c63f76980679ad511499a6c6d60a7c536c21a39ecad2b2b303c4240f3",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/candidate_selection.py": {
+      "bytes": 31216,
+      "sha256": "2325bf1f86f81d96281afde90244f84d0eeb4c18075e6dda7eb4e08cc419996c",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/cellpose_segmentation.py": {
+      "bytes": 7705,
+      "sha256": "135eef8e11a565f463bbf578fcec5bbf124e6dfa476f9dbefed0dbb259328554",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/distributional_threshold_candidates.py": {
+      "bytes": 3114,
+      "sha256": "120d57c2afde7ec6cdbe2c3a8b746eafdb979c320da2fe6d066d05b3110ef21d",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/standard_morphology_candidates.py": {
+      "bytes": 12880,
+      "sha256": "ec59888716321a8919093c11f9aaecbd461b757c5122ebe48146890ebaea0fbc",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/segmentation/structural_refinement_candidates.py": {
+      "bytes": 9945,
+      "sha256": "cf348cdadb848ccdcf963f98da6805007d8da9988ca3c4bd2191de2698587347",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/settings.py": {
+      "bytes": 4960,
+      "sha256": "90f899dffe997bcec340e24e1b18fd8584883c3a646fe8ecbc9338ff3cc12d1b",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/startup.py": {
+      "bytes": 1006,
+      "sha256": "5e2ccb2948336c33870dac58230051d55f5e32ade2ffa508e346d1187795e5dc",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/__init__.py": {
+      "bytes": 72,
+      "sha256": "de6e266ef8df45c12cc9fff9228944563ddf92b68de79b5aa5e98b1d5db6cfe6",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/folder_checks.py": {
+      "bytes": 968,
+      "sha256": "db515daae120316e0fbc09397ab6fcaaf1386d5b79dd63bd64b5c8d35f4a9664",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/input_cleanup.py": {
+      "bytes": 1356,
+      "sha256": "d2727364dc705ea19daf19a53ad368d15fc8143cc59cc275c8035ba6b1d449e7",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/input_cleanup_recovery.py": {
+      "bytes": 18087,
+      "sha256": "b8ccbcc6c5cc886ba81181de2cfdc257bb19f3bf81b3922b93650ba61912babb",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/pending_results.py": {
+      "bytes": 4317,
+      "sha256": "64abe7248ed8b7da75f5273ccce325b2d77b41576b7769accc16db6788809eaa",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/publication_recovery.py": {
+      "bytes": 29803,
+      "sha256": "947e623a0635613a33d4df2668bc429f11ebce33f001b9ea0c592bb19962e2bf",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/result_publishing.py": {
+      "bytes": 1350,
+      "sha256": "9df9231832f2eb60efc2c5ab6a333f11b37f9225e778bc5eedf7f6dda8401412",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace/workspace_preflight.py": {
+      "bytes": 2570,
+      "sha256": "eac0312b4dbbd5479be6681630765fb35cd6bd2cc1b93f6d6ba362622a701f53",
+      "git_mode": "100644"
+    },
+    "project_leap_2d/workspace_launcher.py": {
+      "bytes": 4484,
+      "sha256": "b0c825496dda66a3e0ac75dd6c819a004b353832aa57a4ba18835f88ead9617e",
+      "git_mode": "100644"
+    },
+    "pyproject.toml": {
+      "bytes": 827,
+      "sha256": "0fa597a88ff9da8352d53bb37eac2d8536f7919d99566edfda8e54d3fb552068",
+      "git_mode": "100644"
+    },
+    "run_project_leap_2d.command": {
+      "bytes": 2958,
+      "sha256": "a03598af954b72b9dc2ec40b4d0dbb1151e85cd43eb639a4e7bf9faf47c9285e",
+      "git_mode": "100755"
+    },
+    "tests/compare_analysis_samples.py": {
+      "bytes": 13036,
+      "sha256": "0b1753c23e3244921c170e7bf423eaa9955ea261ba0e70e3f9750c4e70e113b7",
+      "git_mode": "100644"
+    },
+    "tests/release_audit_support.py": {
+      "bytes": 16177,
+      "sha256": "0f180f487ee81908b6d7148048166ef974e9b8ef9e6765f713716cfa1de009aa",
+      "git_mode": "100644"
+    },
+    "tests/test_analysis_sample_comparator.py": {
+      "bytes": 8732,
+      "sha256": "0040c078ab33423b745a6a847404e8213944449ec1984b1e256115ce15093671",
+      "git_mode": "100644"
+    },
+    "tests/test_analysis_workflow.py": {
+      "bytes": 27252,
+      "sha256": "c84cdda4eba7d92b8368c7b5d0a6e8a6e54247a62edf7a9cfa56b302bf6c5f02",
+      "git_mode": "100644"
+    },
+    "tests/test_cell_edit_context.py": {
+      "bytes": 21106,
+      "sha256": "86a1bd41bba05014074cb344af9fb617a11965fd66db2b8a318749d4d853eb30",
+      "git_mode": "100644"
+    },
+    "tests/test_cell_edit_fiji_bridge.py": {
+      "bytes": 25196,
+      "sha256": "162be02ea4b2c3be87edd42a4afd79a725009ebe32c457369a9054092958ccc4",
+      "git_mode": "100644"
+    },
+    "tests/test_cell_edit_transactions.py": {
+      "bytes": 10832,
+      "sha256": "230ed66db7e8bf79207a16fbecdc4ca16ae3382358573a45e2c76e29fefdf516",
+      "git_mode": "100644"
+    },
+    "tests/test_cell_edit_worker.py": {
+      "bytes": 22967,
+      "sha256": "f43b82f96b6b4d715c50f26b5793586db6785607b97584c34b60e5a2c93e2fa3",
+      "git_mode": "100644"
+    },
+    "tests/test_current_naming.py": {
+      "bytes": 5868,
+      "sha256": "566c92641c988154264a5bbd3ff152c6dce394cb96fab1e578c7e106bb1cd806",
+      "git_mode": "100644"
+    },
+    "tests/test_fiji_edit_protocol.py": {
+      "bytes": 11546,
+      "sha256": "40251d5c8837b97b5d872bea320272a544bdf8a7f5e7e8d1a6ed9647a69f89e6",
+      "git_mode": "100644"
+    },
+    "tests/test_gfap_nucleus_ownership.py": {
+      "bytes": 19577,
+      "sha256": "ba5531918957ca4d296701b93fa42d467d054d9d030cd3031bc139feeb545f5a",
+      "git_mode": "100644"
+    },
+    "tests/test_gfap_only_analysis.py": {
+      "bytes": 15657,
+      "sha256": "02a4a209ee195f7b03cd68332a045e1b2b08cc8449750d8e54e81f82a9abd3ca",
+      "git_mode": "100644"
+    },
+    "tests/test_gfap_only_pipeline.py": {
+      "bytes": 15699,
+      "sha256": "8b9cd0f3f451c01b48a86d82f8714e7833a92d22833749b47579691df197c48f",
+      "git_mode": "100644"
+    },
+    "tests/test_gfap_post_compartment_quality.py": {
+      "bytes": 6458,
+      "sha256": "5098c3b797e0cb96d277ce58b0d332f59d2fc6b9ec90686fe5b8caacaf3f40a7",
+      "git_mode": "100644"
+    },
+    "tests/test_input_cleanup_recovery.py": {
+      "bytes": 11157,
+      "sha256": "c9822bf92a5756a0dc49060e9840887709d75e553dbe346bd6dc765ac9392a2d",
+      "git_mode": "100644"
+    },
+    "tests/test_instanseg_nucleus_detection.py": {
+      "bytes": 9823,
+      "sha256": "eafcc8097bca319532690e39205eaf670febecbf6be6316ec6ec8a030159715a",
+      "git_mode": "100644"
+    },
+    "tests/test_lifecycle_path_hardening.py": {
+      "bytes": 28960,
+      "sha256": "5506f0d6a431c55fa5bdc2faa5aa73cb9f227f08bab73260d352c36cd2c1b870",
+      "git_mode": "100644"
+    },
+    "tests/test_macos_installation_contract.py": {
+      "bytes": 76774,
+      "sha256": "e3f876896916269a775a50fdca4f949e4fba5ae010db10d0816db92cc22bdac9",
+      "git_mode": "100644"
+    },
+    "tests/test_measurement_result_validation.py": {
+      "bytes": 3523,
+      "sha256": "e27456f603a313407c78145e5e64fef4c5ece04c0ad6a773f3c6aa134fb1b46f",
+      "git_mode": "100644"
+    },
+    "tests/test_publication_recovery.py": {
+      "bytes": 16159,
+      "sha256": "be069ec55f1e0e12a1b9f726a9b6148a3ef9f0f82966a5bc91c4728cf86b4baf",
+      "git_mode": "100644"
+    },
+    "tests/test_release_audit_support.py": {
+      "bytes": 6217,
+      "sha256": "265e98f29056686c7272399061fa23e846cae5576eb0bc0869a7de1b69b2bfc9",
+      "git_mode": "100644"
+    },
+    "tests/test_release_package_contract.py": {
+      "bytes": 8579,
+      "sha256": "2280b5963f278660fcc7b75b2247ad113f5ee2e907f5ce531f29755b16f012f4",
+      "git_mode": "100644"
+    },
+    "tests/test_runtime_loader_concurrency.py": {
+      "bytes": 5725,
+      "sha256": "ae3371caea196cc0e70762f3d6fed5716a8c7f5d7feab9fb96a61e46ccc48ae1",
+      "git_mode": "100644"
+    },
+    "tests/test_runtime_structure.py": {
+      "bytes": 3929,
+      "sha256": "3341669c2b8aef32cba41fc264de149ba9dcf9535c75a24134b37de25752bcd5",
+      "git_mode": "100644"
+    },
+    "tests/test_scientific_zero_delta_snapshots.py": {
+      "bytes": 8217,
+      "sha256": "94607f1dd227fb8ce21cbefd06ee5f93ab7209bfe518a86500e07777b0288aaa",
+      "git_mode": "100644"
+    },
+    "tests/test_selected_cell_split.py": {
+      "bytes": 30437,
+      "sha256": "55ca308cf3d8358f4e1b8374f3b0f3b080f5d29360858edc396c50e33882bd90",
+      "git_mode": "100644"
+    },
+    "tests/test_selected_soma_enlargement.py": {
+      "bytes": 16729,
+      "sha256": "161227cc02a913a40c6bc9d47485b49f8be20d3d99b527aa91434faae67197d1",
+      "git_mode": "100644"
+    },
+    "tests/test_source_and_runtime_parity.py": {
+      "bytes": 11869,
+      "sha256": "3a3e77b27d11d1fc6014680fafdea92fb33819b5fccff1728755b44b60660221",
+      "git_mode": "100644"
+    },
+    "tests/test_workspace_lifecycle.py": {
+      "bytes": 16286,
+      "sha256": "fbf74996a0e575068e07ff8261410bd167017ee8c3395bb2bbf2662d62f5bea8",
+      "git_mode": "100644"
+    },
+    "validation/release_contract.json": {
+      "bytes": 50814,
+      "sha256": "c6c64260af0867ec9dc901d9a2ab0cffb0ff1decf7bee9e5c66b1bba4ece7b00",
+      "git_mode": "100644"
+    },
+    "validation/release_package_files.json": {
+      "bytes": 20743,
+      "sha256": "86b93b266b38161b18f16a85e9c10b41179413a2c23cbfc8d4232a24c001b2ce",
+      "git_mode": "100644"
+    },
+    "validation/source_manifest.json": {
+      "bytes": 48467,
+      "sha256": "f63eae8c473b7c6ab5b8905bfb7f6fa18126a22deeb704094600e776afbc45a8",
+      "git_mode": "100644"
+    }
+  }
+}

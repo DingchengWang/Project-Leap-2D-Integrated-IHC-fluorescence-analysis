@@ -1,0 +1,7 @@
+# Run these commands from the Project Leap 2D (8-23-26) package directory.
+
+# First-time installation
+./Installation/macOS/install_macos.command
+
+# Run an analysis
+./run_project_leap_2d.command

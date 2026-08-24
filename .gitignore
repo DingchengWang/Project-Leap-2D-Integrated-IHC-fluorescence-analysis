@@ -1,0 +1,48 @@
+# Project Leap 2D user data and runtime state
+/Project Leap 2D (8-23-26)/Original Image/
+/Project Leap 2D (8-23-26)/Result/
+/Project Leap 2D (8-23-26)/Runtime/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+.AppleDouble/
+._*
+.LSOverride
+
+# Python caches, test output, and coverage data
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+**/.pytest_cache/
+.mypy_cache/
+**/.mypy_cache/
+.ruff_cache/
+**/.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Build and distribution output
+build/
+**/build/
+dist/
+**/dist/
+*.egg-info/
+**/*.egg-info/
+
+# Local Python environments and environment files
+.venv/
+**/.venv/
+venv/
+**/venv/
+env/
+**/env/
+ENV/
+**/ENV/
+.env
+.env.*
+!.env.example
+

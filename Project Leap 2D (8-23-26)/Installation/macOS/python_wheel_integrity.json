@@ -1,0 +1,318 @@
+{
+  "algorithm": "canonical-wheel-record-sha256-v2",
+  "distributions": {
+    "cellpose": {
+      "canonical_record_sha256": "301e236dbbe75be5b48010f8353bb4a78a4ecf3c9654974fc952f5fa2424ef7c",
+      "hashed_entries": 35,
+      "normalized_environment_files": 1,
+      "record_entries": 36,
+      "record_path": "cellpose-4.2.1.1.dist-info/RECORD",
+      "version": "4.2.1.1"
+    },
+    "contourpy": {
+      "canonical_record_sha256": "3e1317f455e5e94e0893a29ac4a72e1746f7a429dbf1a8a23dd5759abd46f293",
+      "hashed_entries": 25,
+      "normalized_environment_files": 0,
+      "record_entries": 26,
+      "record_path": "contourpy-1.2.0.dist-info/RECORD",
+      "version": "1.2.0"
+    },
+    "cycler": {
+      "canonical_record_sha256": "cbcbee5f18d75bd4935199b135aa33c3ed62df14991110a35c428883798d7979",
+      "hashed_entries": 8,
+      "normalized_environment_files": 0,
+      "record_entries": 9,
+      "record_path": "cycler-0.12.1.dist-info/RECORD",
+      "version": "0.12.1"
+    },
+    "et-xmlfile": {
+      "canonical_record_sha256": "0f0861905c07d20c301567320c32950ef93b01084295cc11d54ba9705eb269bb",
+      "hashed_entries": 11,
+      "normalized_environment_files": 0,
+      "record_entries": 12,
+      "record_path": "et_xmlfile-2.0.0.dist-info/RECORD",
+      "version": "2.0.0"
+    },
+    "fastremap": {
+      "canonical_record_sha256": "c6059f5f92d6b22b0a528435e21d1098da156e8fcb986a7bb8595f46ed80979a",
+      "hashed_entries": 17,
+      "normalized_environment_files": 0,
+      "record_entries": 18,
+      "record_path": "fastremap-1.20.0.dist-info/RECORD",
+      "version": "1.20.0"
+    },
+    "filelock": {
+      "canonical_record_sha256": "e04bab9f32f371ee5c1c8cdf0d8a778d547ad260eff96f421784d5e885b40403",
+      "hashed_entries": 15,
+      "normalized_environment_files": 0,
+      "record_entries": 16,
+      "record_path": "filelock-3.19.1.dist-info/RECORD",
+      "version": "3.19.1"
+    },
+    "fill-voids": {
+      "canonical_record_sha256": "b832fdc34ced893ff1e108f5127a81749132be71e4e4d31a2af5b99f2887203d",
+      "hashed_entries": 15,
+      "normalized_environment_files": 0,
+      "record_entries": 16,
+      "record_path": "fill_voids-2.1.2.dist-info/RECORD",
+      "version": "2.1.2"
+    },
+    "fonttools": {
+      "canonical_record_sha256": "e8fcdc5238df6391063db835d379a2ed412c9c2573b3df989a0c148576b9297c",
+      "hashed_entries": 358,
+      "normalized_environment_files": 4,
+      "record_entries": 359,
+      "record_path": "fonttools-4.60.2.dist-info/RECORD",
+      "version": "4.60.2"
+    },
+    "fsspec": {
+      "canonical_record_sha256": "d30d72612cc756866e9800d9358bdf3672be10aac18b33717c7d3155ed5d5b2e",
+      "hashed_entries": 62,
+      "normalized_environment_files": 0,
+      "record_entries": 63,
+      "record_path": "fsspec-2025.10.0.dist-info/RECORD",
+      "version": "2025.10.0"
+    },
+    "imagecodecs": {
+      "canonical_record_sha256": "736bf3ad0151807ea7595e99bc015f243ccec2a024f0354beafcf72ea33ad99b",
+      "hashed_entries": 167,
+      "normalized_environment_files": 1,
+      "record_entries": 168,
+      "record_path": "imagecodecs-2024.9.22.dist-info/RECORD",
+      "version": "2024.9.22"
+    },
+    "imageio": {
+      "canonical_record_sha256": "adde08be5ecb0192567bb969535f02fa6116cd49ff7d4e4d5527bebb71ce583d",
+      "hashed_entries": 67,
+      "normalized_environment_files": 2,
+      "record_entries": 68,
+      "record_path": "imageio-2.37.2.dist-info/RECORD",
+      "version": "2.37.2"
+    },
+    "importlib-resources": {
+      "canonical_record_sha256": "68f0163a6b27af2813f7e9da14f61f2b4aad5011e18777ad32fe7188136aa21c",
+      "hashed_entries": 37,
+      "normalized_environment_files": 0,
+      "record_entries": 38,
+      "record_path": "importlib_resources-6.5.2.dist-info/RECORD",
+      "version": "6.5.2"
+    },
+    "jinja2": {
+      "canonical_record_sha256": "4551b3fb657b85a9f01e961c0f8a235da65d758149b619400211964b3ac02bdc",
+      "hashed_entries": 32,
+      "normalized_environment_files": 0,
+      "record_entries": 33,
+      "record_path": "jinja2-3.1.6.dist-info/RECORD",
+      "version": "3.1.6"
+    },
+    "kiwisolver": {
+      "canonical_record_sha256": "f1a76c7841da31fd8efcb56615c748b395ed9a8bd7acfef8937f9594593fd760",
+      "hashed_entries": 11,
+      "normalized_environment_files": 0,
+      "record_entries": 12,
+      "record_path": "kiwisolver-1.4.7.dist-info/RECORD",
+      "version": "1.4.7"
+    },
+    "lazy-loader": {
+      "canonical_record_sha256": "17312af17a8b58629003510078af9618391c81f67980ec518ba7ea37d910e620",
+      "hashed_entries": 7,
+      "normalized_environment_files": 0,
+      "record_entries": 8,
+      "record_path": "lazy_loader-0.5.dist-info/RECORD",
+      "version": "0.5"
+    },
+    "markupsafe": {
+      "canonical_record_sha256": "7b59eca2eeee7c595367f4d2fcdeb289c36981b41d37655f26a331350b8f6a34",
+      "hashed_entries": 12,
+      "normalized_environment_files": 0,
+      "record_entries": 13,
+      "record_path": "markupsafe-3.0.3.dist-info/RECORD",
+      "version": "3.0.3"
+    },
+    "matplotlib": {
+      "canonical_record_sha256": "65c60ba86de9f07e2b54bdc23e5ab21381a368394f0198ffc3036c8efaa473b9",
+      "hashed_entries": 590,
+      "normalized_environment_files": 0,
+      "record_entries": 591,
+      "record_path": "matplotlib-3.9.4.dist-info/RECORD",
+      "version": "3.9.4"
+    },
+    "mpmath": {
+      "canonical_record_sha256": "09cbd04e87d0c5ab64aab08291b31883e4ea27e8d2c640710e0beb1995e86b9b",
+      "hashed_entries": 93,
+      "normalized_environment_files": 0,
+      "record_entries": 94,
+      "record_path": "mpmath-1.3.0.dist-info/RECORD",
+      "version": "1.3.0"
+    },
+    "natsort": {
+      "canonical_record_sha256": "33333f97418c1b755b378a7edaa0eacbc9265b82a240681626bcdcd0f51a438e",
+      "hashed_entries": 20,
+      "normalized_environment_files": 1,
+      "record_entries": 21,
+      "record_path": "natsort-8.4.0.dist-info/RECORD",
+      "version": "8.4.0"
+    },
+    "networkx": {
+      "canonical_record_sha256": "7c8dec291b938f07446a37c66af146b1855986175d448563f1c9cc14d6914a2d",
+      "hashed_entries": 577,
+      "normalized_environment_files": 0,
+      "record_entries": 578,
+      "record_path": "networkx-3.2.1.dist-info/RECORD",
+      "version": "3.2.1"
+    },
+    "numpy": {
+      "canonical_record_sha256": "ac29cf6e2d28d3125cd9ae04484a5bc25090bdb72672497cdf777e5478beaf11",
+      "hashed_entries": 918,
+      "normalized_environment_files": 1,
+      "record_entries": 919,
+      "record_path": "numpy-1.26.4.dist-info/RECORD",
+      "version": "1.26.4"
+    },
+    "opencv-python-headless": {
+      "canonical_record_sha256": "0702657315e8b2db802672ff6b92c5e83006259048146c1295b378a06265c82d",
+      "hashed_entries": 151,
+      "normalized_environment_files": 0,
+      "record_entries": 152,
+      "record_path": "opencv_python_headless-4.11.0.86.dist-info/RECORD",
+      "version": "4.11.0.86"
+    },
+    "openpyxl": {
+      "canonical_record_sha256": "89fb27b7b9ef96f6871e5f400b8aedf1f569856ac2594f0cf48ff0fbcd04ece0",
+      "hashed_entries": 196,
+      "normalized_environment_files": 0,
+      "record_entries": 197,
+      "record_path": "openpyxl-3.1.5.dist-info/RECORD",
+      "version": "3.1.5"
+    },
+    "packaging": {
+      "canonical_record_sha256": "10dc179c6b9e79f584a8f368bb5bb73bd11e4e5765bb9cfd085fe16867985985",
+      "hashed_entries": 24,
+      "normalized_environment_files": 0,
+      "record_entries": 25,
+      "record_path": "packaging-25.0.dist-info/RECORD",
+      "version": "25.0"
+    },
+    "pillow": {
+      "canonical_record_sha256": "1c5cef96ca0163505710947fbd2ab27e998478f1047dfeac15d00e5b7b3101a8",
+      "hashed_entries": 138,
+      "normalized_environment_files": 0,
+      "record_entries": 139,
+      "record_path": "pillow-11.3.0.dist-info/RECORD",
+      "version": "11.3.0"
+    },
+    "pyparsing": {
+      "canonical_record_sha256": "239325f438cc3542c4d936b77d4539132f7db3b83d55bf9b811db76cce83f0ee",
+      "hashed_entries": 24,
+      "normalized_environment_files": 0,
+      "record_entries": 25,
+      "record_path": "pyparsing-3.3.2.dist-info/RECORD",
+      "version": "3.3.2"
+    },
+    "python-dateutil": {
+      "canonical_record_sha256": "e15e868a50b9c4e71df17b31369843617780146ac5adb1bbfdcced0ebe501824",
+      "hashed_entries": 26,
+      "normalized_environment_files": 0,
+      "record_entries": 27,
+      "record_path": "python_dateutil-2.9.0.post0.dist-info/RECORD",
+      "version": "2.9.0.post0"
+    },
+    "roifile": {
+      "canonical_record_sha256": "ef6cca7a7560f035cc51b8d7e39d26973569f86da021ed680da616ba13f9f08c",
+      "hashed_entries": 12,
+      "normalized_environment_files": 1,
+      "record_entries": 13,
+      "record_path": "roifile-2024.9.15.dist-info/RECORD",
+      "version": "2024.9.15"
+    },
+    "scikit-image": {
+      "canonical_record_sha256": "a74ad872acd44c8666a127de4fec5a726b4809aba3df04ad621ee39038f11ee9",
+      "hashed_entries": 478,
+      "normalized_environment_files": 0,
+      "record_entries": 479,
+      "record_path": "scikit_image-0.24.0.dist-info/RECORD",
+      "version": "0.24.0"
+    },
+    "scipy": {
+      "canonical_record_sha256": "5ced23fc6a57227398af3190592f7ee87bfd4380435a607c98377c0e898b904a",
+      "hashed_entries": 1331,
+      "normalized_environment_files": 0,
+      "record_entries": 1332,
+      "record_path": "scipy-1.13.1.dist-info/RECORD",
+      "version": "1.13.1"
+    },
+    "segment-anything": {
+      "canonical_record_sha256": "9ff1fdc6d21d3b54000fbe97e9458cba6d75c103947c4de62f00f66f594072e9",
+      "hashed_entries": 21,
+      "normalized_environment_files": 0,
+      "record_entries": 22,
+      "record_path": "segment_anything-1.0.dist-info/RECORD",
+      "version": "1.0"
+    },
+    "six": {
+      "canonical_record_sha256": "d16e50f347969b1e1919fb0c88bac4b9c644f5305bcfcfb00f72b646dbd4065d",
+      "hashed_entries": 7,
+      "normalized_environment_files": 0,
+      "record_entries": 8,
+      "record_path": "six-1.17.0.dist-info/RECORD",
+      "version": "1.17.0"
+    },
+    "sympy": {
+      "canonical_record_sha256": "d04b0d4085f8232be9cee00e9b6c60b7feb05fa3403593d7ccde6332a2844c31",
+      "hashed_entries": 1572,
+      "normalized_environment_files": 1,
+      "record_entries": 1573,
+      "record_path": "sympy-1.14.0.dist-info/RECORD",
+      "version": "1.14.0"
+    },
+    "tifffile": {
+      "canonical_record_sha256": "9a8c055a25a097db1ef18abe542ec4b55514992f392a3d9b6a0da717c7ddf32a",
+      "hashed_entries": 21,
+      "normalized_environment_files": 4,
+      "record_entries": 22,
+      "record_path": "tifffile-2024.8.30.dist-info/RECORD",
+      "version": "2024.8.30"
+    },
+    "torch": {
+      "canonical_record_sha256": "e2afeeb6e0ca24f113afdc980b57e0b92860f0e7246ea0f65ffabe42bf71de11",
+      "hashed_entries": 11840,
+      "normalized_environment_files": 2,
+      "record_entries": 11841,
+      "record_path": "torch-2.8.0.dist-info/RECORD",
+      "version": "2.8.0"
+    },
+    "torchvision": {
+      "canonical_record_sha256": "53b74dd9baea53dd518832bc99f63c25970d675de8f347b8c3d3ecc122277a39",
+      "hashed_entries": 201,
+      "normalized_environment_files": 0,
+      "record_entries": 202,
+      "record_path": "torchvision-0.23.0.dist-info/RECORD",
+      "version": "0.23.0"
+    },
+    "tqdm": {
+      "canonical_record_sha256": "41330cb858fa1d7a9df13069135d7e7d82303abe89fa50e1d9c40c9b50b7aa89",
+      "hashed_entries": 41,
+      "normalized_environment_files": 1,
+      "record_entries": 42,
+      "record_path": "tqdm-4.67.3.dist-info/RECORD",
+      "version": "4.67.3"
+    },
+    "typing-extensions": {
+      "canonical_record_sha256": "c42db5851c3a20efb41dbe1a0d03c18db577a5449c7e685f6b139df34b98e62f",
+      "hashed_entries": 6,
+      "normalized_environment_files": 0,
+      "record_entries": 7,
+      "record_path": "typing_extensions-4.15.0.dist-info/RECORD",
+      "version": "4.15.0"
+    },
+    "zipp": {
+      "canonical_record_sha256": "c0e4f1511e59f08a11f7cee08371c7eb4fe77b4f9051088cd07536aefb9976b6",
+      "hashed_entries": 13,
+      "normalized_environment_files": 0,
+      "record_entries": 14,
+      "record_path": "zipp-3.23.1.dist-info/RECORD",
+      "version": "3.23.1"
+    }
+  },
+  "schema_version": 1
+}

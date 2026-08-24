@@ -1,0 +1,1298 @@
+{
+  "schema_version": 5,
+  "canonical_source": "fallback/single_file_fallback.py",
+  "canonical_source_bytes": 633075,
+  "canonical_source_lines": 15608,
+  "canonical_source_sha256": "d55834a97baac6d01fafdc5bbe6905dffec6067af8016cb1b2bdd53d4953143c",
+  "definitions": {
+    "AgeProfileDecision": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "d6a688676f4c462e28308c180c8a6852bd1133bb6ed89f0d3ccc70a433dd7b7d",
+      "source_start_line": 142,
+      "source_end_line": 150
+    },
+    "AxialTruncationConfig": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "f29d75119beff068efa4ac444b6202c4bf11660f3955cec621bb2eb10acddd85",
+      "source_start_line": 325,
+      "source_end_line": 338
+    },
+    "CandidateBaseResult": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "f1e5221201033f9089c9bbc8c74a4238070c7a1056e508e1540aadac87bb78a5",
+      "source_start_line": 402,
+      "source_end_line": 407
+    },
+    "CandidateWindowContext": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "3afd9a7e01863c394c597aa785f8f849801571f42dcb5746e4ae45ab6d47e78e",
+      "source_start_line": 409,
+      "source_end_line": 417
+    },
+    "CanonicalIdentityConfig": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "5b66ae577c165c1bfd451ace48d79cc5290985f968f7ea450992c66dd3cfda29",
+      "source_start_line": 340,
+      "source_end_line": 352
+    },
+    "CanonicalNucleusResolution": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "c6a2575b4ea62ee63d05f9b15b91abe048441aa4d70d0b94dbe8e052fac95904",
+      "source_start_line": 393,
+      "source_end_line": 400
+    },
+    "CompartmentConfig": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "9db912b85119ac151b6f72a3056f85967ba91a555bd179273125315a9547a131",
+      "source_start_line": 73,
+      "source_end_line": 140
+    },
+    "DapiFragmentWorkloadLimitExceeded": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "c99737f72808bcdc8b28a93948e18cb36b50ea5f03587aa52fddd6b66ac7fbe2",
+      "source_start_line": 217,
+      "source_end_line": 288
+    },
+    "DapiFragmentWorkloadLimits": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "969fdfb4f39d77f7a03805a78814196a43c26af5e94a675617d28c594ad33166",
+      "source_start_line": 192,
+      "source_end_line": 203
+    },
+    "DapiParentFragmentWorkload": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "544f0a6fbdcf6ad581a3aee6ca8b21352027bf47b9e4bb6dbb20d88a3319b313",
+      "source_start_line": 205,
+      "source_end_line": 215
+    },
+    "Log1pGMMThreshold": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "a84174ebe945ce374311d3db29986f3ea783b67a7515c81063284ea0b4534e4c",
+      "source_start_line": 419,
+      "source_end_line": 435
+    },
+    "Neonatal3DConfig": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "c8c6d8238462777c5dc442dbfa3baca06a2047dd2f0dad704be03deb0ebd3626",
+      "source_start_line": 152,
+      "source_end_line": 190
+    },
+    "Neonatal3DContext": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "545c504aa7ac3fd9c9b6a706b320d730389db773b2ee22b1428f8975e4b9c04c",
+      "source_start_line": 366,
+      "source_end_line": 374
+    },
+    "NucleusOwnershipConfig": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "a6a1a0f210060cde7a3172aae5c74824e040f769cef2e0868578ab035c203348",
+      "source_start_line": 290,
+      "source_end_line": 323
+    },
+    "SomaNuclearCompletionConfig": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "8ad54f82c1f3afa608364d715a95bac8601c175c2ed315db60251767fe5bbaef",
+      "source_start_line": 354,
+      "source_end_line": 364
+    },
+    "TestSpec": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "96805a0046879083829d41da873914dc4c42bb60f80a6aee4137b3659cfaea5f",
+      "source_start_line": 4,
+      "source_end_line": 71
+    },
+    "ValidatedNucleusAnchors": {
+      "kind": "class",
+      "module": "data_structures.py",
+      "sha256": "910b12c89a8fb762015ed831453d7e58d7299698d46141246e5ccaf5d0259ad2",
+      "source_start_line": 376,
+      "source_end_line": 391
+    },
+    "_complete_soma_within_whole_owner_extent": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "94a7580d51ea94aed51ef710139f9bfb43a192dd7cd94122027ba03a260eb935",
+      "source_start_line": 776,
+      "source_end_line": 869
+    },
+    "_linear_evidence": {
+      "kind": "function",
+      "module": "analysis_modes/structural_fluorescence.py",
+      "sha256": "13e563a98a61729383327f49e7ee7ba48eae1ea6835e00e16f5f1a14ffef96d0",
+      "source_start_line": 4,
+      "source_end_line": 7
+    },
+    "_main_locked": {
+      "kind": "function",
+      "module": "analysis_controller.py",
+      "sha256": "9920daf3fb74c4446d91d5e821c5ff5ba8e62c41d73b197dccc86ba19186e92e",
+      "source_start_line": 4,
+      "source_end_line": 966
+    },
+    "active_channel_weights": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "b7e14b4e8548ef14353bb020b5b75956d146e3a69ee8a329fad75fb75aab52b7",
+      "source_start_line": 145,
+      "source_end_line": 159
+    },
+    "adaptive_z_window_widths": {
+      "kind": "function",
+      "module": "segmentation/standard_morphology_candidates.py",
+      "sha256": "25c268ac8ecb6705ae052f95c168c8c24de7eeebda93bf5c5c6fc9b6fa6dd5fc",
+      "source_start_line": 223,
+      "source_end_line": 246
+    },
+    "analysis_lock": {
+      "kind": "function",
+      "module": "workspace/folder_checks.py",
+      "sha256": "547a0e21b5c402a733e503132d55347e57afcd7aee4713c98aaba67b96d96f27",
+      "source_start_line": 4,
+      "source_end_line": 26
+    },
+    "anchor_connected_cleanup": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "4d67b6e0d371c3ed197d5676d4c0ce118f11320bd5287988a426935b0e669e52",
+      "source_start_line": 621,
+      "source_end_line": 661
+    },
+    "anchor_mask": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "4059b0394d51259c3aadc1e63ff5e5d900e81a7ef323b88f1c9a06a8a303ed93",
+      "source_start_line": 599,
+      "source_end_line": 619
+    },
+    "append_dapi_parent_fragment_workload": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "0688f032e4e5ecfd414f55cde891a36aac37ef7a459413be376f74f06682338d",
+      "source_start_line": 382,
+      "source_end_line": 411
+    },
+    "apply_axial_truncation_guard": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "139c3abec139cdad280194e8b6354f8c71e611940c05b09ba361a2acedd12c43",
+      "source_start_line": 372,
+      "source_end_line": 583
+    },
+    "apply_canonical_identity_reconciliation": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "6ae106693c3a9fe9d03d95ed4eeaf5e7f67f75e8bd10ba6f8291fb3587535309",
+      "source_start_line": 4,
+      "source_end_line": 370
+    },
+    "apply_nucleus_ownership_guard": {
+      "kind": "function",
+      "module": "nuclei/nucleus_ownership.py",
+      "sha256": "8fad95290829ac43cdc082dded6fdddf28185f86a1147c617b9725a73ffb5dfc",
+      "source_start_line": 186,
+      "source_end_line": 707
+    },
+    "apply_projected_foreign_soma_guard": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "6264658470ccfb9711cd400884e407a353624d024f3d8eaf4ccc028182447c57",
+      "source_start_line": 585,
+      "source_end_line": 774
+    },
+    "array_identity_key": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "45c6995e7391da5a7b6fb84114a3a3a7a6d5df5014f5007675704065391fde0e",
+      "source_start_line": 33,
+      "source_end_line": 39
+    },
+    "atomic_write_dapi_fragment_workload_json": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "0eda4467c4a7aeed11a43693d589812465061d4ce26a776003b22282ccd5d65e",
+      "source_start_line": 450,
+      "source_end_line": 467
+    },
+    "background_peak_log_model": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "b346b36312f3af3a7ce99c9ee651af17d830b4cc856eb9f56a84147f72eab45f",
+      "source_start_line": 246,
+      "source_end_line": 293
+    },
+    "bounded_ordered_map": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "c4c6295dbf7773c26cf50bd5561438a07c9ccb5efc7060c830d510963a87d187",
+      "source_start_line": 469,
+      "source_end_line": 551
+    },
+    "build_candidate_window_contexts": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "a71147c1b1de4d9deda77b03028628d62acc7eee481f341df6dea8c4e1713ee5",
+      "source_start_line": 926,
+      "source_end_line": 1009
+    },
+    "build_dapi_object_inventory_3d": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "f1fb88aa50ccd580fb13c957817104232b5eb9e1f05096ad97642c8c5109247a",
+      "source_start_line": 1163,
+      "source_end_line": 1819
+    },
+    "cache_key_lock": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "cb6ecc0328de58be5d67262e7c37b77177023f717109d421b827f5c5c34969e3",
+      "source_start_line": 41,
+      "source_end_line": 43
+    },
+    "candidate_base_cache_key": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "2485dc7389b3b03868b898c180bd4c02c9b078184dab9f7610fd9f5a2c04191a",
+      "source_start_line": 1092,
+      "source_end_line": 1103
+    },
+    "candidate_cellpose_cache_key": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "3fce9a70d86783ab3cbaa8cbb7dc9cbde78ae48f6b6f58f36bab2dba7162b18d",
+      "source_start_line": 907,
+      "source_end_line": 924
+    },
+    "candidate_module_display_name": {
+      "kind": "function",
+      "module": "segmentation/candidate_catalog.py",
+      "sha256": "85bc45fd7b5323400934aad7d8e538aefd4f2b042e264baf36909563bf729c5b",
+      "source_start_line": 52,
+      "source_end_line": 57
+    },
+    "candidate_module_name": {
+      "kind": "function",
+      "module": "segmentation/candidate_catalog.py",
+      "sha256": "e26ed89de9318e255662e53387c931d02fe243b9d8e5baceff4adea5c2aa2a8e",
+      "source_start_line": 37,
+      "source_end_line": 50
+    },
+    "candidate_precompute_jobs": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "2ac95c326f521a0630216cf99d13108eb8b285209eda42dbc402e341677a8f70",
+      "source_start_line": 1054,
+      "source_end_line": 1090
+    },
+    "candidate_profile_family": {
+      "kind": "function",
+      "module": "segmentation/candidate_catalog.py",
+      "sha256": "35e0568f93b9ad4811851a3ecd32305b231c7ce86f7259889f0746720b2881d7",
+      "source_start_line": 10,
+      "source_end_line": 35
+    },
+    "candidate_profile_name": {
+      "kind": "function",
+      "module": "segmentation/candidate_catalog.py",
+      "sha256": "f34cc6fd962a4cb41ba27e67401cc099c1c61e3134efd80d2d5668b517b0f646",
+      "source_start_line": 4,
+      "source_end_line": 8
+    },
+    "candidate_threshold_display_name": {
+      "kind": "function",
+      "module": "segmentation/candidate_catalog.py",
+      "sha256": "3ca1fc0c908875f9772c34eff2c96763b7807363707136430aa8cc4759ee9905",
+      "source_start_line": 59,
+      "source_end_line": 60
+    },
+    "challenger_dominates_incumbent": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "81f6f8579f292efcb4c596818311c6794af15ea5f881d6b8961ac47c88b02d55",
+      "source_start_line": 368,
+      "source_end_line": 419
+    },
+    "channel_consensus_branch_evidence": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "1b4d950da33249b5353c782a61b6e6abdf9fe5b1cf76541464d8fc8d50981552",
+      "source_start_line": 141,
+      "source_end_line": 215
+    },
+    "channel_mode": {
+      "kind": "function",
+      "module": "images/channel_files.py",
+      "sha256": "040f8db3e3ee160c5f7792a659376e0c58084b403fcd1c34391f8db4ea50f920",
+      "source_start_line": 96,
+      "source_end_line": 98
+    },
+    "circular_mask": {
+      "kind": "function",
+      "module": "compartments/compartment_validation.py",
+      "sha256": "c94b8745717607ad0b49beae5d16e92ab420d2bf8c01d749666ed536359fb3a0",
+      "source_start_line": 29,
+      "source_end_line": 36
+    },
+    "classify_age_profile": {
+      "kind": "function",
+      "module": "analysis_modes/structural_fluorescence.py",
+      "sha256": "6978e7e3ab5d9dd703638d0efd5bd9f2a319be6b9a906232fb8f00a65912fc54",
+      "source_start_line": 9,
+      "source_end_line": 142
+    },
+    "cleanup_mask": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "6b3ec6de40e4b97fc75e4544113c578e72c7de6847862a6357913969a90aa989",
+      "source_start_line": 581,
+      "source_end_line": 597
+    },
+    "clear_candidate_computation_caches": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "528e258cb0de2f96bb958f25804b651250adb5b20c0962e1a676b2931cf15504",
+      "source_start_line": 4,
+      "source_end_line": 17
+    },
+    "clear_mps_cache": {
+      "kind": "function",
+      "module": "segmentation/cellpose_segmentation.py",
+      "sha256": "81ff8d21e6fcd444903f92f95a937d26fe7650afb84a3c91fe4e904751c58ace",
+      "source_start_line": 41,
+      "source_end_line": 50
+    },
+    "cluster_near_duplicate_candidates": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "7e34706d38587ef32973d489b876ec5eb036d44f3f9c550d6d76f5f2c39a68b3",
+      "source_start_line": 158,
+      "source_end_line": 187
+    },
+    "compartment_config_for_profile": {
+      "kind": "function",
+      "module": "compartments/soma_and_processes.py",
+      "sha256": "a097ec091f2eafd9cf57276f65cb613091bc828ba4dca922209bca1a56273767",
+      "source_start_line": 40,
+      "source_end_line": 80
+    },
+    "complete_candidate_specs": {
+      "kind": "function",
+      "module": "segmentation/distributional_threshold_candidates.py",
+      "sha256": "deec753aa3b1d8fe85204de037b7fa868566f6dfe8cf8411fad9fb02202abf4f",
+      "source_start_line": 4,
+      "source_end_line": 85
+    },
+    "complete_soma_component_labels": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "f72b97262ba054a6f77ca4c8ef028096ff98ed007c38f1f39b8f913af7199bab",
+      "source_start_line": 507,
+      "source_end_line": 562
+    },
+    "complete_soma_to_owner_nuclear_extent": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "1b9f13f342cac5a9cd271f6dac2c2d0eb02eb98e195219a19cb96b2c4b97950d",
+      "source_start_line": 1001,
+      "source_end_line": 1779
+    },
+    "dapi_fragment_workload_violation": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "204a713f77dd93c24d9ad6f377da6b13829c4d2bd88d4f81e7ea29cbb94c059f",
+      "source_start_line": 413,
+      "source_end_line": 448
+    },
+    "dapi_nuclei_core_and_extent": {
+      "kind": "function",
+      "module": "nuclei/dapi_nuclei.py",
+      "sha256": "2d7765f654e754718eea18c41a178e096db22018bb1dad0a8ac109d348f3a50b",
+      "source_start_line": 39,
+      "source_end_line": 94
+    },
+    "dapi_nuclei_mask": {
+      "kind": "function",
+      "module": "nuclei/dapi_nuclei.py",
+      "sha256": "668982d8451bcd3d969873148620f31615a65add134db330416dc7dfcaa19041",
+      "source_start_line": 4,
+      "source_end_line": 37
+    },
+    "dapi_parent_fragment_workload": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "5e046d52c3d16857aa951bbe4a56f304b9bf31d34b964bfd06bff23683ec5d22",
+      "source_start_line": 351,
+      "source_end_line": 380
+    },
+    "dapi_supported_anchor": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "5f7c24f77187d5a55caf013c494a57ff70681effee2f5f7620baad3d22be3969",
+      "source_start_line": 4,
+      "source_end_line": 10
+    },
+    "detect_filename_age_profile": {
+      "kind": "function",
+      "module": "images/channel_files.py",
+      "sha256": "fb4af02ca7d0b34d6d4f3e2312b1325061c0aa806e35f727d0381f6210a07b60",
+      "source_start_line": 54,
+      "source_end_line": 94
+    },
+    "discover_channel_paths": {
+      "kind": "function",
+      "module": "images/channel_files.py",
+      "sha256": "584fa0b92f2ae3e04e1e35cd6dcbe68a4cc5a84474c73b7151ab7c5d7cca15f7",
+      "source_start_line": 4,
+      "source_end_line": 52
+    },
+    "display_range": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "399f4f69eb0d568075f3bc42ee15ecfceb4ad61ce871e1227165f629e929189c",
+      "source_start_line": 241,
+      "source_end_line": 249
+    },
+    "distribution_model_cache_key": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "6f0cc8a492fc3f8fd0d743b6ddcde521c9ac7e70ba0a363efd133ef8499134d8",
+      "source_start_line": 295,
+      "source_end_line": 303
+    },
+    "distributional_threshold_diagnostics": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "3ec7f6ede5ac114dbeef989ae5a2c54730f8d5b21f0d7390cf6c7c1555c7aa25",
+      "source_start_line": 415,
+      "source_end_line": 479
+    },
+    "draw_smooth_label_contours": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "214788d8ae688cfbc8fcf20baa49d9f0e9a0ca3d9ffda2510ade5b67f6204783",
+      "source_start_line": 184,
+      "source_end_line": 218
+    },
+    "edge_proximity_metrics": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "c9081487a1ad9fab41bc2b6bbf3ee9a93bee4d1d1b0819a972fff5c53e3283aa",
+      "source_start_line": 787,
+      "source_end_line": 833
+    },
+    "edge_zone_mask": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "43f39b0bddc12c5d3414f941a5c6daba4d7982bfedb91e57f767b9acf8591962",
+      "source_start_line": 497,
+      "source_end_line": 505
+    },
+    "empty_border_exclusion_metrics": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "70a8ea65b64436505185d3b11bd03de404eda650deafaacddfa17b23d39135af",
+      "source_start_line": 485,
+      "source_end_line": 495
+    },
+    "empty_branch_recovery_metrics": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "68d8c7e4e3dc2c74cdd5cf10c039260d7596957c952f6b4e23957b7ad73fff6b",
+      "source_start_line": 80,
+      "source_end_line": 91
+    },
+    "evaluate_canonical_extent_family_3d": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "6b9396114d139379b033ad23b5e99bfa61ba3cd6d656cb3c9918a35ae8779c2a",
+      "source_start_line": 767,
+      "source_end_line": 945
+    },
+    "evaluate_ihc_candidate": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "674ba5dba4765c206a3fc5b638e444a01a4dc8621c0085f05230fb9798cf11be",
+      "source_start_line": 1105,
+      "source_end_line": 1372
+    },
+    "evaluate_nucleus_object_3d": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "37ff07085ea4ca14e345d76901894b6e4d7b34abfe3134c91b1b529aa09daddd",
+      "source_start_line": 41,
+      "source_end_line": 287
+    },
+    "evaluate_raw_inventory_object_3d": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "c97de7e2c589eae6d2a1b3954e71ae5c31c150f83014c27b9fae3784ff061dec",
+      "source_start_line": 289,
+      "source_end_line": 349
+    },
+    "exclude_incomplete_border_components": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "5eb0bb58aea3b6caf0802f81886f781780be7bb3614d913fd54e3033f6eb2c5e",
+      "source_start_line": 564,
+      "source_end_line": 604
+    },
+    "family_z_balance_structure": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "7b75c5f44d58c3ef96c839270e4cc5cd6db245e6fd5925f0e7ed73712067e2e1",
+      "source_start_line": 189,
+      "source_end_line": 214
+    },
+    "filter_instances_by_valid_soma": {
+      "kind": "function",
+      "module": "compartments/compartment_validation.py",
+      "sha256": "6bdae71ba9bed998292ded9b03633f54791402786f0fb65c6f2f0d2e87b5ff88",
+      "source_start_line": 391,
+      "source_end_line": 528
+    },
+    "filter_morphology_outlier_instances": {
+      "kind": "function",
+      "module": "compartments/compartment_validation.py",
+      "sha256": "20ce884827ed923dd98490fdda3d47d2f3128454ea11eb0cf8be0b52bb504a43",
+      "source_start_line": 68,
+      "source_end_line": 389
+    },
+    "finalize_compartment_geometry_and_metrics": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "52d1d5acf6c8f1d8b0275c0cf232881585171f5f324de45af98e9ba160eda14f",
+      "source_start_line": 2653,
+      "source_end_line": 2954
+    },
+    "find_fiji_launcher": {
+      "kind": "function",
+      "module": "fiji_review/fiji_launcher.py",
+      "sha256": "476c3875fb7752278c7276291174a8c3616102d4c6928b811552237f80a1f8d1",
+      "source_start_line": 44,
+      "source_end_line": 57
+    },
+    "fine_branch_features": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "444fde03d21ae58cb565ae9aeab3799dd55e94fdcfef407f1d73289e143da6de",
+      "source_start_line": 93,
+      "source_end_line": 139
+    },
+    "fit_log1p_gmm_threshold": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "b1e1da66522d8fdf62e2b872a09a988f9531fb41cfda8067132b111aeeaf9dbd",
+      "source_start_line": 305,
+      "source_end_line": 385
+    },
+    "fit_weighted_two_component_gmm": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "a96d7d03379644d68d4806accd79e66d89e002c57bf71906b42cca9dd5eca9fd",
+      "source_start_line": 125,
+      "source_end_line": 244
+    },
+    "fixed_soma_component_metrics": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "873864aba2a38f52119eb16a84faa28a93170d262dab9dfd0b2be5ca89f9cd86",
+      "source_start_line": 746,
+      "source_end_line": 785
+    },
+    "full_array_percentile": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "70c51ed3a1eacac245a87c7bf9a805d72bd691cb437616dc7c44c9ca142504d2",
+      "source_start_line": 45,
+      "source_end_line": 59
+    },
+    "full_array_sum": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "6e5793ff42d37c35d5ba9c503e21c7d14b44f2f14ec7145a1a6b527aabf64d9e",
+      "source_start_line": 61,
+      "source_end_line": 75
+    },
+    "gaussian_posterior_intersection": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "8890ec519bef5a19fc65fa6ce78bd516a548680c3479e4c74bb90ce72cfdb37e",
+      "source_start_line": 38,
+      "source_end_line": 123
+    },
+    "get_cellpose_model": {
+      "kind": "function",
+      "module": "segmentation/cellpose_segmentation.py",
+      "sha256": "3d1c4a94b642758e41c01adadc4519dc99bfa4c7fabe123766f3c5113db2b2c1",
+      "source_start_line": 4,
+      "source_end_line": 30
+    },
+    "get_log1p_gmm_threshold": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "863b6a5cb088d286741f6f77138310415f90b7a1024ee6dd2533a1ebefb5d66f",
+      "source_start_line": 387,
+      "source_end_line": 413
+    },
+    "group_inventory_nucleus_objects": {
+      "kind": "function",
+      "module": "nuclei/nucleus_ownership.py",
+      "sha256": "d709c770a6dfdbc4c389f9cb28f1e4f6c4662d6cee7105f52422dc4eaf84a4f1",
+      "source_start_line": 4,
+      "source_end_line": 147
+    },
+    "imagej_axis_scale_um": {
+      "kind": "function",
+      "module": "images/image_loading.py",
+      "sha256": "3784d9e8d951597db82ea9ec55fb039d1ed3b4f43f8b09e1866bb29ef0ff38ab",
+      "source_start_line": 23,
+      "source_end_line": 74
+    },
+    "inventory_group_geometry": {
+      "kind": "function",
+      "module": "nuclei/nucleus_ownership.py",
+      "sha256": "fbdb997eccd58934ebb756317666d17392b300a53dbe4e982b853c1dbe1dc943",
+      "source_start_line": 709,
+      "source_end_line": 777
+    },
+    "is_recoverable_cellpose_batch_error": {
+      "kind": "function",
+      "module": "segmentation/cellpose_segmentation.py",
+      "sha256": "9cb5542edc34caadffefc8542f44c4ced6df8b13473ffae17503dc3686b6aedc",
+      "source_start_line": 52,
+      "source_end_line": 62
+    },
+    "launch_fiji_workflow": {
+      "kind": "function",
+      "module": "fiji_review/fiji_launcher.py",
+      "sha256": "454e651da9774ff5fd71483ba115648b6265af5c65ed089192ca485d824a861e",
+      "source_start_line": 59,
+      "source_end_line": 131
+    },
+    "load_stack": {
+      "kind": "function",
+      "module": "images/image_loading.py",
+      "sha256": "3aa01d70224a4d24f611fc838369486142301b4875a290415fe5cc17496bdb1f",
+      "source_start_line": 121,
+      "source_end_line": 125
+    },
+    "log1p_gmm_mask": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "ef24ebac457dedb1b72e6dc6d5e3a14324e49198e06051b1873d2e5339640601",
+      "source_start_line": 481,
+      "source_end_line": 499
+    },
+    "longest_true_run": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "686173bfe0be16413343c89d218969cd106ff3ef5de3963820159274c702f137",
+      "source_start_line": 4,
+      "source_end_line": 13
+    },
+    "main": {
+      "kind": "function",
+      "module": "analysis_controller.py",
+      "sha256": "faa118d47c19c5f7e4bb10cc31b2f85b40d8f94c3f982d093abbb5258dedfab3",
+      "source_start_line": 968,
+      "source_end_line": 974
+    },
+    "make_fiji_like_composite": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "d8964e16c6040d1b698fe70f64cd3b8570a4514b9bcc14fb6bd1c4153bedeef9",
+      "source_start_line": 220,
+      "source_end_line": 239
+    },
+    "make_morphology_baseline_spec": {
+      "kind": "function",
+      "module": "segmentation/standard_morphology_candidates.py",
+      "sha256": "4b23d3e377bebe793808314dab62740fa4f29d3205f62685d07e0d55204d645d",
+      "source_start_line": 4,
+      "source_end_line": 108
+    },
+    "measurement_channel": {
+      "kind": "function",
+      "module": "images/channel_files.py",
+      "sha256": "3c63bdb25f68c475746693ac061dffcc02ea96737f2e9cee044417feb159ba2f",
+      "source_start_line": 100,
+      "source_end_line": 104
+    },
+    "morphology_baseline_specs": {
+      "kind": "function",
+      "module": "segmentation/standard_morphology_candidates.py",
+      "sha256": "f91c3bb8f29b0192a6a492b61ed9ec4190cafd9b2ddd8a221682e4831e37bcaf",
+      "source_start_line": 248,
+      "source_end_line": 353
+    },
+    "morphology_baseline_template_specs": {
+      "kind": "function",
+      "module": "segmentation/standard_morphology_candidates.py",
+      "sha256": "70ded5a66d124a37379eb185ba3d238a4325f70393945be2ae60d7295f9fd6d1",
+      "source_start_line": 110,
+      "source_end_line": 221
+    },
+    "morphology_with_adaptive_refinement_specs": {
+      "kind": "function",
+      "module": "segmentation/structural_refinement_candidates.py",
+      "sha256": "47ef6b3cb00fb19e8131ccfb27379919a321e05e1fd3aac60f71cbc53ce82e30",
+      "source_start_line": 30,
+      "source_end_line": 180
+    },
+    "morphology_with_structural_refinement_specs": {
+      "kind": "function",
+      "module": "segmentation/structural_refinement_candidates.py",
+      "sha256": "679006afe064ee51d1a7a05b50f15e7819edd6136c080b68937532c1cb9c7d4d",
+      "source_start_line": 182,
+      "source_end_line": 249
+    },
+    "neonatal_3d_slice_angular_coverage": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "80ffb87eb895d4cca89d807a58d8ebd5fa1467b103c0fbd8b11ee728073caf82",
+      "source_start_line": 15,
+      "source_end_line": 39
+    },
+    "normalized_projection": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "2691823468d88bdb53aacc38d3d2edaf9936c7cbb1f5da042196197d8af46b85",
+      "source_start_line": 12,
+      "source_end_line": 31
+    },
+    "nucleus_group_marker": {
+      "kind": "function",
+      "module": "nuclei/nucleus_ownership.py",
+      "sha256": "eae6c39182c1b72b4257251c7672431cd0fec26473f927f43d8d0c49c7dcd63c",
+      "source_start_line": 149,
+      "source_end_line": 184
+    },
+    "owner_group_for_soma": {
+      "kind": "function",
+      "module": "nuclei/nucleus_ownership.py",
+      "sha256": "248f9e9dddff6243b424d4224d9553dcaa65b0cecff67476b0ccfbc1aebd29a1",
+      "source_start_line": 779,
+      "source_end_line": 804
+    },
+    "parse_args": {
+      "kind": "function",
+      "module": "command_line.py",
+      "sha256": "b4a404cdcc55788618816e157763a21a2dd4a71a037b68f015c8ea30b2153944",
+      "source_start_line": 4,
+      "source_end_line": 57
+    },
+    "physical_memory_bytes": {
+      "kind": "function",
+      "module": "run_state.py",
+      "sha256": "f257b09a18741a986c735ee50a7d4f21f8a35caf70ec931e5b0bba1ae5857fd8",
+      "source_start_line": 19,
+      "source_end_line": 26
+    },
+    "postprocess_without_cellpose": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "f348627645b55d321341f63399314b765ace6d3957a1f235e0f980fa5b7280dc",
+      "source_start_line": 725,
+      "source_end_line": 744
+    },
+    "precompute_candidate_branches": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "b986ffc9b9f31d1a42c01c291177fcb2986c8e9d17e7298bff38662b343bf21f",
+      "source_start_line": 1030,
+      "source_end_line": 1044
+    },
+    "precompute_candidate_dapi": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "791b7e053ebcd608b19dd6bd78a02d34d2bc221fcb95e6c7e0399c0cabc746e9",
+      "source_start_line": 1021,
+      "source_end_line": 1028
+    },
+    "precompute_candidate_top_hat": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "1c4eadf78c955f1bbc29159df2700a42a2a3d8cbeeb5bb015d5a6b717de58b62",
+      "source_start_line": 1011,
+      "source_end_line": 1019
+    },
+    "precompute_distribution_models": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "c5670217da6619a428f9e1e70ddccd42aec7f09592171d342b705d3aae485ce0",
+      "source_start_line": 1046,
+      "source_end_line": 1052
+    },
+    "prepare_fiji_runtime": {
+      "kind": "function",
+      "module": "fiji_review/review_protocol.py",
+      "sha256": "30f08a5a67858a9ee4aa0c33f3946b4d266715e91aadee5c584ef664cb3d9b73",
+      "source_start_line": 4,
+      "source_end_line": 106
+    },
+    "print_runtime_timing_summary": {
+      "kind": "function",
+      "module": "run_state.py",
+      "sha256": "e1bf65a830b47a84f70cb3088c167234cf83a8416cde756b71874b6b7050c12a",
+      "source_start_line": 46,
+      "source_end_line": 109
+    },
+    "print_terminal_event": {
+      "kind": "function",
+      "module": "run_state.py",
+      "sha256": "10572dbe6f382f964bd6a4c31199208d1b15dfcbade158302a6451366b6a847f",
+      "source_start_line": 16,
+      "source_end_line": 17
+    },
+    "print_terminal_stage": {
+      "kind": "function",
+      "module": "run_state.py",
+      "sha256": "2a8df04102b1d647d50af8db73f4b72aa2e13a4ce9a6b5ce27cdc47927e1c5b6",
+      "source_start_line": 9,
+      "source_end_line": 14
+    },
+    "project": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "1ebe75c3b65e8a5c1cf17c7ca16a25ea672803a5342f93fffb363152f74f7c68",
+      "source_start_line": 77,
+      "source_end_line": 85
+    },
+    "prune_soma_to_trusted_core_shell": {
+      "kind": "function",
+      "module": "compartments/soma_and_processes.py",
+      "sha256": "a0ce44bf08e6d0c03445edb2ada29ccc7b64cdd87185fa852c3d2263f7284c1a",
+      "source_start_line": 4,
+      "source_end_line": 38
+    },
+    "publish_output_bundle": {
+      "kind": "function",
+      "module": "workspace/result_publishing.py",
+      "sha256": "caddd963dcc472540a1cbd4d3fa0f63defc02e9c91c7cfcd3242b6d5c2922a73",
+      "source_start_line": 4,
+      "source_end_line": 37
+    },
+    "qc_metrics": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "f96492afb85b3e78d49d775bf3ef7d868d0e7d5b6e869abe19bce2dbb2adb0c2",
+      "source_start_line": 835,
+      "source_end_line": 905
+    },
+    "rank_candidates": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "33adb2b58ac5beb97ea2dde8b78499596d74c76a1c34b4ad9ceff33057e1a884",
+      "source_start_line": 4,
+      "source_end_line": 92
+    },
+    "rank_candidates_family_balanced": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "036c334896c6731821767872dff33c9e8947cc31368b10725b0877b44ab01ec0",
+      "source_start_line": 216,
+      "source_end_line": 366
+    },
+    "rank_complete_production_candidates": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "ea8b132585d16615139f530914704386873fa5685fe8543fa4c19322f2468788",
+      "source_start_line": 587,
+      "source_end_line": 824
+    },
+    "rank_pre_distribution_baseline_candidates": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "74f338bc038315b6072c964cf0efe70ae61fea495ae1a9d757d4ff7a987c8987",
+      "source_start_line": 421,
+      "source_end_line": 585
+    },
+    "rank_production_candidates": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "f9847e305cdb2be2854de3ec342b44eb28000e225f19439a0e647f8fecbaee76",
+      "source_start_line": 94,
+      "source_end_line": 117
+    },
+    "read_meta": {
+      "kind": "function",
+      "module": "images/image_loading.py",
+      "sha256": "aa20bad57990da5ae7b2f77f18659729b31a04d14792dc67b5c44ed30bd6fa2e",
+      "source_start_line": 76,
+      "source_end_line": 119
+    },
+    "reconcile_same_id_disconnected_soma": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "12841bdae8996e1c26d02db1d3cc2aa529a4345b98225a478cd7399a9a84a54f",
+      "source_start_line": 1781,
+      "source_end_line": 2651
+    },
+    "recover_anchor_connected_fine_processes": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "65476c094fb673fde5a01c8f0326ca153dfe65969363f6637e6dcd9fc17a15e6",
+      "source_start_line": 280,
+      "source_end_line": 483
+    },
+    "refine_fused_process_regions": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "67ed5ea9c30aa06be8434f5e58df2caf4fe57029fc2c602ef1bf6e26f4d35961",
+      "source_start_line": 652,
+      "source_end_line": 694
+    },
+    "refine_with_cellpose_and_dapi": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "2926e48bcab90d986b67b1d6c6acd4171cc2c1665c7dc3be885a340b755c996e",
+      "source_start_line": 696,
+      "source_end_line": 723
+    },
+    "relabel_compartment_triplet": {
+      "kind": "function",
+      "module": "compartments/compartment_validation.py",
+      "sha256": "15e5b8c66a14117df50e9b10eed0810de775ad094e2b553aca1533ba504deb56",
+      "source_start_line": 4,
+      "source_end_line": 27
+    },
+    "remove_isolated_artifact_fragments": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "7fa0ab0c080a730f6f423de2015c44122bca14f7d87556c15465eb4b56bc77b5",
+      "source_start_line": 606,
+      "source_end_line": 650
+    },
+    "resolution_um_per_pixel": {
+      "kind": "function",
+      "module": "images/image_loading.py",
+      "sha256": "deef61bc9a9909326d4a2ea419b2ac4ef79748ebec468dbbc1b646777c4514d2",
+      "source_start_line": 4,
+      "source_end_line": 21
+    },
+    "resolve_2d_nuclear_extent_families": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "2021c1119c59b99569d6d6d45e531bd755d566de14695acf3853b4c79ffe88de",
+      "source_start_line": 675,
+      "source_end_line": 765
+    },
+    "resolve_canonical_nucleus_instances_3d": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "71f83ab521e8314bfa42bd3171c35cc65870523846387c4cfe5e45cfdf658daa",
+      "source_start_line": 947,
+      "source_end_line": 1161
+    },
+    "resolve_canonical_owner_assignments": {
+      "kind": "function",
+      "module": "compartments/soma_completion.py",
+      "sha256": "22ce795b93a96e34a6f9f29d923fdb10b71cbc92384ca8936ecc7ef589c95339",
+      "source_start_line": 871,
+      "source_end_line": 999
+    },
+    "resolve_connected_nuclear_envelope": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "84380e9ba9b5f22d97f87e0a8b756a8eb3cbcd63b9dd1d5bbadae54f03bb3516",
+      "source_start_line": 568,
+      "source_end_line": 673
+    },
+    "restore_low_support_branch_gaps": {
+      "kind": "function",
+      "module": "compartments/cell_separation.py",
+      "sha256": "25de3646916a65dfdac8777bc94681bf337e8c26919ffeb268afe2093ebad62e",
+      "source_start_line": 236,
+      "source_end_line": 344
+    },
+    "retain_primary_anchor_extent": {
+      "kind": "function",
+      "module": "compartments/cell_separation.py",
+      "sha256": "368dc39072e245c63ef9eec306256be84b2ca3c49c2439937df50a20be95a807",
+      "source_start_line": 4,
+      "source_end_line": 31
+    },
+    "retain_soma_connected_components": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "68ad61632b1e67bc1dbfdeedc8ed086b0e07703ed4f676e4c36e192b86d33828",
+      "source_start_line": 37,
+      "source_end_line": 78
+    },
+    "robust01": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "b27726c8d4a6814c10d350b0e626cf8cc3a55d623f5995eba9b8624e1ea21ef9",
+      "source_start_line": 4,
+      "source_end_line": 10
+    },
+    "robust_reference": {
+      "kind": "function",
+      "module": "compartments/compartment_validation.py",
+      "sha256": "1f1739ed1041cabdb43ad36a5e9cf34e74d8efde9e8e9be8cd72244fbd74a2ae",
+      "source_start_line": 54,
+      "source_end_line": 66
+    },
+    "run_cellpose_mask": {
+      "kind": "function",
+      "module": "segmentation/cellpose_segmentation.py",
+      "sha256": "3db9bc3678f60de40199a383ee17142af418baed039e3d8c77d815e544357b22",
+      "source_start_line": 64,
+      "source_end_line": 134
+    },
+    "run_cellpose_mask_at_size": {
+      "kind": "function",
+      "module": "segmentation/cellpose_segmentation.py",
+      "sha256": "b50ec20b5c53df968e34d5271c563b123f9d21da5a5e40816392df2d35abee9d",
+      "source_start_line": 136,
+      "source_end_line": 217
+    },
+    "runtime_elapsed_seconds": {
+      "kind": "function",
+      "module": "run_state.py",
+      "sha256": "4d53976c7bcfc6928ca71619590b9d28837b056aebb4d60312b072d9dcd52eaa",
+      "source_start_line": 4,
+      "source_end_line": 7
+    },
+    "score_nuclei_for_component": {
+      "kind": "function",
+      "module": "compartments/cell_separation.py",
+      "sha256": "3135c21cc1d7ae66dd4d73055d00e43047907aa47dc2a2059f81a630e88814af",
+      "source_start_line": 33,
+      "source_end_line": 95
+    },
+    "select_candidate_cpu_workers": {
+      "kind": "function",
+      "module": "run_state.py",
+      "sha256": "f337825a928ecb9f2726ae5c77b931125b331bb3fca592146def0c6489a15f4a",
+      "source_start_line": 28,
+      "source_end_line": 44
+    },
+    "select_soma_anchor_groups": {
+      "kind": "function",
+      "module": "compartments/cell_separation.py",
+      "sha256": "245f1945493b355005f1136de54e205fb553b9df4c5881dbd4d8fbebe6437449",
+      "source_start_line": 97,
+      "source_end_line": 163
+    },
+    "select_validated_soma_anchor_groups": {
+      "kind": "function",
+      "module": "compartments/cell_separation.py",
+      "sha256": "bf168b1c09b61b6d2d9fd9bc309ade3747cfeff9cbb4df15c7ebb39033ddec17",
+      "source_start_line": 165,
+      "source_end_line": 234
+    },
+    "separable_physical_binary_closing": {
+      "kind": "function",
+      "module": "nuclei/dapi_3d_inventory.py",
+      "sha256": "52735655e34ebb9a328431b3212c6806c9c73a15885d74923cbf4d392cf07756",
+      "source_start_line": 553,
+      "source_end_line": 566
+    },
+    "skeleton_topology": {
+      "kind": "function",
+      "module": "compartments/compartment_validation.py",
+      "sha256": "3a3c11acfe816b20ded91cb409129f9a7fc460ebf42653c390d564a2c6d1184c",
+      "source_start_line": 38,
+      "source_end_line": 52
+    },
+    "smooth_outline_source": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "f656f0fae58ce780a19d62e53cc4551b2d642506ecd0833c8e04c22ac3d3fd36",
+      "source_start_line": 175,
+      "source_end_line": 182
+    },
+    "split_astrocyte_compartments": {
+      "kind": "function",
+      "module": "compartments/soma_and_processes.py",
+      "sha256": "d6c27b4dff13e44cb87b84221749de9a63cc5f3198259ef3819a7ae2b247d84d",
+      "source_start_line": 82,
+      "source_end_line": 863
+    },
+    "split_astrocyte_compartments_for_profile": {
+      "kind": "function",
+      "module": "analysis_modes/structural_fluorescence.py",
+      "sha256": "03e11d94429b6ee0bdb781c0c8334a4fcac76501f31719e55e0917b16a27e730",
+      "source_start_line": 144,
+      "source_end_line": 555
+    },
+    "split_touching_whole_instances": {
+      "kind": "function",
+      "module": "compartments/cell_separation.py",
+      "sha256": "e068e1fc7be9924e2bfd6792e7df7d70f2b9ae408cf5db9beeb83ac3ad07e885",
+      "source_start_line": 346,
+      "source_end_line": 576
+    },
+    "split_touching_whole_instances_multi": {
+      "kind": "function",
+      "module": "compartments/cell_separation.py",
+      "sha256": "960a948d7886382f079629f4cae5abee9582974a24621d317b71dae857e337de",
+      "source_start_line": 578,
+      "source_end_line": 875
+    },
+    "strict_soma_anchor": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "181120149c96aba6368d8306f4730ff2110c49a71f575a8ecd92c0d72a33ca2b",
+      "source_start_line": 12,
+      "source_end_line": 35
+    },
+    "structural_map": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "9ef4f2acfaf65d77d1abe844c93673a836bf401cbda18316d44125b46b7d42a7",
+      "source_start_line": 161,
+      "source_end_line": 173
+    },
+    "structural_snr_sensitivity": {
+      "kind": "function",
+      "module": "segmentation/structural_refinement_candidates.py",
+      "sha256": "6733d98ccc58f6765a0cbc48814ab0a3b2dbdbe58d46a9e67037d6dfbb1eb29e",
+      "source_start_line": 4,
+      "source_end_line": 28
+    },
+    "synchronize_mps": {
+      "kind": "function",
+      "module": "segmentation/cellpose_segmentation.py",
+      "sha256": "a0bc11d2db9b39eda58f1c7404d0fd30437a44b3caadd0d77b30a8ab9a0356db",
+      "source_start_line": 32,
+      "source_end_line": 39
+    },
+    "terminate_fiji_process_group": {
+      "kind": "function",
+      "module": "fiji_review/fiji_launcher.py",
+      "sha256": "6baeeb89bf42d4e6fe509405241f0302d936f7c6b67b6aeb8b5d3a93e06367d3",
+      "source_start_line": 12,
+      "source_end_line": 41
+    },
+    "threshold_mask": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "2eb479d69fe1ff1053a3ab0feb0c97d32715ed37349a00f736cc3da6961227f9",
+      "source_start_line": 501,
+      "source_end_line": 579
+    },
+    "topology_continuity_branch_evidence": {
+      "kind": "function",
+      "module": "segmentation/candidate_evaluation.py",
+      "sha256": "795f3fd7adb3dca2b6517b3efa102ac953c3ec5fa6a6d7fcf796536a5f5fe2d2",
+      "source_start_line": 217,
+      "source_end_line": 278
+    },
+    "validate_measurement_workbook": {
+      "kind": "function",
+      "module": "reporting/excel_results.py",
+      "sha256": "db1e0bf740ef2f5ca18c0273eb22816b02ae3a2ab21a43334bb836e04ca1d5e4",
+      "source_start_line": 132,
+      "source_end_line": 178
+    },
+    "validate_shared_geometry": {
+      "kind": "function",
+      "module": "images/channel_files.py",
+      "sha256": "f4052f5ac9c9c2b56f11debc713e84745005a6b123d17ddc6124e86e15088476",
+      "source_start_line": 106,
+      "source_end_line": 138
+    },
+    "weighted_percentile": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "9ce2783b18e037003afe0d096d7febf58763d817587935d1734a4c3bb3221270",
+      "source_start_line": 140,
+      "source_end_line": 156
+    },
+    "weighted_rank01": {
+      "kind": "function",
+      "module": "segmentation/candidate_selection.py",
+      "sha256": "6c46757fde5d1d86314bf03e7d2aa5532442b22e296ae74933a3e3af85253f59",
+      "source_start_line": 119,
+      "source_end_line": 138
+    },
+    "weighted_value_quantile": {
+      "kind": "function",
+      "module": "segmentation/candidate_features.py",
+      "sha256": "d0606a92e18380f0099ec572a4f984f0d5502ece2c0b922f0b03ac7dcf01da15",
+      "source_start_line": 19,
+      "source_end_line": 36
+    },
+    "write_analysis_report": {
+      "kind": "function",
+      "module": "reporting/analysis_report.py",
+      "sha256": "1844918e15926b4e4addfe52c3fe48aff8313faf94126a299985ad7d6c777f9a",
+      "source_start_line": 4,
+      "source_end_line": 517
+    },
+    "write_measurement_workbook": {
+      "kind": "function",
+      "module": "reporting/excel_results.py",
+      "sha256": "2c428668ee8ac409d5bdddd83ede8250929d611770051f9e3af1d22cf8cdaf10",
+      "source_start_line": 4,
+      "source_end_line": 130
+    },
+    "z_profile": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "dffccabfb5de16ac0d8c3d52647ffd5fd02277bdd796c6e7d76b4d975b00cd93",
+      "source_start_line": 87,
+      "source_end_line": 104
+    },
+    "z_range_from_mode": {
+      "kind": "function",
+      "module": "images/image_processing.py",
+      "sha256": "9d76e2182b2752ddfd4f40cebee9cf9014cc20186600edfbc8156dc16582cd86",
+      "source_start_line": 106,
+      "source_end_line": 143
+    }
+  },
+  "module_order": [
+    "startup.py",
+    "data_structures.py",
+    "settings.py",
+    "run_state.py",
+    "command_line.py",
+    "images/channel_files.py",
+    "workspace/folder_checks.py",
+    "images/image_loading.py",
+    "images/image_processing.py",
+    "segmentation/candidate_features.py",
+    "segmentation/cellpose_segmentation.py",
+    "nuclei/dapi_nuclei.py",
+    "nuclei/dapi_3d_inventory.py",
+    "segmentation/candidate_evaluation.py",
+    "compartments/compartment_validation.py",
+    "compartments/cell_separation.py",
+    "nuclei/nucleus_ownership.py",
+    "compartments/soma_completion.py",
+    "compartments/soma_and_processes.py",
+    "analysis_modes/structural_fluorescence.py",
+    "segmentation/candidate_selection.py",
+    "segmentation/standard_morphology_candidates.py",
+    "segmentation/structural_refinement_candidates.py",
+    "segmentation/candidate_catalog.py",
+    "segmentation/distributional_threshold_candidates.py",
+    "reporting/analysis_report.py",
+    "fiji_review/fiji_launcher.py",
+    "fiji_review/review_protocol.py",
+    "reporting/excel_results.py",
+    "workspace/result_publishing.py",
+    "analysis_controller.py"
+  ],
+  "groovy_resource_bytes": 75955,
+  "groovy_resource_lines": 1714,
+  "groovy_resource_sha256": "f5fb02810fb2564d8df7445e06f433904cd97fb5fe2da7df6e6f5aa6a0366d20"
+}

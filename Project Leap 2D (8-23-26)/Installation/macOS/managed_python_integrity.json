@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "algorithm": "normalized-python-runtime-sha256-v4",
+  "runtime": "cpython-3.9.25-macos-aarch64-none",
+  "tree_sha256": "71369c224e55d4a848ad9928377221861ea6dc66bb8977247375049d14f7d657",
+  "file_count": 2346,
+  "directory_count": 231,
+  "symlink_count": 10,
+  "total_file_bytes": 48675336,
+  "excluded_relative_paths": [
+    ".lock",
+    ".temp"
+  ],
+  "excluded_directory_names": []
+}

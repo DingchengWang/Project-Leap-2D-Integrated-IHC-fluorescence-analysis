@@ -1,0 +1,14 @@
+{
+  "algorithm": "sorted-tree-sha256-v1",
+  "directory_count": 163,
+  "excluded_mutable_relative_paths": [
+    ".checksums",
+    "db.xml.gz"
+  ],
+  "file_count": 1202,
+  "schema_version": 1,
+  "source_zip_sha256": "e66a395160b5affc0c2328accb4782918703918c4b7391a79cfc7300299fea72",
+  "symlink_count": 223,
+  "total_file_bytes": 858318236,
+  "tree_sha256": "df03df5233e5a08946c18e57bbe686cae5fea05a0cce68a8ac9834e06bc69005"
+}

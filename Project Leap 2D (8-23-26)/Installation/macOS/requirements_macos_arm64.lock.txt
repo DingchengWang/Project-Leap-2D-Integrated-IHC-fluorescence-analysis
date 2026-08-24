@@ -1,0 +1,42 @@
+# Project Leap 2D validated macOS arm64 dependency closure.
+# Exact versions prevent resolver drift. Installation uses --no-deps so no
+# package outside this reviewed closure can be added implicitly.
+cellpose==4.2.1.1
+contourpy==1.2.0
+cycler==0.12.1
+et_xmlfile==2.0.0
+fastremap==1.20.0
+filelock==3.19.1
+fill_voids==2.1.2
+fonttools==4.60.2
+fsspec==2025.10.0
+imagecodecs==2024.9.22
+ImageIO==2.37.2
+importlib_resources==6.5.2
+Jinja2==3.1.6
+kiwisolver==1.4.7
+lazy-loader==0.5
+MarkupSafe==3.0.3
+matplotlib==3.9.4
+mpmath==1.3.0
+natsort==8.4.0
+networkx==3.2.1
+numpy==1.26.4
+opencv-python-headless==4.11.0.86
+openpyxl==3.1.5
+packaging==25.0
+Pillow==11.3.0
+pyparsing==3.3.2
+python-dateutil==2.9.0.post0
+roifile==2024.9.15
+scikit-image==0.24.0
+scipy==1.13.1
+segment-anything==1.0
+six==1.17.0
+sympy==1.14.0
+tifffile==2024.8.30
+torch==2.8.0
+torchvision==0.23.0
+tqdm==4.67.3
+typing_extensions==4.15.0
+zipp==3.23.1
