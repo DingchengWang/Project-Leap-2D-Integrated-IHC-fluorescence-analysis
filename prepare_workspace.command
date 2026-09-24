@@ -3,21 +3,23 @@
 set -euo pipefail
 
 readonly SCRIPT_DIR="${0:A:h}"
-readonly PACKAGE_DIR="${SCRIPT_DIR}/Project Leap 2D (8-23-26)"
+readonly PACKAGE_DIR="${SCRIPT_DIR}/Project Leap 2D V1.0.1"
 
 if [[ -L "${PACKAGE_DIR}" || ! -d "${PACKAGE_DIR}" ]]; then
   print -u2 -- "Error: expected a real package directory at: ${PACKAGE_DIR}"
   exit 1
 fi
 
+readonly ANALYSIS_DIR="${PACKAGE_DIR}/Analysis Package"
+if [[ -L "${ANALYSIS_DIR}" || ! -d "${ANALYSIS_DIR}" ]]; then
+  print -u2 -- "Error: expected a real program directory at: ${ANALYSIS_DIR}"
+  exit 1
+fi
+
 readonly -a REQUIRED_DIRECTORIES=(
-  "${PACKAGE_DIR}/Original Image"
+  "${PACKAGE_DIR}/Sample Image"
   "${PACKAGE_DIR}/Result"
-  "${PACKAGE_DIR}/Runtime"
-  "${PACKAGE_DIR}/Runtime/locks"
-  "${PACKAGE_DIR}/Runtime/recovery"
-  "${PACKAGE_DIR}/Runtime/staging"
-  "${PACKAGE_DIR}/Runtime/matplotlib"
+  "${ANALYSIS_DIR}/Run State"
 )
 
 # Validate every existing path before creating anything. This prevents a

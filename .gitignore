@@ -1,7 +1,7 @@
 # Project Leap 2D user data and runtime state
-/Project Leap 2D (8-23-26)/Original Image/
-/Project Leap 2D (8-23-26)/Result/
-/Project Leap 2D (8-23-26)/Runtime/
+/Project Leap 2D V1.0.1/Sample Image/
+/Project Leap 2D V1.0.1/Result/
+/Project Leap 2D V1.0.1/Analysis Package/Run State/
 
 # macOS metadata
 .DS_Store
@@ -26,6 +26,7 @@ __pycache__/
 htmlcov/
 
 # Build and distribution output
+/artifacts/
 build/
 **/build/
 dist/
@@ -45,4 +46,3 @@ ENV/
 .env
 .env.*
 !.env.example
-

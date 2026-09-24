@@ -1,0 +1,11 @@
+# Manual Command.txt — 可选 Terminal 命令 / Optional Terminal commands
+# 日常使用：双击工作包内的 Run Analysis.command 或 Repair.command。
+# Daily use: double-click Run Analysis.command or Repair.command in the working package.
+# 可选：在已安装的 Project Leap 2D V1.0.1 工作包目录内使用以下 Terminal 命令。
+# Optional: run these Terminal commands from the installed Project Leap 2D V1.0.1 working package.
+
+# 运行分析 / Run an analysis
+"./Run Analysis.command"
+
+# 联网检查并恢复同版本程序，再检查和按需修复环境 / Check and restore this version online, then check and repair the environment if needed
+"./Repair.command"

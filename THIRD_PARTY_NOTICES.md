@@ -12,7 +12,7 @@ The repository includes this upstream model file:
 
 | Item | Recorded value |
 | --- | --- |
-| Local path | `Project Leap 2D (8-23-26)/project_leap_2d/resources/models/instanseg_single_channel_nuclei.pt` |
+| Local path | `Project Leap 2D V1.0.1/Analysis Package/project_leap_2d/resources/models/instanseg_single_channel_nuclei.pt` |
 | Local filename | `instanseg_single_channel_nuclei.pt` |
 | Upstream filename | `instanseg.pt` |
 | Upstream Release | `instanseg_models_v0.1.2` |
@@ -142,7 +142,7 @@ and remain governed by their upstream licenses:
   versions and integrity information, while the wheel files themselves are
   downloaded during installation. Each package remains governed by its own
   upstream license. See the package index at <https://pypi.org/> and
-  `Project Leap 2D (8-23-26)/Installation/macOS/requirements_macos_arm64.lock.txt`.
+  `Project Leap 2D V1.0.1/Analysis Package/project_leap_2d/maintenance/requirements_macos_arm64.lock.txt`.
 
 No ownership of these third-party components is claimed by Dingcheng Wang or
 by Project Leap 2D.

@@ -23,26 +23,22 @@ import zipfile
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 BASELINE_PATH = REPOSITORY_ROOT / "packaging" / "payload_baseline.json"
-EXPECTED_INNER_FOLDER = "Project Leap 2D (8-23-26)"
-EXPECTED_VERSION = "1.0.0"
-EXPECTED_FILE_COUNT = 127
+EXPECTED_INNER_FOLDER = "Project Leap 2D V1.0.1"
+EXPECTED_VERSION = "1.0.1"
+EXPECTED_FILE_COUNT = 95
 EXPECTED_REQUIRED_DIRECTORIES = {
-    "Original Image",
+    "Sample Image",
     "Result",
-    "Runtime",
-    "Runtime/locks",
-    "Runtime/matplotlib",
-    "Runtime/recovery",
-    "Runtime/staging",
+    "Analysis Package/Run State",
 }
-RELEASE_TOP_FOLDER = (
-    "Project-Leap-2D-Integrated-IHC-fluorescence-analysis-1.0.0"
-)
+RELEASE_TOP_FOLDER = EXPECTED_INNER_FOLDER + " Distribution"
+ASSET_NAME = "Project-Leap-2D-V" + EXPECTED_VERSION
+DISTRIBUTION_FILES = ("install_macos.command", "INSTALL_中文.md", "INSTALL_English.md")
 
 # ZIP timestamps have a lower bound of 1980.  The project release date is
 # fixed in the baseline, and midnight is used so repeated builds do not leak
 # local wall-clock time.
-FIXED_ZIP_TIMESTAMP = (2026, 8, 23, 0, 0, 0)
+FIXED_ZIP_TIMESTAMP = (2026, 9, 23, 0, 0, 0)
 
 RELEASE_ROOT_FILES = (
     "README.md",
@@ -83,11 +79,12 @@ class BaselineFile(NamedTuple):
 
 
 class ArchiveFile(NamedTuple):
-    source: Path
+    source: Optional[Path]
     archive_path: str
     mode: int
     expected_size: Optional[int] = None
     expected_sha256: Optional[str] = None
+    data: Optional[bytes] = None
 
 
 def _is_sha256(value: object) -> bool:
@@ -101,7 +98,7 @@ def _is_sha256(value: object) -> bool:
 def _safe_relative_path(value: object, *, field: str) -> str:
     if not isinstance(value, str) or not value:
         raise ReleaseBuildError(f"{field} must be a non-empty string")
-    if "\\" in value:
+    if "\\" in value or any(ord(char) < 32 or ord(char) == 127 for char in value):
         raise ReleaseBuildError(f"{field} must use POSIX separators: {value!r}")
     path = PurePosixPath(value)
     if (
@@ -111,6 +108,13 @@ def _safe_relative_path(value: object, *, field: str) -> str:
     ):
         raise ReleaseBuildError(f"unsafe or non-canonical {field}: {value!r}")
     return value
+
+
+def _is_controlled_path(relative_path: str) -> bool:
+    return relative_path.startswith("Analysis Package/project_leap_2d/") or relative_path in {
+        "Repair.command", "Run Analysis.command", "Analysis Package/VERSION",
+        "Manual Command.txt", "README/README EN.md", "README/README CN.md",
+    }
 
 
 def _parse_git_mode(value: object, *, relative_path: str) -> int:
@@ -211,7 +215,7 @@ def _load_baseline() -> tuple[dict[str, object], list[BaselineFile]]:
         if unexpected:
             details.append("unexpected: " + ", ".join(unexpected))
         raise ReleaseBuildError(
-            "payload required_directories differs from the approved seven paths; "
+            "payload required_directories differs from the approved three paths; "
             + "; ".join(details)
         )
 
@@ -239,12 +243,16 @@ def _load_baseline() -> tuple[dict[str, object], list[BaselineFile]]:
             "payload executable_files does not exactly match executable git modes"
         )
 
-    for digest_field in (
-        "immutable_baseline_sha256",
-        "release_package_manifest_sha256",
-    ):
-        if not _is_sha256(data.get(digest_field)):
-            raise ReleaseBuildError(f"payload {digest_field} is not a valid SHA-256")
+    if not _is_sha256(data.get("immutable_baseline_sha256")):
+        raise ReleaseBuildError("payload immutable_baseline_sha256 is not a valid SHA-256")
+    folded_paths: set[str] = set()
+    for entry in baseline_files:
+        if not _is_controlled_path(entry.relative_path):
+            raise ReleaseBuildError(f"path is outside program recovery scope: {entry.relative_path}")
+        folded = entry.relative_path.casefold()
+        if folded in folded_paths:
+            raise ReleaseBuildError(f"case-conflicting payload path: {entry.relative_path}")
+        folded_paths.add(folded)
 
     checksum_text = "".join(
         f"{entry.sha256}  {entry.relative_path}\n"
@@ -257,19 +265,6 @@ def _load_baseline() -> tuple[dict[str, object], list[BaselineFile]]:
         raise ReleaseBuildError(
             "payload immutable_baseline_sha256 does not match the file records: "
             f"{data['immutable_baseline_sha256']}, rebuilt {rebuilt_baseline_digest}"
-        )
-
-    release_manifest_path = "validation/release_package_files.json"
-    try:
-        release_manifest_digest = file_map[release_manifest_path].sha256
-    except KeyError as exc:
-        raise ReleaseBuildError(
-            f"payload files lacks required {release_manifest_path} record"
-        ) from exc
-    if data["release_package_manifest_sha256"] != release_manifest_digest:
-        raise ReleaseBuildError(
-            "payload release_package_manifest_sha256 does not match the "
-            f"{release_manifest_path} file record"
         )
 
     return data, sorted(baseline_files, key=lambda entry: entry.relative_path.encode("utf-8"))
@@ -357,6 +352,21 @@ def _actual_nonruntime_files(inner_root: Path, required_dirs: set[str]) -> set[s
     return actual
 
 
+def _validate_empty_workspace_directories(inner_root: Path) -> None:
+    for relative in sorted(EXPECTED_REQUIRED_DIRECTORIES):
+        path = inner_root / relative
+        if path.is_symlink() or (path.exists() and not path.is_dir()):
+            raise ReleaseBuildError(f"workspace path must be a real directory: {relative}")
+        # A Git checkout cannot preserve empty directories; the archive plan
+        # materializes all three. Existing directories must contain no user data.
+        if not path.exists():
+            continue
+        for child in path.iterdir():
+            if child.name == ".DS_Store" and child.is_file() and not child.is_symlink():
+                continue
+            raise ReleaseBuildError(f"workspace directory must be empty: {relative}/{child.name}")
+
+
 def _validate_inner_payload(
     baseline: Mapping[str, object], baseline_files: Iterable[BaselineFile]
 ) -> list[BaselineFile]:
@@ -368,6 +378,11 @@ def _validate_inner_payload(
     if stat.S_ISLNK(root_metadata.st_mode) or not stat.S_ISDIR(root_metadata.st_mode):
         raise ReleaseBuildError(f"inner package is not a real directory: {inner_root}")
 
+    version_path = inner_root / "Analysis Package/VERSION"
+    _validate_regular_file(version_path, description="package version")
+    if version_path.read_text(encoding="utf-8").strip() != EXPECTED_VERSION:
+        raise ReleaseBuildError("package VERSION does not match the release version")
+    _validate_empty_workspace_directories(inner_root)
     entries = list(baseline_files)
     expected_paths = {entry.relative_path for entry in entries}
     required_dirs = set(baseline["required_directories"])  # validated by _load_baseline
@@ -415,6 +430,18 @@ def _validate_legal_and_readme_files() -> list[ArchiveFile]:
         path = REPOSITORY_ROOT / name
         _validate_regular_file(path, description="required repository file")
         archive_files.append(ArchiveFile(path, name, 0o644))
+
+    distribution_root = REPOSITORY_ROOT / "distribution"
+    if distribution_root.is_symlink() or not distribution_root.is_dir():
+        raise ReleaseBuildError("distribution must be a real directory")
+    for name in DISTRIBUTION_FILES:
+        path = distribution_root / name
+        metadata = _validate_regular_file(path, description="distribution entry")
+        mode = 0o755 if name.endswith(".command") else 0o644
+        if stat.S_IMODE(metadata.st_mode) != mode:
+            raise ReleaseBuildError(f"unexpected distribution permissions: {name}")
+        size, digest = _hash_file(path)
+        archive_files.append(ArchiveFile(path, name, mode, size, digest))
 
     licenses_root = REPOSITORY_ROOT / "LICENSES"
     try:
@@ -477,6 +504,13 @@ def _parent_directories(archive_path: str) -> set[str]:
 def _write_archive_file(
     archive: zipfile.ZipFile, entry: ArchiveFile
 ) -> tuple[int, str]:
+    if entry.data is not None:
+        archive.writestr(
+            _zip_info(entry.archive_path, mode=entry.mode, is_directory=False), entry.data
+        )
+        return len(entry.data), hashlib.sha256(entry.data).hexdigest()
+    if entry.source is None:
+        raise ReleaseBuildError(f"missing source for {entry.archive_path}")
     metadata = _validate_regular_file(entry.source, description="release source file")
     if entry.expected_size is not None and metadata.st_size != entry.expected_size:
         raise ReleaseBuildError(
@@ -526,7 +560,10 @@ def _archive_plan(
 ) -> tuple[list[str], list[ArchiveFile]]:
     root_files = _validate_legal_and_readme_files()
     inner_root = REPOSITORY_ROOT / EXPECTED_INNER_FOLDER
+    baseline_files = list(baseline_files)
     archive_files = list(root_files)
+    archive_files.append(ArchiveFile(None, "payload_sha256.txt", 0o644,
+                                    data=_payload_checksums(baseline_files)))
     for entry in baseline_files:
         archive_files.append(
             ArchiveFile(
@@ -562,6 +599,7 @@ def _archive_plan(
             entry.mode,
             entry.expected_size,
             entry.expected_sha256,
+            entry.data,
         )
         for entry in archive_files
     ]
@@ -571,8 +609,66 @@ def _archive_plan(
     )
 
 
+def _payload_checksums(entries: Iterable[BaselineFile]) -> bytes:
+    return "".join(
+        f"{entry.sha256}  {entry.relative_path}\n"
+        for entry in sorted(entries, key=lambda entry: entry.relative_path.encode("utf-8"))
+    ).encode("utf-8")
+
+
+def _public_manifest(entries: Iterable[BaselineFile]) -> bytes:
+    payload = {
+        "schema_version": 1,
+        "version": EXPECTED_VERSION,
+        "package_name": EXPECTED_INNER_FOLDER,
+        "files": {
+            entry.relative_path: {"sha256": entry.sha256, "size": entry.size,
+                                  "mode": stat.S_IMODE(entry.mode)}
+            for entry in entries
+        },
+    }
+    return (json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode("utf-8")
+
+
+def _verify_archive(path: Path, directories: Iterable[str], entries: Iterable[ArchiveFile]) -> None:
+    expected_dirs = {directory.rstrip("/") + "/" for directory in directories}
+    expected_files = {entry.archive_path: entry for entry in entries}
+    with zipfile.ZipFile(path) as archive:
+        names = archive.namelist()
+        if len(names) != len(set(names)) or set(names) != expected_dirs | set(expected_files):
+            raise ReleaseBuildError("ZIP member set differs from the validated distribution")
+        corrupt = archive.testzip()
+        if corrupt:
+            raise ReleaseBuildError(f"ZIP CRC failure: {corrupt}")
+        for name in expected_dirs:
+            info = archive.getinfo(name)
+            if info.external_attr >> 16 != stat.S_IFDIR | 0o755:
+                raise ReleaseBuildError(f"incorrect ZIP directory mode: {name}")
+        for name, entry in expected_files.items():
+            info = archive.getinfo(name)
+            data = archive.read(name)
+            expected_data = entry.data if entry.data is not None else entry.source.read_bytes()
+            if data != expected_data or info.external_attr >> 16 != stat.S_IFREG | entry.mode:
+                raise ReleaseBuildError(f"ZIP file bytes or mode differ: {name}")
+
+
+def _check_generated_output(path: Path, expected: bytes) -> None:
+    if path.is_symlink() or (path.exists() and not path.is_file()):
+        raise ReleaseBuildError(f"generated output is not a regular file: {path}")
+    if path.exists() and path.read_bytes() != expected:
+        raise ReleaseBuildError(f"refusing to replace different generated output: {path}")
+
+
+def _write_generated_output(path: Path, data: bytes) -> None:
+    _check_generated_output(path, data)
+    if not path.exists():
+        with path.open("xb") as output:
+            output.write(data)
+        path.chmod(0o644)
+
+
 def _default_output_path() -> Path:
-    return REPOSITORY_ROOT / "dist" / f"{RELEASE_TOP_FOLDER}.zip"
+    return REPOSITORY_ROOT / "artifacts" / f"{ASSET_NAME}.zip"
 
 
 def _build_zip(
@@ -613,6 +709,7 @@ def _build_zip(
                         )
                     else:
                         _write_archive_file(archive, member)
+        _verify_archive(output_path, directory_list, file_list)
     except FileExistsError as exc:
         raise ReleaseBuildError(f"refusing to overwrite existing output: {output_path}") from exc
     except (
@@ -650,8 +747,8 @@ def _parse_arguments(argv: Optional[list[str]]) -> argparse.Namespace:
         "--output",
         type=Path,
         help=(
-            "output ZIP path (default: dist/"
-            f"{RELEASE_TOP_FOLDER}.zip under the repository root)"
+            "output ZIP path (default: artifacts/"
+            f"{ASSET_NAME}.zip under the repository root)"
         ),
     )
     parser.add_argument(
@@ -679,7 +776,22 @@ def main(argv: Optional[list[str]] = None) -> int:
             return 0
 
         output = arguments.output or _default_output_path()
+        manifest_path = output.parent / f"{ASSET_NAME}.manifest.json"
+        payload_path = output.parent / "payload_sha256.txt"
+        zip_checksum_path = output.with_suffix(output.suffix + ".sha256")
+        if zip_checksum_path.exists() or zip_checksum_path.is_symlink():
+            raise ReleaseBuildError(f"refusing to overwrite existing ZIP checksum: {zip_checksum_path}")
+        manifest_bytes = _public_manifest(validated_files)
+        checksum_bytes = _payload_checksums(validated_files)
+        _check_generated_output(manifest_path, manifest_bytes)
+        _check_generated_output(payload_path, checksum_bytes)
         size, digest = _build_zip(output, directories, archive_files)
+        _write_generated_output(manifest_path, manifest_bytes)
+        _write_generated_output(payload_path, checksum_bytes)
+        _write_generated_output(zip_checksum_path, f"{digest}  {output.name}\n".encode("utf-8"))
+        print(f"ZIP checksum: {zip_checksum_path.resolve()}")
+        print(f"Manifest: {manifest_path.resolve()}")
+        print(f"Payload checksums: {payload_path.resolve()}")
         print(f"Created: {output.expanduser().resolve(strict=False)}")
         print(f"Bytes: {size}")
         print(f"SHA-256: {digest}")

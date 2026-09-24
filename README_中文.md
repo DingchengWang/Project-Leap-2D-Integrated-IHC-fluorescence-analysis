@@ -2,68 +2,87 @@
 
 [English](README.md)
 
-Project Leap 2D 用于分析拆分后的单通道免疫组织化学荧光 Z-stack 图像。
-程序在 macOS 上构建并复核 Whole Cell、Soma 和 Processes 三类感兴趣区域，
-从未经改动的灰度数据测量指定荧光通道，最后生成经过检查的叠加图、分析报告
-和 Excel 工作簿。
+Project Leap 2D 用于在 Apple Silicon Mac 上分析拆分后的单通道免疫组织化学
+（IHC）荧光 Z-stack 图像。程序构建 Whole Cell（整细胞）、Soma（胞体）和
+Processes（突起）三类感兴趣区域（ROI），由你在 Fiji 中复核。程序从未经改动
+的灰度数据测量指定荧光通道，并生成叠加图、分析报告和 Excel 工作簿。
 
-可运行的完整程序包位于
-[`Project Leap 2D (8-23-26)/`](<Project Leap 2D (8-23-26)/>)。仓库根目录中的
-其他文件用于准备和说明 GitHub 发布版本，不包含另一套分析实现。
+程序位于 [`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>)
+文件夹中，仓库根目录存放分发工具和说明。
 
-## 克隆后先准备工作目录
+## 首次安装
 
-克隆仓库后，在仓库根目录打开 Terminal，运行：
+从正式发布的 `v1.0.1`
+[GitHub Release](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases)
+下载 `Project-Leap-2D-V1.0.1.zip`。
 
-```bash
-./prepare_workspace.command
-```
+解压后，请将 `install_macos.command`、`payload_sha256.txt` 与
+`Project Leap 2D V1.0.1` 文件夹保留在同一外层目录中。双击该目录中的
+`install_macos.command`，按 Terminal 提示操作。安装器先检查随附工作包，
+默认安装到 `~/Desktop/Project Leap 2D V1.0.1`，随后建立或检查共享依赖环境。
+如果目标路径已经存在，安装器会停止。
 
-该命令会建立程序运行所需的空工作目录。随后进入内层程序包并按照其中的说明
-安装和运行：
+首次建立环境需要联网，依赖保存在 `~/Applications/Project Leap 2D Support`。
+详细安装步骤和其他安装位置的设置见 Release ZIP 中的 `INSTALL_中文.md`。
 
-```bash
-cd "Project Leap 2D (8-23-26)"
-./Installation/macOS/install_macos.command
-```
+## 日常运行与修复
 
-输入要求、安装检查、Fiji 复核、输出文件和日常启动方法详见内层
-[中文使用说明](<Project Leap 2D (8-23-26)/README_中文.md>)。
+在已安装的工作包中：
 
-## 保护原始图像
+1. 将一批已经独立备份、拆分为单通道的 Z-stack TIFF 放入 `Sample Image`。
+2. 双击 `Run Analysis.command`，按提示完成 Fiji 复核；结果写入 `Result`。
+3. 程序文件缺失、损坏或启动检查失败时，双击 `Repair.command`。
+   它先检查本版本程序文件，必要时恢复；随后检查依赖环境，必要时重建环境。
 
-每批输入图像必须使用已经独立备份的工作副本。Fiji 完成、全部检查通过且
-正式结果成功生成后，本次分析实际使用的 TIFF 会移入 macOS Trash。程序在
-安全停止、取消、异常或结果生成失败时会保留输入文件；这一保护机制不能替代
-独立备份。
+每次分析开始前，程序会快速检查本地环境，不访问网络。每次修复都需要联网，
+从正式 `v1.0.1` Release 获取并验证文件清单
+`Project-Leap-2D-V1.0.1.manifest.json`；需要恢复程序文件时，才下载并验证
+`Project-Leap-2D-V1.0.1.zip`。如果无法获取或验证所需的发布信息及文件，
+修复便会停止，不再检查或重建环境。
 
-## 仓库克隆、自动源码压缩包与 Release ZIP
+修复会恢复同一版本的程序文件，保留 `Sample Image`、`Result` 和
+`Analysis Package/Run State` 中的内容。它不会自动升级，也不能修复该版本
+本身已有的程序错误。如果修复脚本缺失或无法启动，请从同一 Release 重新下载。
 
-Git 仓库克隆包含受版本控制的文件和 Git 历史。Git 不保存空目录，因此新克隆
-必须先运行 `./prepare_workspace.command`，随后才能使用程序。
+输入要求、分析路径、Fiji 编辑和输出说明见
+[中文使用说明](<Project Leap 2D V1.0.1/README/README CN.md>)。
+工作包内的 `Manual Command.txt` 提供通过 Terminal 运行分析和修复脚本的命令。
 
-GitHub 自动生成的 **Source code** 压缩包只是受版本控制文件的通用快照，不能
-保留完整、已准备好的程序包目录结构。需要解压后即可使用的完整程序包时，应
-下载单独发布并经过验证的 **Release ZIP**。GitHub 自动生成的源码压缩包与
-Release ZIP 不能视为同一交付文件。
+## 输入备份与运行状态
 
-## 支持的系统
+每批输入都应使用工作副本，并保留独立备份。只有 Fiji 完成、全部验证通过且
+五个结果文件一起成功保存到 `Result` 后，本次实际使用的 TIFF 才会移入 macOS
+Trash。如果安全检查使程序停止、用户取消、发生异常或结果文件保存失败，
+输入文件会保留。
 
-本版本专为运行 macOS 的 Apple Silicon Mac 设计，不属于 Windows、Linux 或
-Intel Mac 版本。最低系统版本和安装要求以内层使用说明为准。
+程序将运行锁和恢复记录保存在 `Analysis Package/Run State` 中，请不要手动清空
+这个文件夹。Git 不跟踪这些运行文件、输入图像和分析结果。
 
-## 当前验证范围
+## 仓库克隆、Code ZIP 与 Release ZIP
 
-工程检查覆盖固定程序文件、安装与发布规则、分析过程中必须保持的关系，以及
-可重复的测试输出。本版本的 GFAP-only 分析仅支持成熟星形胶质细胞。文件名没有
-年龄标记或明确包含 `mature` 时，程序使用成熟 GFAP-only 配置；识别到
-`neonatal` 时，程序会在分析前停止。作者已使用仓库外的成熟 GFAP-only 样本
-测试程序，这些样本及其结果不随仓库发布；自动化测试也包含合成 GFAP-only
-用例。当前验证范围不能证明程序已在不同组织、发育阶段、染色方案、疾病模型、
-显微镜或实验室条件下得到广泛生物学验证。
+Git 克隆包含受版本控制的源码和 Git 历史。GitHub 的
+**Code → Download ZIP** 以及自动生成的 **Source code** 压缩包是源码快照，
+不包含完整安装包，也不包含 Git 未跟踪的空工作目录。
+安装时应使用指定版本的 Release ZIP。
+
+如需查看源码或开发，克隆或解压源码后可在仓库根目录运行
+`./prepare_workspace.command`。它在工作包内建立 `Sample Image`、
+`Result` 和 `Analysis Package/Run State`，保留已有内容，并拒绝符号链接
+或类型不正确的目标目录。该命令只准备工作目录，不安装依赖。
+
+## 支持的系统与科学适用范围
+
+V1.0.1 面向运行 macOS 11 或更新版本的 Apple Silicon Mac。
+所需通道和物理标定要求见使用说明。GFAP-only 分析支持成熟星形胶质细胞：
+没有年龄标记或明确标记为 `mature` 时使用成熟配置；识别到 `neonatal`
+或互相冲突的年龄标记时停止分析。
+
+通过软件完整性与自动化检查，并不代表分析方法已在不同组织、年龄、染色方案、
+疾病模型、显微镜或实验室条件下得到生物学验证。请使用适当的参考样本，
+验证分析方法是否适用于你的成像条件。
 
 ## 许可证与第三方组件
 
-本项目原创代码采用 [Apache License 2.0](LICENSE)。第三方软件、模型、训练
-数据说明、许可证、来源和应引用的论文继续遵循各自的条款，详见
+本项目原创代码采用 [Apache License 2.0](LICENSE)。第三方软件和模型继续遵循
+各自条款；相关许可证、来源、训练数据说明和引用要求见
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [`LICENSES/`](LICENSES/)。

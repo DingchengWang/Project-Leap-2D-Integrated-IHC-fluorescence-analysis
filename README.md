@@ -2,81 +2,107 @@
 
 [中文说明](README_中文.md)
 
-Project Leap 2D is a macOS application package for two-dimensional analysis of
-split, single-channel immunohistochemistry fluorescence Z-stacks. It builds and
-reviews Whole Cell, Soma, and Processes regions of interest, measures the
-selected fluorescence channel from untouched grayscale data, and publishes
-validated overlays, a report, and an Excel workbook.
+Project Leap 2D analyzes split, single-channel immunohistochemistry (IHC)
+fluorescence Z-stacks on Apple Silicon Macs. The program creates regions of
+interest (ROIs) for the whole cell (Whole Cell), cell body (Soma), and cell
+processes (Processes), which you review in Fiji. It measures the selected
+fluorescence channel from untouched grayscale data and produces overlays, an
+analysis report, and an Excel workbook.
 
-The runnable application package is located in
-[`Project Leap 2D (8-23-26)/`](<Project Leap 2D (8-23-26)/>). The files at the
-repository root prepare and document the GitHub distribution; they are not a
-second implementation of the analysis.
+The application is in
+[`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>).
+Distribution tools and documentation are in the repository root.
 
-## Prepare a clone before first use
+## First installation
 
-After cloning the repository, open Terminal in the repository root and run:
+Download `Project-Leap-2D-V1.0.1.zip` from the published `v1.0.1`
+[GitHub Release](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases).
 
-```bash
-./prepare_workspace.command
-```
+Extract the ZIP, keeping `install_macos.command`, `payload_sha256.txt`, and
+the `Project Leap 2D V1.0.1` folder together at the outer level. Double-click
+that `install_macos.command` and follow the Terminal prompts. The installer
+checks the accompanying package, installs it by default in
+`~/Desktop/Project Leap 2D V1.0.1`, and then sets up or checks the shared
+dependency environment. It stops if the destination already exists.
 
-This creates the empty working directories required by the application. Then
-enter the runnable package and follow its installation and operating
-instructions:
+First-time environment setup requires network access. The dependencies are
+stored in `~/Applications/Project Leap 2D Support`. Installation details and
+alternative destinations are described in the Release ZIP's
+`INSTALL_English.md`.
 
-```bash
-cd "Project Leap 2D (8-23-26)"
-./Installation/macOS/install_macos.command
-```
+## Daily use and repair
 
-See the inner [English application manual](<Project Leap 2D (8-23-26)/README_English.md>)
-for input requirements, installation checks, Fiji review, outputs, and normal
-startup.
+Inside the installed working package:
 
-## Protect source images
+1. Place one batch of backed-up, split single-channel Z-stack TIFF files in
+   `Sample Image`.
+2. Double-click `Run Analysis.command`, then follow the prompts for Fiji review.
+   Results are written to `Result`.
+3. If files are missing or damaged, or startup checks fail, double-click
+   `Repair.command`. It checks this version's program files, restores them if
+   needed, and then checks the dependency environment and rebuilds it if needed.
 
-Use only a backed-up working copy of each input batch. After Fiji has completed,
-all validation has passed, and the production output bundle has been published
-successfully, TIFF files actually used by the analysis are moved to macOS
-Trash. Safety stops, cancellation, exceptions, and publication failures retain
-the input files, but they do not replace the need for an independent backup.
+Before each analysis, the program runs a quick check of the local environment
+without accessing the network. Every repair needs network access to retrieve
+and verify `Project-Leap-2D-V1.0.1.manifest.json` from the published `v1.0.1`
+Release. It downloads and verifies `Project-Leap-2D-V1.0.1.zip` only when
+program files need restoration. If repair cannot retrieve or verify the
+required release information or files, it stops before checking or rebuilding
+the environment.
 
-## Repository clone, source archive, and release ZIP
+Repair restores damaged or missing program files from the same version and preserves
+`Sample Image`, `Result`, and `Analysis Package/Run State`. It does not upgrade
+the program or fix bugs already present in that version. If the repair script
+itself is missing or cannot start, download it again from the same release.
 
-A Git clone contains the tracked files and Git history. Git does not preserve
-empty directories, so a new clone must be prepared with
-`./prepare_workspace.command` before the application is used.
+Input requirements, analysis routes, Fiji editing, and output descriptions are
+in the [English application manual](<Project Leap 2D V1.0.1/README/README EN.md>).
+`Manual Command.txt` inside the working package provides Terminal commands for
+running the analysis and repair scripts.
 
-GitHub's automatically generated **Source code** archives are generic snapshots
-of tracked repository files. They do not preserve the complete, prepared
-application-package layout. Use the separately published, verified **Release
-ZIP** when a ready-to-unpack application package is required. Do not treat the
-automatic source archive as equivalent to that Release ZIP.
+## Input backups and run state
 
-## Supported system
+Work from a copy of each input batch and keep an independent backup. TIFF files
+used by the analysis move to macOS Trash only after Fiji completes, all
+validation passes, and the five output files have been successfully saved
+together in `Result`. The input files stay in place if a safety check stops the
+run, you cancel, an exception occurs, or the output files cannot be saved.
 
-This release is designed for Apple Silicon Macs running macOS. It is not
-presented as a Windows, Linux, or Intel Mac release. Detailed minimum-version
-and installation requirements are maintained in the inner application manual.
+The program stores run locks and recovery records in
+`Analysis Package/Run State`; do not clear this folder manually. Git excludes
+these runtime files, input images, and analysis results.
 
-## Verification boundary
+## Repository clone, Code ZIP, and Release ZIP
 
-The engineering checks cover the frozen package files, installation and release
-contracts, analysis invariants, and repeatable test outputs. This release
-supports GFAP-only analysis only for mature astrocytes. A missing age marker or
-an explicit `mature` marker uses the mature GFAP-only configuration; a
-recognized `neonatal` marker stops before analysis. The author tested the
-program with mature-astrocyte GFAP-only samples held outside this repository;
-the samples and their results are not distributed. Automated tests also cover
-synthetic GFAP-only cases. The current validation scope does not establish
-broad biological validation across tissues, developmental stages, staining
-protocols, disease models, microscopes, or laboratories.
+A Git clone contains tracked source files and Git history. GitHub's
+**Code → Download ZIP** and automatically generated **Source code** archives
+contain source snapshots. They do not include the complete
+installation package or empty working directories that Git does not track.
+Use the versioned Release ZIP for installation.
+
+For source inspection or development, run `./prepare_workspace.command` from
+the repository root after cloning or extracting a source archive. It creates
+`Sample Image`, `Result`, and `Analysis Package/Run State` inside the working
+package, preserves existing contents, and rejects redirected or invalid target
+directories. This command prepares the working folders; it does not install
+dependencies.
+
+## Supported system and scientific scope
+
+V1.0.1 is designed for Apple Silicon Macs running macOS 11 or later. See the
+application manual for the required channels and calibration. GFAP-only
+analysis supports mature astrocytes: a missing age marker or an explicit
+`mature` marker uses the mature configuration; a recognized `neonatal` marker
+or conflicting age markers stops analysis.
+
+Passing software integrity and automated checks does not establish biological
+validity across tissues, ages, staining protocols, disease models, microscopes,
+or laboratories. Use appropriate reference samples to validate the analysis
+for your imaging conditions.
 
 ## License and third-party software
 
-Code written for this project is released under the
-[Apache License 2.0](LICENSE). Third-party software, models, training-data
-notices, licenses, sources, and requested citations remain governed by their
-own terms and are documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
-and [`LICENSES/`](LICENSES/).
+Original project code is licensed under the [Apache License 2.0](LICENSE).
+Third-party software and models remain subject to their own terms. Their
+licenses, sources, training-data notices, and requested citations are recorded in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`LICENSES/`](LICENSES/).

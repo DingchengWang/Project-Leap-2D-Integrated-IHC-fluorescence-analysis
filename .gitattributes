@@ -6,4 +6,4 @@
 *.zip binary
 
 # Preserve every byte of the validated inner package.
-"/Project Leap 2D (8-23-26)/**" -text -eol
+"/Project Leap 2D V1.0.1/**" -text -eol
