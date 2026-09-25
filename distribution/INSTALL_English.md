@@ -5,37 +5,28 @@ installation needs internet access to set up Python, Cellpose, Fiji, and the
 other dependencies. You do not need to preinstall Homebrew, pip, or any of these
 programs, and administrator access is not required.
 
-## Download and verify
+## Download and install
 
-Download `Project-Leap-2D-V1.0.1.zip` and `Project-Leap-2D-V1.0.1.zip.sha256`
-from the same `v1.0.1` Release. In the directory containing both files, run:
+1. Download [Project-Leap-2D-V1.0.1.zip](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip).
+2. Double-click the ZIP to extract it. Keep the extracted files and folders in
+   their original layout.
+3. Open `Project Leap 2D V1.0.1 Distribution` and double-click
+   `install_macos.command`.
 
-```bash
-shasum -a 256 -c Project-Leap-2D-V1.0.1.zip.sha256
-```
+Terminal opens automatically to show installation progress; you do not need to
+type any commands. The installer verifies the bundled working package, copies
+it to `~/Desktop/Project Leap 2D V1.0.1`, and then calls the package's maintenance
+programs to create or check the dependency environment. When it reports
+`INSTALLATION COMPLETE`, use `Run Analysis.command` in the Desktop package.
 
-Extract the ZIP after the command reports `OK`. The `.zip.sha256` file lets you
-check the downloaded file manually. `Repair.command` uses a separate JSON
-checksum manifest and the file digests provided by GitHub to verify downloads;
-it does not read `.zip.sha256`.
+The ZIP does not need to be in Downloads. You can extract it in another location
+where the files are readable and scripts can run. Keep the installer and its
+accompanying files together. Installation stops if the target path already
+exists as a folder, file, or symbolic link, so existing inputs, results, and
+working packages are not overwritten.
 
-## First installation
-
-After extracting the ZIP, keep `install_macos.command`, `payload_sha256.txt`,
-and the `Project Leap 2D V1.0.1` folder together. Double-click the outer
-`install_macos.command` to open the installer in Terminal.
-
-You can also open the extracted outer folder in Terminal and run:
-
-```bash
-./install_macos.command
-```
-
-The installer verifies the bundled working package, copies it to
-`~/Desktop/Project Leap 2D V1.0.1`, and then calls the package's maintenance
-programs to create or check the dependency environment. Installation stops if
-the target path already exists as a folder, file, or symbolic link, so existing
-inputs, results, and working packages are not overwritten.
+GitHub's automatically generated **Source code** archives provide the source
+files. Use the prepared ZIP above for installation.
 
 Python 3.9, the scientific computing dependencies, the Cellpose model, and Fiji
 use fixed versions verified with SHA-256. They are installed in
@@ -43,6 +34,15 @@ use fixed versions verified with SHA-256. They are installed in
 environment if they require the same dependency versions and configuration and
 the existing environment passes a full check. In that case, no download or
 reinstallation is needed.
+
+## Advanced options
+
+To run the installer from Terminal, open the extracted outer folder in Terminal
+and run:
+
+```bash
+./install_macos.command
+```
 
 To install the working package elsewhere, specify an absolute path that does
 not yet exist. Its parent directory must already exist and be writable; the

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import io
 import shutil
 import tempfile
 import subprocess
@@ -339,16 +340,32 @@ class ReleaseBuilderTests(unittest.TestCase):
                 builder._build_zip(first, directories, files)
 
     def test_build_outputs_archive_digest_and_program_manifests(self):
-        with tempfile.TemporaryDirectory(prefix="leap-release-sidecars-test-") as temp:
+        with tempfile.TemporaryDirectory(prefix="leap-release-artifacts-test-") as temp:
             output = Path(temp) / "Project-Leap-2D-V1.0.1.zip"
-            self.assertEqual(builder.main(["--output", str(output)]), 0)
-            checksum = output.with_suffix(".zip.sha256")
-            self.assertEqual(checksum.read_text(), f"{_sha256(output)}  {output.name}\n")
-            manifest = json.loads((output.parent / "Project-Leap-2D-V1.0.1.manifest.json").read_text())
+            stdout = io.StringIO()
+            with patch("sys.stdout", stdout):
+                self.assertEqual(builder.main(["--output", str(output)]), 0)
+            manifest_path = output.parent / "Project-Leap-2D-V1.0.1.manifest.json"
+            payload_path = output.parent / "payload_sha256.txt"
+            self.assertEqual(set(output.parent.iterdir()), {output, manifest_path, payload_path})
+            self.assertIn(f"SHA-256: {_sha256(output)}\n", stdout.getvalue())
+            manifest = json.loads(manifest_path.read_text())
             self.assertEqual(len(manifest["files"]), 95)
-            self.assertEqual(len((output.parent / "payload_sha256.txt").read_text().splitlines()), 95)
-            for name in ("INSTALL_中文.md", "INSTALL_English.md"):
-                self.assertIn("Project-Leap-2D-V1.0.1.zip.sha256", (REPO_ROOT / "distribution" / name).read_text())
+            checksums = {}
+            for line in payload_path.read_text().splitlines():
+                digest, relative_path = line.split("  ", 1)
+                self.assertNotIn(relative_path, checksums)
+                checksums[relative_path] = digest
+            self.assertEqual(set(checksums), set(manifest["files"]))
+            with zipfile.ZipFile(output) as archive:
+                root = "Project Leap 2D V1.0.1 Distribution/"
+                self.assertEqual(archive.read(root + "payload_sha256.txt"), payload_path.read_bytes())
+                for relative_path, metadata in manifest["files"].items():
+                    archived = archive.read(root + PACKAGE_ROOT.name + "/" + relative_path)
+                    digest = hashlib.sha256(archived).hexdigest()
+                    self.assertEqual(digest, checksums[relative_path], relative_path)
+                    self.assertEqual(digest, metadata["sha256"], relative_path)
+                    self.assertEqual(len(archived), metadata["size"], relative_path)
 
     def test_workspace_directories_reject_files_subdirectories_and_links(self):
         with tempfile.TemporaryDirectory(prefix="leap-release-empty-test-") as temp:

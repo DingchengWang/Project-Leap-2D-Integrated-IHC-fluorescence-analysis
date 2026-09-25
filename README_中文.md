@@ -12,18 +12,24 @@ Processes（突起）三类感兴趣区域（ROI），由你在 Fiji 中复核�
 
 ## 首次安装
 
-从正式发布的 `v1.0.1`
-[GitHub Release](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases)
-下载 `Project-Leap-2D-V1.0.1.zip`。
+本版本适用于运行 macOS 11 或更新版本的 Apple Silicon Mac。首次建立依赖环境
+需要联网，无需预先安装 Python、Cellpose 或 Fiji。
 
-解压后，请将 `install_macos.command`、`payload_sha256.txt` 与
-`Project Leap 2D V1.0.1` 文件夹保留在同一外层目录中。双击该目录中的
-`install_macos.command`，按 Terminal 提示操作。安装器先检查随附工作包，
-默认安装到 `~/Desktop/Project Leap 2D V1.0.1`，随后建立或检查共享依赖环境。
-如果目标路径已经存在，安装器会停止。
+1. 下载 [Project-Leap-2D-V1.0.1.zip](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip)。
+2. 双击 ZIP 解压，保持解压后的文件和文件夹结构不变。
+3. 打开 `Project Leap 2D V1.0.1 Distribution` 文件夹，双击其中的
+   `install_macos.command`。
 
-首次建立环境需要联网，依赖保存在 `~/Applications/Project Leap 2D Support`。
-详细安装步骤和其他安装位置的设置见 Release ZIP 中的 `INSTALL_中文.md`。
+Terminal 会自动打开并显示安装进度，无需手动输入命令。安装器会检查随附的
+程序文件，将工作包复制到 `~/Desktop/Project Leap 2D V1.0.1`，再建立或检查
+共享依赖环境。显示 `INSTALLATION COMPLETE` 后，即可使用桌面工作包中的
+`Run Analysis.command`。
+
+ZIP 不必保存在“下载”文件夹；在其他可读取文件并正常运行脚本的位置解压也可以。
+请将安装器与随附文件保留在一起。如果目标路径已存在，安装器会停止并保留原有内容。
+
+依赖保存在 `~/Applications/Project Leap 2D Support`。详细安装步骤和其他安装位置
+等高级选项见 Release ZIP 中的 `INSTALL_中文.md`。
 
 ## 日常运行与修复
 

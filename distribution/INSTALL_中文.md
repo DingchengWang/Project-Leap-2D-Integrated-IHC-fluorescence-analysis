@@ -4,39 +4,36 @@
 安装器会准备 Python、Cellpose、Fiji 和其他依赖。无需预先安装 Homebrew、pip 或
 这些软件，也不需要管理员权限。
 
-## 下载与校验
+## 下载与安装
 
-从同一个 `v1.0.1` Release 下载 `Project-Leap-2D-V1.0.1.zip` 和
-`Project-Leap-2D-V1.0.1.zip.sha256`，在这两个文件所在的目录运行：
+1. 下载 [Project-Leap-2D-V1.0.1.zip](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip)。
+2. 双击 ZIP 解压，保持解压后的文件和文件夹结构不变。
+3. 打开 `Project Leap 2D V1.0.1 Distribution` 文件夹，双击其中的
+   `install_macos.command`。
 
-```bash
-shasum -a 256 -c Project-Leap-2D-V1.0.1.zip.sha256
-```
+Terminal 会自动打开并显示安装进度，无需手动输入命令。安装器先校验随附的
+工作包，再将它复制到 `~/Desktop/Project Leap 2D V1.0.1`，随后调用包内的维护
+程序建立或检查依赖环境。显示 `INSTALLATION COMPLETE` 后，即可使用桌面
+工作包中的 `Run Analysis.command`。
 
-看到 `OK` 后再解压 ZIP。`.zip.sha256` 用于手动核对下载文件是否完整。
-`Repair.command` 另用 JSON 校验清单和 GitHub 提供的文件摘要校验下载内容，
-不读取这个 `.zip.sha256` 文件。
+ZIP 不必保存在“下载”文件夹；在其他可读取文件并正常运行脚本的位置解压也可以。
+请将安装器与随附文件保留在一起。如果目标路径已存在，无论是文件夹、文件还是
+符号链接，安装都会停止，因此已有的输入、结果和工作包不会被覆盖。
 
-## 首次安装
-
-解压后，将 `install_macos.command`、`payload_sha256.txt` 和 `Project Leap 2D V1.0.1`
-文件夹放在一起，双击外层的 `install_macos.command`。macOS 会在 Terminal
-中打开安装器。
-
-也可以在 Terminal 中进入解压后的外层目录，运行：
-
-```bash
-./install_macos.command
-```
-
-安装器先校验随附的工作包，再将它复制到 `~/Desktop/Project Leap 2D V1.0.1`，
-随后调用包内的维护程序建立或检查依赖环境。如果目标路径已存在，无论是文件夹、
-文件还是符号链接，安装都会停止，因此已有的输入、结果和工作包不会被覆盖。
+GitHub 自动生成的 **Source code** 压缩包用于获取源码。安装请选择上面的正式 ZIP。
 
 Python 3.9、科学计算依赖、Cellpose 模型和 Fiji 均使用固定版本，并经 SHA-256
 校验，安装位置是 `~/Applications/Project Leap 2D Support`。以后安装的工作包
 如果要求相同的依赖版本和配置，且现有环境通过完整检查，就会复用该环境，
 无需重新下载和安装。
+
+## 高级选项
+
+如需通过 Terminal 运行安装器，可在 Terminal 中进入解压后的外层目录，运行：
+
+```bash
+./install_macos.command
+```
 
 如需将工作包安装到其他位置，请指定一个尚不存在的绝对路径。其父目录须已存在
 且可写；安装器不会自动补建父目录：

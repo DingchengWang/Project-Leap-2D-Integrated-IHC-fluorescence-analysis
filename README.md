@@ -15,20 +15,30 @@ Distribution tools and documentation are in the repository root.
 
 ## First installation
 
-Download `Project-Leap-2D-V1.0.1.zip` from the published `v1.0.1`
-[GitHub Release](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases).
+This version supports Apple Silicon Macs running macOS 11 or later. Setting up
+the dependencies for the first time requires internet access. You do not need
+to preinstall Python, Cellpose, or Fiji.
 
-Extract the ZIP, keeping `install_macos.command`, `payload_sha256.txt`, and
-the `Project Leap 2D V1.0.1` folder together at the outer level. Double-click
-that `install_macos.command` and follow the Terminal prompts. The installer
-checks the accompanying package, installs it by default in
-`~/Desktop/Project Leap 2D V1.0.1`, and then sets up or checks the shared
-dependency environment. It stops if the destination already exists.
+1. Download [Project-Leap-2D-V1.0.1.zip](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip).
+2. Double-click the ZIP to extract it. Keep the extracted files and folders in
+   their original layout.
+3. Open `Project Leap 2D V1.0.1 Distribution` and double-click
+   `install_macos.command`.
 
-First-time environment setup requires network access. The dependencies are
-stored in `~/Applications/Project Leap 2D Support`. Installation details and
-alternative destinations are described in the Release ZIP's
-`INSTALL_English.md`.
+Terminal opens automatically to show installation progress; you do not need to
+type any commands. The installer checks the bundled program files, copies the
+working package to `~/Desktop/Project Leap 2D V1.0.1`, and then sets up or checks
+the shared dependency environment. When it reports `INSTALLATION COMPLETE`,
+use `Run Analysis.command` in the Desktop package.
+
+The ZIP does not need to be in Downloads. You can extract it in another location
+where the files are readable and scripts can run. Keep the installer and its
+accompanying files together. If the destination already exists, the installer
+stops and leaves it intact.
+
+The dependencies are stored in `~/Applications/Project Leap 2D Support`.
+Installation details and advanced options, including alternative destinations,
+are in the Release ZIP's `INSTALL_English.md`.
 
 ## Daily use and repair
 

@@ -778,9 +778,6 @@ def main(argv: Optional[list[str]] = None) -> int:
         output = arguments.output or _default_output_path()
         manifest_path = output.parent / f"{ASSET_NAME}.manifest.json"
         payload_path = output.parent / "payload_sha256.txt"
-        zip_checksum_path = output.with_suffix(output.suffix + ".sha256")
-        if zip_checksum_path.exists() or zip_checksum_path.is_symlink():
-            raise ReleaseBuildError(f"refusing to overwrite existing ZIP checksum: {zip_checksum_path}")
         manifest_bytes = _public_manifest(validated_files)
         checksum_bytes = _payload_checksums(validated_files)
         _check_generated_output(manifest_path, manifest_bytes)
@@ -788,8 +785,6 @@ def main(argv: Optional[list[str]] = None) -> int:
         size, digest = _build_zip(output, directories, archive_files)
         _write_generated_output(manifest_path, manifest_bytes)
         _write_generated_output(payload_path, checksum_bytes)
-        _write_generated_output(zip_checksum_path, f"{digest}  {output.name}\n".encode("utf-8"))
-        print(f"ZIP checksum: {zip_checksum_path.resolve()}")
         print(f"Manifest: {manifest_path.resolve()}")
         print(f"Payload checksums: {payload_path.resolve()}")
         print(f"Created: {output.expanduser().resolve(strict=False)}")
