@@ -2,13 +2,13 @@
 
 [中文](guide.zh.md) · [Overview](../README.md) · [Methods](methods.en.md)
 
-Use this guide to measure one target fluorescence channel within astrocyte regions of interest (ROIs). It assumes familiarity with fluorescence images; programming and prior Fiji experience are not required. The instructions describe the **v1.1.1 candidate** in Project Leap. Public installation availability is recorded in the [repository overview](../README.md).
+Use this guide to measure one target fluorescence channel within astrocyte regions of interest (ROIs). It assumes familiarity with fluorescence images; programming and prior Fiji experience are not required. The instructions describe module **v1.1.1** in Project Leap. See the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for main application availability and installation instructions.
 
-Version **1.1.1 is not yet released**; implementation and validation are in progress. It addresses shared scientific runtime discovery and component descriptor format recognition without changing analysis algorithms, models, or parameters. The modular workflow, automatic channel splitting, and final ROI archive described below were introduced in **v1.1.0**.
+Version **1.1.1** fixes how the module uses the shared scientific runtime selected by Project Leap and records the environment used for analysis. Analysis algorithms, models, and parameters remain unchanged. The modular workflow, automatic channel splitting, and final ROI archive described below were introduced in **v1.1.0**.
 
 ## Before starting
 
-Use an Apple Silicon Mac running macOS 27 or later. In Project Leap, open **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement**, and wait for **Module ready**. The application obtains the required components; you do not install a module archive manually. The control names below follow the English interface; choose English under **Settings → Interface language** if needed.
+Use **Project Leap 1.0.0 (build 1)** on an Apple Silicon Mac running macOS 27 or later. In Project Leap, open **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement**, and wait for **Module ready**. The application obtains the required components; you do not install a module archive manually. The control names below follow the English interface; choose English under **Settings → Interface language** if needed.
 
 Have one multichannel TIFF containing separate DAPI, eGFP and/or GFAP channels, plus one target: KCNN1, KCNN2, KCNN3, or KCNJ10. A merged RGB picture is unsuitable. The TIFF must retain its depth axis and physical pixel/slice spacing; the program reads these automatically. Exact supported layouts are listed under [Input data](methods.en.md#input-data).
 

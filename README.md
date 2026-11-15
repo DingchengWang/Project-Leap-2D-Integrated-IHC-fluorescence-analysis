@@ -2,15 +2,15 @@
 
 [中文](README_中文.md) · [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) · [User guide](docs/guide.en.md) · [Methods](docs/methods.en.md)
 
-Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. The current documentation covers the **1.1.1 candidate** of the **Astrocyte Fluorescence Intensity Measurement** module in Project Leap. Import a multichannel TIFF, choose its image series and time point when prompted, and assign the channel roles. The application prepares single-channel working images, runs the established analysis, opens Fiji for ROI review, and saves six result files. The original TIFF stays unchanged in its original location.
+Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. The current documentation covers **version 1.1.1** of the **Astrocyte Fluorescence Intensity Measurement** module in Project Leap. Import a multichannel TIFF, choose its image series and time point when prompted, and assign the channel roles. The application prepares single-channel working images, runs the established analysis, opens Fiji for ROI review, and saves six result files. The original TIFF stays unchanged in its original location.
 
-Version **1.1.1 is not yet released**. This candidate addresses how the module locates the shared scientific runtime and recognizes component descriptor formats; analysis algorithms, models, and parameters remain unchanged. Implementation and validation are in progress. The modular workflow, automatic channel splitting, and final ROI archive were introduced in **v1.1.0**.
+Version **1.1.1** fixes compatibility with the shared scientific runtime, the Python environment that runs the analysis. Project Leap passes the selected runtime location to the module, which validates schema-4 component declarations and records the runtime actually used. Analysis algorithms, models, and parameters remain unchanged. The modular workflow, automatic channel splitting, and final ROI archive were introduced in **v1.1.0**.
 
-This repository contains the module source and documentation. Project Leap manages module installation and maintenance. The main application download remains in preparation; see the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for application availability.
+This repository contains the module source and documentation. Project Leap manages module installation and maintenance. See the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for main application availability and installation instructions.
 
 ## Use the module
 
-The current Project Leap application targets **Apple Silicon Macs running macOS 27 or later**. In **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement** and wait for **Module ready**. The application manages the module, scientific runtime, models, and Fiji; there is no separate manual module installer.
+The initial supported host is **Project Leap 1.0.0 (build 1)** on **Apple Silicon Macs running macOS 27 or later**. In **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement** and wait for **Module ready**. The application manages the module, scientific runtime, models, and Fiji; there is no separate manual module installer.
 
 1. Import a supported `.tif` or `.tiff` with DAPI, eGFP and/or GFAP, and one target: KCNN1, KCNN2, KCNN3, or KCNJ10.
 2. Select the image series/time point when required, confirm the channel mapping, and choose **Sample Age**.

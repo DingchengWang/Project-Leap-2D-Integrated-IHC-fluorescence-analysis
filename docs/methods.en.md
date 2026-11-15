@@ -2,9 +2,9 @@
 
 [中文](methods.zh.md) · [Overview](../README.md) · [User guide](guide.en.md)
 
-Project Leap 2D produces two-dimensional astrocyte regions and measures one target channel within them. This document covers the **1.1.1 candidate**, which retains scientific rules version **1.0.1** and the Project Leap input, task, and output workflow introduced in module **1.1.0**. The original multichannel TIFF is read-only. Its selected image series, time point, and channel assignments determine the single-channel working images passed to the analysis engine.
+Project Leap 2D produces two-dimensional astrocyte regions and measures one target channel within them. This document covers **version 1.1.1**, which retains scientific rules version **1.0.1** and the Project Leap input, task, and output workflow introduced in module **1.1.0**. The original multichannel TIFF is read-only. Its selected image series, time point, and channel assignments determine the single-channel working images passed to the analysis engine.
 
-Version **1.1.1 is not yet released**; implementation and validation are in progress. Its scope is shared scientific runtime discovery and component descriptor format recognition. Analysis algorithms, models, and parameters remain unchanged. The modular workflow, automatic channel splitting, and final ROI archive remain features introduced in **v1.1.0**.
+Version **1.1.1** fixes compatibility with the shared scientific runtime. The Project Leap host passes the selected runtime location to the analysis worker. The worker validates the shared runtime and model dependencies declared in schema-4 component descriptors, then records the actual runtime identity and file fingerprints in the run provenance. Analysis algorithms, models, and parameters remain unchanged. The modular workflow, automatic channel splitting, and final ROI archive were introduced in **v1.1.0**.
 
 ## Input data
 
