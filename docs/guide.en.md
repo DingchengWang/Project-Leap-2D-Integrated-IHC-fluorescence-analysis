@@ -2,21 +2,19 @@
 
 [中文](guide.zh.md) · [Overview](../README.md) · [Methods](methods.en.md)
 
-Use this guide to measure one target fluorescence channel within astrocyte regions of interest (ROIs). It assumes familiarity with fluorescence images; programming and prior Fiji experience are not required. The instructions describe module **v1.1.1** in Project Leap. See the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for main application availability and installation instructions.
-
-Version **1.1.1** fixes how the module uses the shared scientific runtime selected by Project Leap and records the environment used for analysis. Analysis algorithms, models, and parameters remain unchanged. The modular workflow, automatic channel splitting, and final ROI archive described below were introduced in **v1.1.0**.
+Use this guide to measure one target fluorescence channel within astrocyte regions of interest (ROIs). It assumes familiarity with fluorescence images; programming and prior Fiji experience are not required. The instructions describe module **v1.1.1** in Project Leap.
 
 ## Before starting
 
-Use **Project Leap 1.0.0 (build 1)** on an Apple Silicon Mac running macOS 27 or later. In Project Leap, open **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement**, and wait for **Module ready**. The application obtains the required components; you do not install a module archive manually. The control names below follow the English interface; choose English under **Settings → Interface language** if needed.
+Download **Project Leap v1.0.0** from the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) and install it on an Apple Silicon Mac running macOS 27 or later. Open **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement**, and wait for **Module ready**. The application installs the required scientific runtime, models, and Fiji. The control names below follow the English interface; choose English under **Settings → Interface language** if needed.
 
-Have one multichannel TIFF containing separate DAPI, eGFP and/or GFAP channels, plus one target: KCNN1, KCNN2, KCNN3, or KCNJ10. A merged RGB picture is unsuitable. The TIFF must retain its depth axis and physical pixel/slice spacing; the program reads these automatically. Exact supported layouts are listed under [Input data](methods.en.md#input-data).
+Have one multichannel TIFF containing separate DAPI, eGFP and/or GFAP channels, plus one target: KCNN1, KCNN2, KCNN3, or KCNJ10. A merged RGB picture is unsuitable. The TIFF must retain its depth axis and physical pixel/slice spacing; the program reads these automatically. Exact supported layouts are listed under [Input data](methods.en.md#input-data-and-channel-roles).
 
 ## 1. Import the image
 
 Select **Astrocyte Fluorescence Intensity Measurement** in the sidebar. In **Image import**, click **Choose image…**, or drag one `.tif`/`.tiff` into the import area. If prompted, select the **Image series** and **Time point** you intend to analyze. This run processes that selection.
 
-The application displays image dimensions, channel and Z-plane counts, data type, and voxel calibration. It checks this metadata automatically; you do not need to enter it or independently repeat the checks. If the file has missing calibration or an unsupported layout, read the message, obtain a correctly exported TIFF from the image provider, and import it again.
+The application displays image dimensions, channel and Z-plane counts, data type, and voxel calibration. It checks this metadata automatically. If the file has missing calibration or an unsupported layout, read the message, obtain a correctly exported TIFF from the image provider, and import it again.
 
 ## 2. Confirm channels and sample age
 
@@ -24,7 +22,7 @@ Under **Channel mapping**, confirm any prefilled choices or assign C1, C2, and t
 
 Channel names can prefill a choice, but you must confirm what was stained. Display colors do not identify markers. Consult the image provider if a channel's identity is unknown.
 
-Under **Sample Age**, keep **Automatic**, or select **Mature** or **Neonatal** when the sample category is known. With eGFP, Automatic selects a processing profile from image morphology; it does not read the animal's age from the TIFF. With DAPI + GFAP and no eGFP, use Automatic or Mature **only for mature samples**. This GFAP-only route does not support neonatal samples. Importing another image resets the age setting to Automatic.
+With eGFP, **Automatic** under **Sample Age** selects a processing profile from image morphology. If the sample category is known, you can choose **Mature** or **Neonatal**. The route with GFAP as the sole structural channel is for **mature samples only**, using either Automatic or Mature. Importing another image resets the selection to Automatic.
 
 ## 3. Start the analysis
 
@@ -38,7 +36,7 @@ In **Astrocyte ROI Reviewer**, click **Review ROIs**. Closing this initial dialo
 
 Click a cell's row in any manager to highlight it across the views. **Show ROI Images** brings that manager's paired images forward. In an active image, press **+** or **−** to zoom; hold **Space** and drag to pan. For multiple selection, click the first row and Command-click additional rows.
 
-Check that the outlines follow the intended cell structures and exclude unrelated cells and background. Use the raw grayscale views to inspect the target signal. Recheck the selected IDs after editing because numbering changes. This biological review remains necessary even when the program's technical checks pass.
+Check that the outlines follow the intended cell structures and exclude unrelated cells and background. Use the raw grayscale views to inspect the target signal. Recheck the selected IDs after editing because numbering changes.
 
 ## 5. Correct only the regions that need changes
 
@@ -57,15 +55,15 @@ To trim processes:
 3. Use **Clear Cell Draft** to remove the selected affected ID's draft, or **Undo** to reverse a draft action. **Cancel** discards the entire open draft.
 4. Wait for the current preview, then click **Confirm Trim**. The program removes the accepted pixels from Whole Cell and Processes together, leaving Soma unchanged. It blocks a stale preview, a draft that removes no process pixels, removal of all Processes from an affected cell, or a new disconnection of retained processes from Soma. Adjust the draft if it is rejected.
 
-**Cell Edit: ready** means processing has ended; it does not by itself establish that an edit succeeded. Read the message and inspect the regions. Rejected attempts retain the prior ROIs. To stop Split or Enlarge processing, click **Cancel Cell Edit** and wait for cancellation to finish. To undo an applied edit, close Trim, wait for any processing to end, and click **Revert** in the Waiting window. Repeated clicks undo applied edits in reverse order; one confirmed Trim session is reverted as a whole. Trim's Undo operates only on its open draft.
+When **Cell Edit: ready** appears, processing has ended. Read the outcome message and inspect the regions; rejected attempts retain the prior ROIs. To stop Split or Enlarge processing, click **Cancel Cell Edit** and wait for cancellation to finish. To undo an applied edit, close Trim, wait for any processing to end, and click **Revert** in the Waiting window. Repeated clicks undo applied edits in reverse order; one confirmed Trim session is reverted as a whole. Trim's Undo operates only on its open draft.
 
 ## 6. Finish review and read the results
 
 If Trim is open, apply a valid draft with **Confirm Trim** or close it with **Cancel**; use Cancel for an empty draft. Wait for processing or cancellation to finish, then click **Finish Review and Measure** in **Astrocyte ROI Reviewer-Waiting**. Project Leap continues automatically. Wait for **Completed**, then click **View results**.
 
-Open `IHC_2D_Fluorescence_Results.xlsx` and choose **Whole Cell**, **Soma**, or **Processes**. Each row contains one cell's measurements in that region. `Astrocyte_ID` matches the overlay label. `Mean` is the average pixel intensity in the ROI; `Median` is its middle pixel intensity. **Review Audit** records applied and reverted edits.
+Open `IHC_2D_Fluorescence_Results.xlsx` and choose **Whole Cell**, **Soma**, or **Processes**. Each row contains one cell's measurements in that region. `Astrocyte_ID` matches the overlay label. `Mean` is the average pixel intensity in the ROI; `Median` is its middle pixel intensity. `Manual_Review_Used` records whether **Review ROIs** was entered. **Review Audit** records the edits applied and reverted during that workflow.
 
-Measurements come from a two-dimensional projection of the software-selected depth range. The target intensities receive no background subtraction or intensity normalization; display colors do not alter these measurements. The workbook records the projection and Z range so you can identify what was measured.
+Measurements use the target channel's raw grayscale values in a two-dimensional maximum-intensity projection of the selected Z range. The target intensities receive no background subtraction or intensity normalization; display colors do not alter them. The workbook records the projection and Z range.
 
 The program validates and saves these six files together:
 
@@ -78,12 +76,12 @@ The program validates and saves these six files together:
 | `IHC_2D_Fluorescence_Results.xlsx` | Measurements for all three regions and the edit record |
 | `IHC_2D_ROI_Archive.zip` | Final label masks, ImageJ ROIs, calibration, identities, and their correspondence to the measurements |
 
-Keep the result folder and original TIFF for future reference. The ROI archive preserves final shapes; the application does not provide a one-click route to reopen a completed fluorescence task for editing.
+Keep the result folder and original TIFF for future reference. Extract the ROI archive to inspect the final label masks or ImageJ ROIs. Completed fluorescence tasks currently have no one-click route back into ROI editing.
 
 ## 7. Handle a stopped run or maintain the module
 
-After cancellation or failure, return to the module, resolve the reported error, and click **Start analysis** to begin a new run. For the current task, scroll to **Run details** below the analysis controls to inspect its status and run log. For a saved task, open **Jobs & Results**, select the task, and click **Expand** beside **Run details** to read its saved summary. A `z_step_limit` message means the eGFP route cannot fit its required depth windows in this stack; use a suitable acquisition rather than inventing slice spacing. `z_selection_ambiguous` means the highest position scores tie and no position was selected.
+After cancellation or failure, return to the module, resolve the reported error, and click **Start analysis** to begin a new run. For the current task, scroll to **Run details** below the analysis controls to inspect its status and run log. For a saved task, open **Jobs & Results**, select the task, and click **Expand** beside **Run details** to read its saved summary. A `z_step_limit` message means the eGFP route cannot fit its required depth windows in this stack. Use an acquisition with sufficient depth and retain its recorded slice spacing. `z_selection_ambiguous` means the highest position scores tie and no position was selected.
 
-If Project Leap closes while its background process remains alive, reopening the application can reconnect to that task. An exited process may instead leave the task interrupted; this is not general checkpoint recovery of arbitrary calculations or Fiji sessions.
+If Project Leap closes while its background process remains alive, reopening the application can reconnect to that task. If the process has exited, the task may be marked interrupted; start a new run after addressing the cause.
 
-Use **Jobs & Results** to inspect prior results and **Modules & Maintenance** to repair the installed module when requested by the application. Use the application's cleanup controls for managed temporary data. Deleting a task removes its managed data and results; export files you need before deleting it. External original images and exported copies remain outside that deletion.
+When the application requests module repair, open **Modules & Maintenance**. Use the application's cleanup controls for managed temporary data. Deleting a task removes its managed data and results; export files you need before deleting it. External original images and exported copies remain outside that deletion.

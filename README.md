@@ -2,34 +2,25 @@
 
 [中文](README_中文.md) · [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) · [User guide](docs/guide.en.md) · [Methods](docs/methods.en.md)
 
-Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. The current documentation covers **version 1.1.1** of the **Astrocyte Fluorescence Intensity Measurement** module in Project Leap. Import a multichannel TIFF, choose its image series and time point when prompted, and assign the channel roles. The application prepares single-channel working images, runs the established analysis, opens Fiji for ROI review, and saves six result files. The original TIFF stays unchanged in its original location.
+Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. The module uses DAPI plus eGFP and/or GFAP to select analysis depth and cell regions. After ROI review in Fiji, the module measures the target channel's raw grayscale values in a two-dimensional maximum-intensity projection of the selected Z range.
 
-Version **1.1.1** fixes compatibility with the shared scientific runtime, the Python environment that runs the analysis. Project Leap passes the selected runtime location to the module, which validates schema-4 component declarations and records the runtime actually used. Analysis algorithms, models, and parameters remain unchanged. The modular workflow, automatic channel splitting, and final ROI archive were introduced in **v1.1.0**.
+This repository contains source and documentation for **v1.1.1** of the **Astrocyte Fluorescence Intensity Measurement** module. Install it through **Project Leap v1.0.0**, available from the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/). Version changes are recorded in [CHANGELOG.md](CHANGELOG.md).
 
-This repository contains the module source and documentation. Project Leap manages module installation and maintenance. See the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for main application availability and installation instructions.
+## Prepare an image and install the module
 
-## Use the module
+Use an **Apple Silicon Mac running macOS 27 or later**. In Project Leap, open **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement**, and wait for **Module ready**. The application installs the scientific runtime, models, and Fiji with the module.
 
-The initial supported host is **Project Leap 1.0.0 (build 1)** on **Apple Silicon Macs running macOS 27 or later**. In **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement** and wait for **Module ready**. The application manages the module, scientific runtime, models, and Fiji; there is no separate manual module installer.
+Prepare one multichannel `.tif` or `.tiff` with separate DAPI, eGFP and/or GFAP channels, plus one target: KCNN1, KCNN2, KCNN3, or KCNJ10. The image must retain its Z axis and physical pixel and slice spacing. Export microscope acquisition files as calibrated TIFFs; merged RGB pictures are unsuitable. GFAP-only analysis supports mature astrocytes only.
 
-1. Import a supported `.tif` or `.tiff` with DAPI, eGFP and/or GFAP, and one target: KCNN1, KCNN2, KCNN3, or KCNJ10.
-2. Select the image series/time point when required, confirm the channel mapping, and choose **Sample Age**.
-3. Click **Start analysis**. The application splits the selected channels into working copies and runs the analysis.
-4. Review the proposed regions in Fiji, make any needed corrections, and finish the review.
-5. Open **View results** after **Completed** to inspect the overlays, report, measurements, and final ROI archive.
+## Analyze and review
 
-The [user guide](docs/guide.en.md) explains each control, the expected feedback, and how to handle rejected edits. Image metadata is checked automatically; channel identity and cell boundaries require your judgment. GFAP-only analysis supports mature astrocytes only.
+Automatic analysis produces linked whole-cell, soma, and process regions for review in Fiji. The [user guide](docs/guide.en.md) explains how to inspect and adjust these regions, complete measurement, and open the results. [Methods](docs/methods.en.md) describes how the regions and measurements are calculated.
 
-## Workflow changes introduced in v1.1.0
+## Read and retain the results
 
-| Area | v1.1.0 module |
-|---|---|
-| Input preparation | Import one multichannel TIFF; select a series/time point and map source channels in the application. Single-channel working copies are generated automatically. |
-| Original images | Read-only source TIFFs remain in place; working copies live in a separate task directory. |
-| Installation and results | Project Leap manages components, task status, result files, and history. |
-| Final ROI retention | Adds `IHC_2D_ROI_Archive.zip` to the five existing outputs, preserving final geometry and its correspondence to measurements. |
+Each completed run saves three PNG overlays, a TXT report, an XLSX workbook, and `IHC_2D_ROI_Archive.zip`. The workbook reports area and fluorescence measurements for Whole Cell, Soma, and Processes, together with cell IDs, the selected Z range, and the review record. The target intensities retain the source grayscale scale, without background subtraction or intensity normalization.
 
-The scientific rules remain version **1.0.1**. Z selection, automatic segmentation, age-profile selection, Fiji editing including Trim Processes, and raw-grayscale measurement were already part of the earlier workflow. See [Methods](docs/methods.en.md) and [CHANGELOG](CHANGELOG.md).
+The ROI archive preserves final label masks, ImageJ ROIs, and their correspondence to the measurements for inspection or extraction. Keep the result folder with the original TIFF.
 
 ## Legacy v1.0.1 script package
 
@@ -39,7 +30,7 @@ The standalone script package remains available for its existing users. Its inst
 - [Installation instructions](distribution/INSTALL_English.md) and [legacy application manual](<Project Leap 2D V1.0.1/README/README EN.md>).
 - [`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>) retains `Run Analysis.command`, `Repair.command`, and `Manual Command.txt`. The legacy `Repair.command` uses the exact v1.0.1 Release and its matching assets.
 
-The legacy package requires backed-up, presplit input copies in `Sample Image` and moves successfully processed inputs to macOS Trash. Follow that package's manual when using it. GitHub's **Code → Download ZIP** is a source snapshot, not an application installer.
+The legacy package requires backed-up, presplit input copies in `Sample Image` and moves successfully processed inputs to macOS Trash. Follow that package's manual when using it. GitHub's **Code → Download ZIP** provides a source snapshot; application installers are available from the website.
 
 ## Source and attribution
 

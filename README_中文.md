@@ -2,34 +2,25 @@
 
 [English](README.md) · [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/) · [使用指南](docs/guide.zh.md) · [分析方法](docs/methods.zh.md)
 
-Project Leap 2D 在星形胶质细胞的整细胞、胞体和突起区域内测量指定通道的荧光强度。当前文档对应 Project Leap“**星形胶质细胞荧光强度分析**”模块的 **1.1.1 版**：导入多通道 TIFF，按提示选择图像组和时间点，再指定通道角色。软件自动生成单通道工作副本，运行既有分析流程，打开 Fiji 供你审核 ROI，最后保存六个结果文件。原始 TIFF 保持原位置，内容不变。
+Project Leap 2D 用于测量星形胶质细胞整细胞、胞体和突起区域内的目标通道荧光强度。程序依据 DAPI 及 eGFP 和／或 GFAP 选择分析深度、构建细胞区域；用户在 Fiji 中审核 ROI 后，程序在所选 Z 范围的二维最大强度投影上测量目标通道的原始灰度。
 
-**1.1.1** 修复了模块与共享科学运行环境的兼容问题；该环境提供执行分析所需的 Python 及科学计算依赖。Project Leap 将选定环境的位置传给模块，模块校验 schema-4 组件声明，并记录实际使用的运行环境。分析算法、模型和参数保持不变。模块化流程、自动通道拆分和最终 ROI 归档均由 **v1.1.0** 引入。
+本仓库提供“**星形胶质细胞荧光强度分析**”模块 **v1.1.1** 的源码和文档。请从 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)下载 **Project Leap v1.0.0**，再在主程序中安装模块。各版本的变化见[版本记录](CHANGELOG.md)。
 
-本仓库提供模块源码和文档，模块由 Project Leap 主程序负责安装与维护。主程序的下载状态及安装说明见 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)。
+## 准备图像与安装模块
 
-## 使用模块
+使用 **macOS 27 或更新版本的 Apple Silicon Mac**。打开 Project Leap 的“**功能与维护**”，安装“**星形胶质细胞荧光强度分析**”，等待显示“**模块已就绪**”。主程序会一并安装所需的科学计算环境、模型和 Fiji。
 
-首个受支持的主程序版本为 **Project Leap 1.0.0（构建号 1）**，面向 **macOS 27 或更新版本的 Apple Silicon Mac**。在“**功能与维护**”中安装“**星形胶质细胞荧光强度分析**”，等待显示“**模块已就绪**”。主程序管理模块、科学计算环境、模型和 Fiji，无需单独手动安装模块包。
+准备一个多通道 `.tif` 或 `.tiff`，分别包含 DAPI、eGFP 和／或 GFAP，以及 KCNN1、KCNN2、KCNN3、KCNJ10 中的一个待测标记物。图像应保留 Z 轴及像素、切片的物理间距。显微镜原生采集文件需先导出为带标定的 TIFF，合并后的 RGB 彩色图不适用。结构通道仅使用 GFAP、没有 eGFP 时，该分析分支仅适用于成熟星形胶质细胞。
 
-1. 导入受支持的 `.tif` 或 `.tiff`，其中包含 DAPI、eGFP 和／或 GFAP，以及 KCNN1、KCNN2、KCNN3、KCNJ10 中的一个待测标记物。
-2. 按提示选择图像组和时间点，确认通道映射，设置“**图像年龄**”。
-3. 点击“**开始分析**”。软件将所选通道拆分为工作副本，并自动分析。
-4. 在 Fiji 中检查拟定的细胞区域，按需修改，再结束审核。
-5. 主程序显示“**已完成**”后，点击“**查看分析结果**”，检查叠加图、报告、测量表和最终 ROI 归档。
+## 分析与审核
 
-[使用指南](docs/guide.zh.md)逐步说明控件位置、操作反馈和编辑被拒绝时的处理方法。图像元数据由程序自动检查；通道身份和细胞边界需要你判断。GFAP-only 路径仅支持成熟星形胶质细胞。
+自动分析生成整细胞、胞体和突起三类关联区域，供研究者在 Fiji 中检查和修正。[使用指南](docs/guide.zh.md)说明区域审核、完成测量和查看结果的操作；[分析方法](docs/methods.zh.md)解释区域和测量值的计算依据。
 
-## v1.1.0 引入的流程变化
+## 查看与保存结果
 
-| 环节 | v1.1.0 模块 |
-|---|---|
-| 输入准备 | 直接导入一个多通道 TIFF，在界面中选择图像组、时间点和源通道；软件自动生成单通道工作副本。 |
-| 原图保留 | 原始 TIFF 只读且保留原位置；工作副本写入独立任务目录。 |
-| 安装与结果管理 | Project Leap 统一管理组件、任务状态、结果文件和历史记录。 |
-| 最终 ROI 保留 | 在原有五个结果之外新增 `IHC_2D_ROI_Archive.zip`，保存最终区域形状及其与测量结果的对应关系。 |
+每次完成的任务保存三幅 PNG 叠加图、一份 TXT 报告、一份 XLSX 工作簿及 `IHC_2D_ROI_Archive.zip`。工作簿分别记录整细胞、胞体和突起的面积与荧光测量值，并保留细胞编号、所选 Z 范围和审核记录。目标通道强度保留源图的灰度尺度，未做背景扣除或强度归一化。
 
-科学规则版本仍为 **1.0.1**。Z 范围选择、自动分割、年龄配置选择、包含 Trim Processes 的 Fiji 编辑和原始灰度测量均沿用既有流程。详见[分析方法](docs/methods.zh.md)和[版本记录](CHANGELOG.md)。
+ROI 归档保存最终标签图、ImageJ ROI 及其与测量结果的对应关系，可解压查看或提取。请将结果文件夹与原始 TIFF 一并保留。
 
 ## 保留的 v1.0.1 独立脚本包
 
@@ -39,7 +30,7 @@ Project Leap 2D 在星形胶质细胞的整细胞、胞体和突起区域内测�
 - [安装说明](distribution/INSTALL_中文.md)和[旧版使用说明](<Project Leap 2D V1.0.1/README/README CN.md>)。
 - [`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>) 中保留 `Run Analysis.command`、`Repair.command` 和 `Manual Command.txt`。旧版 `Repair.command` 依赖固定的 v1.0.1 Release 及对应附件。
 
-旧包要求将已备份、预先拆分的输入副本放入 `Sample Image`，成功处理后会将实际使用的输入移入 macOS 废纸篓。使用旧包时请遵循其说明。GitHub 的“**Code → Download ZIP**”提供源码快照，不能当作应用安装器。
+旧包要求将已备份、预先拆分的输入副本放入 `Sample Image`，成功处理后会将实际使用的输入移入 macOS 废纸篓。使用旧包时请遵循其说明。GitHub 的“**Code → Download ZIP**”提供源码快照，应用安装包通过官网获取。
 
 ## 源码与贡献
 
