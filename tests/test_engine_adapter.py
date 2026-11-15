@@ -36,6 +36,8 @@ class EngineAdapterTests(unittest.TestCase):
         self.launcher.chmod(0o700)
         self.python = self.components / "python"
         self.python.write_bytes(b"test-only-placeholder")
+        (self.components / "runtime.json").write_text(json.dumps({
+            "schema_version": 2, "component_id": "project-leap-2d", "component_version": "1.0.1"}))
         self.lock = self.root / "components.lock"
         self.lock.touch()
         self.request = {
@@ -98,10 +100,156 @@ class EngineAdapterTests(unittest.TestCase):
     def read_provenance(self, code, dependency):
         paths = {"workspace": self.run / "workspace", "run_root": self.run}
         with patch.dict(os.environ, self.environment), \
+             patch.object(sys, "executable", str(self.python)), \
              patch.object(adapter, "__file__", str(code / "desktop_adapter.py")), \
              patch.object(adapter, "SHARED_CELLPOSE_DEPENDENCY", dependency), \
              patch.object(adapter, "fiji_process_environment", return_value={"JAVA_TOOL_OPTIONS": "fixture"}):
             return adapter.runtime_provenance(self.request, paths)
+
+    def shared_science_fixture(self):
+        code, model_root, dependency = self.provenance_fixture(shared=True)
+        descriptor_path = self.components / "runtime.json"
+        descriptor = json.loads(descriptor_path.read_text())
+        descriptor.update(schema_version=4, platform="macos-arm64",
+                          science_runtime={"id": "science-runtime", "version": "1.0.0"})
+        descriptor_path.write_text(json.dumps(descriptor))
+        root = self.root / "shared science runtime"
+        self.python = root / "python/bin/python3.9"
+        self.python.parent.mkdir(parents=True)
+        self.python.write_bytes(b"test-only shared scientific Python executable")
+        self.python.chmod(0o700)
+        (root / "site-packages").mkdir()
+        runtime = {"schema_version": 4, "component_id": "science-runtime", "component_version": "1.0.0",
+                   "platform": "macos-arm64", "python": "python/bin/python3.9", "site_packages": "site-packages",
+                   "environment_contract": "test-only-environment-identity"}
+        (root / "runtime.json").write_text(json.dumps(runtime))
+        entries = {name: {"type": "file", "bytes": (root / name).stat().st_size,
+                          "sha256": hashlib.sha256((root / name).read_bytes()).hexdigest()}
+                   for name in ("runtime.json", "python/bin/python3.9")}
+        (root / "content-manifest.json").write_text(json.dumps({
+            "schema_version": 1, "component_id": "science-runtime", "component_version": "1.0.0",
+            "entries": entries}))
+        self.environment["PROJECT_LEAP_SCIENCE_ROOT"] = str(root)
+        return code, root, dependency
+
+    def configure_science_fixture(self):
+        paths = validate_request_paths(self.request, self.request_path)
+        with patch.dict(os.environ, self.environment), patch.object(sys, "executable", str(self.python)):
+            return configure_worker_paths(self.request, paths)
+
+    def test_schema4_shared_science_runtime_accepts_real_split_layout_and_records_provenance(self):
+        code, root, dependency = self.shared_science_fixture()
+        self.assertEqual(self.configure_science_fixture(), self.launcher)
+        payload = self.read_provenance(code, dependency)
+        actual = payload["runtime"]["science_runtime"]
+        self.assertEqual(actual["root"], str(root))
+        self.assertEqual(actual["python_executable"], str(self.python))
+        self.assertEqual(actual["python_fingerprint"]["sha256"], hashlib.sha256(self.python.read_bytes()).hexdigest())
+        self.assertEqual(actual["descriptor"]["environment_contract"], "test-only-environment-identity")
+        self.assertEqual(actual["component_manifest"]["sha256"], hashlib.sha256((root / "content-manifest.json").read_bytes()).hexdigest())
+        self.assertEqual(payload["runtime"]["descriptor"]["schema_version"], 4)
+        self.assertTrue(payload["models"]["cellpose"]["rehashed_this_run"])
+
+    def test_schema4_requires_explicit_separate_real_science_root(self):
+        _code, root, _dependency = self.shared_science_fixture()
+        link = self.root / "science-link"
+        link.symlink_to(root, target_is_directory=True)
+        for value in (None, "relative/runtime", str(link), str(self.components),
+                      str(Path.home() / "Applications/Project Leap 2D Support")):
+            with self.subTest(root=value):
+                environment = dict(self.environment)
+                if value is None:
+                    environment.pop("PROJECT_LEAP_SCIENCE_ROOT")
+                else:
+                    environment["PROJECT_LEAP_SCIENCE_ROOT"] = value
+                with patch.dict(os.environ, environment, clear=True), patch.object(sys, "executable", str(self.python)):
+                    with self.assertRaises(ValueError):
+                        configure_worker_paths(self.request, validate_request_paths(self.request, self.request_path))
+
+    def test_schema4_rejects_wrong_dependency_identity_and_manifest(self):
+        _code, root, _dependency = self.shared_science_fixture()
+        cases = (
+            (self.components / "runtime.json", lambda d: d.update(science_runtime={"id": "other", "version": "1.0.0"})),
+            (self.components / "runtime.json", lambda d: d.update(science_runtime={"id": "science-runtime", "version": "2.0.0"})),
+            (root / "runtime.json", lambda d: d.update(component_id="other")),
+            (root / "runtime.json", lambda d: d.update(schema_version=3)),
+            (root / "runtime.json", lambda d: d.update(platform="wrong-platform")),
+            (root / "content-manifest.json", lambda d: d.update(component_id="other")),
+            (root / "content-manifest.json", lambda d: d.update(component_version="2.0.0")),
+            (root / "content-manifest.json", lambda d: d["entries"]["runtime.json"].update(sha256="0" * 64)),
+            (root / "content-manifest.json", lambda d: d["entries"]["python/bin/python3.9"].update(sha256="0" * 64)),
+        )
+        for target, mutate in cases:
+            original = target.read_bytes()
+            try:
+                data = json.loads(original)
+                mutate(data)
+                target.write_text(json.dumps(data))
+                with self.subTest(target=str(target), data=data), self.assertRaises(ValueError):
+                    self.configure_science_fixture()
+            finally:
+                target.write_bytes(original)
+
+    def test_schema4_rejects_undeclared_or_damaged_python_and_missing_site_packages(self):
+        _code, root, _dependency = self.shared_science_fixture()
+        declared = self.python
+        for candidate in (self.components / "python", root / "other-python"):
+            with self.subTest(python=str(candidate)):
+                self.python = candidate
+                with self.assertRaisesRegex(ValueError, "declared shared science runtime executable"):
+                    self.configure_science_fixture()
+        self.python = declared
+        before = declared.read_bytes()
+        declared.write_bytes(b"X" * len(before))
+        with self.assertRaisesRegex(ValueError, "differs from its manifest"):
+            self.configure_science_fixture()
+        declared.write_bytes(before)
+        (root / "site-packages").rmdir()
+        with self.assertRaisesRegex(ValueError, "site_packages directory is missing"):
+            self.configure_science_fixture()
+
+    def test_schema4_rejects_escaping_descriptor_paths_even_with_updated_manifest(self):
+        _code, root, _dependency = self.shared_science_fixture()
+        runtime_path, manifest_path = root / "runtime.json", root / "content-manifest.json"
+        original_runtime, original_manifest = runtime_path.read_bytes(), manifest_path.read_bytes()
+        for field in ("python", "site_packages"):
+            for value in ("../outside", "/outside", "nested/../outside", "nested//outside"):
+                try:
+                    runtime = json.loads(original_runtime)
+                    runtime[field] = value
+                    runtime_path.write_text(json.dumps(runtime))
+                    manifest = json.loads(original_manifest)
+                    manifest["entries"]["runtime.json"].update(
+                        bytes=runtime_path.stat().st_size, sha256=hashlib.sha256(runtime_path.read_bytes()).hexdigest())
+                    manifest_path.write_text(json.dumps(manifest))
+                    with self.subTest(field=field, value=value), self.assertRaisesRegex(ValueError, "runtime path is invalid"):
+                        self.configure_science_fixture()
+                finally:
+                    runtime_path.write_bytes(original_runtime)
+                    manifest_path.write_bytes(original_manifest)
+
+    def test_schema4_preserves_manifest_declared_internal_python_symlink(self):
+        code, root, dependency = self.shared_science_fixture()
+        actual_python = self.python
+        link = actual_python.with_name("python")
+        link.symlink_to(actual_python.name)
+        runtime_path, manifest_path = root / "runtime.json", root / "content-manifest.json"
+        runtime = json.loads(runtime_path.read_text())
+        runtime["python"] = "python/bin/python"
+        runtime_path.write_text(json.dumps(runtime))
+        manifest = json.loads(manifest_path.read_text())
+        manifest["entries"]["runtime.json"].update(
+            bytes=runtime_path.stat().st_size, sha256=hashlib.sha256(runtime_path.read_bytes()).hexdigest())
+        manifest["entries"]["python/bin/python"] = {"type": "symlink", "target": actual_python.name}
+        manifest_path.write_text(json.dumps(manifest))
+        self.python = link
+        self.assertEqual(self.configure_science_fixture(), self.launcher)
+        self.assertEqual(self.read_provenance(code, dependency)["runtime"]["science_runtime"]["python_executable"],
+                         str(actual_python))
+        manifest["entries"]["python/bin/python"]["target"] = "another-python"
+        manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, "symlink differs from its manifest"):
+            self.configure_science_fixture()
 
     def test_embedded_model_provenance_preserves_original_contract(self):
         code, _root, dependency = self.provenance_fixture(shared=False)

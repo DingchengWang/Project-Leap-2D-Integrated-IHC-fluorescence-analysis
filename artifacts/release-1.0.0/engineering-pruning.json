@@ -61,8 +61,8 @@
     },
     "engine/project_leap_2d/desktop_adapter.py": {
       "before_sha256": "9e3cc857350d7f679369c289285eb736e8d0d4d03e4c5f6d6cb1c35bc84c9ef0",
-      "after_sha256": "a50ae1b582c61f2eb6853dcf0e85888ad554100b8f290950ccd8c81bbe3e4806",
-      "rationale": "Remove automatic review bypass and test workflow injection. The entry point always invokes the existing scientific workflow; tests patch the module externally.",
+      "after_sha256": "0107626474a6c44b0ceae44faf88d921218bbf71e0b3ff882e3ae0c12f6f2c02",
+      "rationale": "Remove automatic review bypass and test workflow injection. The entry point always invokes the existing scientific workflow; tests patch the module externally. Recognize schema-4 shared model declarations and record the verified selected science-runtime identity; numerical workflow and models are unchanged.",
       "removed_paths": [
         "request.auto_measure",
         "run_request(workflow=...)"
@@ -250,6 +250,11 @@
         "_run_workspace",
         "_contains_path_override"
       ]
+    },
+    "engine/project_leap_2d/desktop_paths.py": {
+      "before_sha256": "ba8cdb702d613aba63cb32e1c8ac395f47b74be077479ab8432bc7dae37df1fb",
+      "after_sha256": "db5fd1a175ddfe87693f404f46de81c9a651adc0aa73fb2f19770dfe03b150dd",
+      "rationale": "Validate the explicitly selected shared science-runtime root, declared dependency, descriptor, manifest and Python executable; preserve combined-runtime ownership checks for existing schemas."
     }
   },
   "reviewed_by": "root",
@@ -259,12 +264,21 @@
   ],
   "verification": {
     "production_tests": 7,
-    "adapter_tests": 26,
+    "adapter_tests": 32,
     "unchanged_top_level_functions_and_classes_in_modified_files": 58,
     "default_path_ast_equivalent_after_removed_false_test_options": [
       "analysis_controller.py:_main_locked",
       "nuclei/dapi_3d_inventory.py:build_dapi_object_inventory_3d"
     ],
-    "scope": "Static source comparison, synthetic workflow/control tests, and actual packaged InstanSeg resource integrity; no biological image inference or live Fiji run."
+    "scope": "Static source comparison, synthetic workflow/control tests, and actual packaged InstanSeg resource integrity; no biological image inference or live Fiji run.",
+    "shared_runtime_compatibility": {
+      "schema": 4,
+      "unchanged_published_engine_files": 76,
+      "changed_engine_files": [
+        "engine/project_leap_2d/desktop_adapter.py",
+        "engine/project_leap_2d/desktop_paths.py"
+      ],
+      "actual_installed_python_and_manifest_validated": true
+    }
   }
 }

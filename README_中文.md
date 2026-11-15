@@ -2,9 +2,11 @@
 
 [English](README.md) · [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/) · [使用指南](docs/guide.zh.md) · [分析方法](docs/methods.zh.md)
 
-Project Leap 2D 在星形胶质细胞的整细胞、胞体和突起区域内测量指定通道的荧光强度。**1.1.0** 版作为 Project Leap 的“**星形胶质细胞荧光强度分析**”模块运行：导入多通道 TIFF，按提示选择图像组和时间点，再指定通道角色。软件自动生成单通道工作副本，运行既有分析流程，打开 Fiji 供你审核 ROI，最后保存六个结果文件。原始 TIFF 保持原位置，内容不变。
+Project Leap 2D 在星形胶质细胞的整细胞、胞体和突起区域内测量指定通道的荧光强度。当前文档对应 Project Leap“**星形胶质细胞荧光强度分析**”模块的 **1.1.1 候选版**：导入多通道 TIFF，按提示选择图像组和时间点，再指定通道角色。软件自动生成单通道工作副本，运行既有分析流程，打开 Fiji 供你审核 ROI，最后保存六个结果文件。原始 TIFF 保持原位置，内容不变。
 
-本仓库提供模块源码和文档。本次提供 v1.1.0 模块，由 Project Leap 主程序负责安装与维护。主程序下载仍在准备中，下载状态见 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)。
+**1.1.1 尚未发布**。本候选版针对共享科学运行环境的定位和组件描述格式识别进行修正，分析算法、模型和参数保持不变；实现与验证仍在进行。模块化流程、自动通道拆分和最终 ROI 归档均由 **v1.1.0** 引入。
+
+本仓库提供模块源码和文档，模块由 Project Leap 主程序负责安装与维护。主程序下载仍在准备中，下载状态见 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)。
 
 ## 使用模块
 
@@ -18,7 +20,7 @@ Project Leap 2D 在星形胶质细胞的整细胞、胞体和突起区域内测�
 
 [使用指南](docs/guide.zh.md)逐步说明控件位置、操作反馈和编辑被拒绝时的处理方法。图像元数据由程序自动检查；通道身份和细胞边界需要你判断。GFAP-only 路径仅支持成熟星形胶质细胞。
 
-## v1.1.0 的变化
+## v1.1.0 引入的流程变化
 
 | 环节 | v1.1.0 模块 |
 |---|---|

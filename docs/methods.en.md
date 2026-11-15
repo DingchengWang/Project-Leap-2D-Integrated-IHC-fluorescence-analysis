@@ -2,7 +2,9 @@
 
 [中文](methods.zh.md) · [Overview](../README.md) · [User guide](guide.en.md)
 
-Project Leap 2D produces two-dimensional astrocyte regions and measures one target channel within them. Module **1.1.0** adds the Project Leap input, task, and output workflow while retaining scientific rules version **1.0.1**. The original multichannel TIFF is read-only. Its selected image series, time point, and channel assignments determine the single-channel working images passed to the analysis engine.
+Project Leap 2D produces two-dimensional astrocyte regions and measures one target channel within them. This document covers the **1.1.1 candidate**, which retains scientific rules version **1.0.1** and the Project Leap input, task, and output workflow introduced in module **1.1.0**. The original multichannel TIFF is read-only. Its selected image series, time point, and channel assignments determine the single-channel working images passed to the analysis engine.
+
+Version **1.1.1 is not yet released**; implementation and validation are in progress. Its scope is shared scientific runtime discovery and component descriptor format recognition. Analysis algorithms, models, and parameters remain unchanged. The modular workflow, automatic channel splitting, and final ROI archive remain features introduced in **v1.1.0**.
 
 ## Input data
 
@@ -53,7 +55,7 @@ The selected Z range and projection method determine which source pixels form th
 
 The workbook contains Whole Cell, Soma, and Processes sheets with area, mean, median, minimum, maximum, integrated density, and raw integrated density, plus the channel, projection, Z bounds, age profile, and review record. These are measurements of a selected **2D projection**, not a cell's 3D volume or an automatic background-corrected expression estimate. The experiment's acquisition settings and sampling design still determine which comparisons are meaningful.
 
-Before saving results, the program checks synchronized identities, compartment partitioning, Fiji measurement records, overlay dimensions, and workbook structure. Module v1.1.0 adds `IHC_2D_ROI_Archive.zip` to the existing three PNGs, TXT report, and XLSX workbook. The archive includes final Whole/Soma/Processes label TIFFs, native ImageJ ROIs, identity mappings, calibration, selected Z/projection, and runtime provenance. The exporter validates correspondence to the completed Fiji measurements; it does not reconstruct or redefine the ROIs. All six outputs enter the same result-publication transaction.
+Before saving results, the program checks synchronized identities, compartment partitioning, Fiji measurement records, overlay dimensions, and workbook structure. Module v1.1.0 added `IHC_2D_ROI_Archive.zip` to the existing three PNGs, TXT report, and XLSX workbook. The archive includes final Whole/Soma/Processes label TIFFs, native ImageJ ROIs, identity mappings, calibration, selected Z/projection, and runtime provenance. The exporter validates correspondence to the completed Fiji measurements; it does not reconstruct or redefine the ROIs. All six outputs enter the same result-publication transaction.
 
 Technical consistency checks do not establish biological validity across tissues, ages, staining protocols, microscopes, or laboratories. Use reference samples and boundary review appropriate to the intended experiment. The v1.1.0 workflow changes do not establish an accuracy or speed improvement.
 

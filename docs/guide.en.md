@@ -2,7 +2,9 @@
 
 [中文](guide.zh.md) · [Overview](../README.md) · [Methods](methods.en.md)
 
-Use this guide to measure one target fluorescence channel within astrocyte regions of interest (ROIs). It assumes familiarity with fluorescence images; programming and prior Fiji experience are not required. The instructions describe module v1.1.0 in Project Leap. Public installation availability is recorded in the [repository overview](../README.md).
+Use this guide to measure one target fluorescence channel within astrocyte regions of interest (ROIs). It assumes familiarity with fluorescence images; programming and prior Fiji experience are not required. The instructions describe the **v1.1.1 candidate** in Project Leap. Public installation availability is recorded in the [repository overview](../README.md).
+
+Version **1.1.1 is not yet released**; implementation and validation are in progress. It addresses shared scientific runtime discovery and component descriptor format recognition without changing analysis algorithms, models, or parameters. The modular workflow, automatic channel splitting, and final ROI archive described below were introduced in **v1.1.0**.
 
 ## Before starting
 

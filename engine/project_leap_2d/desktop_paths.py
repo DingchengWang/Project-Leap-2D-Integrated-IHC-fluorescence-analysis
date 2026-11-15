@@ -4,8 +4,10 @@ from __future__ import annotations
 import os
 import sys
 import fcntl
+import hashlib
+import json
 from contextlib import contextmanager
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Mapping
 
 
@@ -37,6 +39,88 @@ def reject_protected_path(path: Path, label: str) -> None:
     )
     if any(_within(path, root.resolve()) for root in protected):
         raise ValueError(f"{label} points into a protected production location: {path}")
+
+
+def _file_fingerprint(path: Path) -> dict:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(8 * 1024 * 1024), b""):
+            digest.update(block)
+    return {"size_bytes": path.stat().st_size, "sha256": digest.hexdigest()}
+
+
+def shared_science_runtime(component_root: Path, descriptor: Mapping[str, object]) -> dict | None:
+    """Validate the schema-4 runtime selected by the host, without importing it."""
+    if descriptor.get("schema_version") != 4:
+        return None
+    dependency = descriptor.get("science_runtime")
+    if (descriptor.get("component_id") != "project-leap-2d"
+            or not isinstance(dependency, dict) or set(dependency) != {"id", "version"}
+            or dependency.get("id") != "science-runtime"
+            or not isinstance(dependency.get("version"), str) or not dependency["version"]):
+        raise ValueError("Module does not declare a valid shared science runtime")
+    root = require_absolute_real_path(os.environ.get("PROJECT_LEAP_SCIENCE_ROOT"),
+                                      "PROJECT_LEAP_SCIENCE_ROOT")
+    reject_protected_path(root, "Science runtime root")
+    if _within(root, component_root) or _within(component_root, root):
+        raise ValueError("Shared science runtime must be separate from the module root")
+    runtime_path = require_absolute_real_path(root / "runtime.json", "Science runtime descriptor")
+    manifest_path = require_absolute_real_path(root / "content-manifest.json", "Science runtime manifest")
+    runtime = json.loads(runtime_path.read_text(encoding="utf-8"))
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if (not isinstance(runtime, dict) or runtime.get("schema_version") != 4
+            or runtime.get("component_id") != dependency["id"]
+            or runtime.get("component_version") != dependency["version"]
+            or runtime.get("platform") != descriptor.get("platform")
+            or not isinstance(manifest, dict) or manifest.get("schema_version") != 1
+            or manifest.get("component_id") != dependency["id"]
+            or manifest.get("component_version") != dependency["version"]
+            or not isinstance(manifest.get("entries"), dict)):
+        raise ValueError("Shared science runtime does not match the declared dependency")
+
+    def verified_file(path: Path, relative: str) -> dict:
+        entry = manifest["entries"].get(relative, {})
+        actual = _file_fingerprint(path)
+        if (not isinstance(entry, dict) or entry.get("type") != "file"
+                or entry.get("bytes") != actual["size_bytes"] or entry.get("sha256") != actual["sha256"]):
+            raise ValueError("Shared science runtime file differs from its manifest: " + relative)
+        return actual
+
+    verified_file(runtime_path, "runtime.json")
+    resolved = {}
+    for key in ("python", "site_packages"):
+        value = runtime.get(key)
+        if (not isinstance(value, str) or not value or "\\" in value
+                or PurePosixPath(value).is_absolute()
+                or any(part in ("", ".", "..") for part in value.split("/"))):
+            raise ValueError("Shared science runtime path is invalid: " + key)
+        # The verified seed may use internal executable/directory symlinks.
+        # Keep that host contract, requiring every link to match the manifest
+        # and its resolved destination to remain inside this runtime generation.
+        candidate = root
+        for part in PurePosixPath(value).parts:
+            candidate = candidate / part
+            if candidate.is_symlink():
+                entry = manifest["entries"].get(candidate.relative_to(root).as_posix(), {})
+                if (not isinstance(entry, dict) or entry.get("type") != "symlink"
+                        or entry.get("target") != os.readlink(candidate)):
+                    raise ValueError("Shared science runtime symlink differs from its manifest: " + key)
+                if not _within(candidate.resolve(), root):
+                    raise ValueError("Shared science runtime path escapes its root: " + key)
+        resolved[key] = candidate.resolve()
+        if not _within(resolved[key], root):
+            raise ValueError("Shared science runtime path escapes its root: " + key)
+    python = resolved["python"]
+    if (not python.is_file() or not os.access(python, os.X_OK)
+            or Path(sys.executable).resolve() != python):
+        raise ValueError("Scientific Python must match the declared shared science runtime executable")
+    if not resolved["site_packages"].is_dir():
+        raise ValueError("Shared science runtime site_packages directory is missing")
+    python_fingerprint = verified_file(python, python.relative_to(root).as_posix())
+    return {"root": str(root), "descriptor": runtime,
+            "component_manifest": _file_fingerprint(manifest_path),
+            "python_executable": str(python), "python_fingerprint": python_fingerprint,
+            "site_packages": str(resolved["site_packages"])}
 
 
 def fiji_cache_root() -> Path:
@@ -169,7 +253,12 @@ def configure_worker_paths(request: Mapping[str, object], paths: Mapping[str, Pa
         raise ValueError("Models must belong to the isolated model component root")
     if not _within(launcher, fiji_root):
         raise ValueError("Fiji launcher must belong to the isolated Fiji component root")
-    if not _within(Path(sys.executable).resolve(), component_root):
+    descriptor_path = require_absolute_real_path(component_root / "runtime.json", "Module descriptor")
+    descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
+    if not isinstance(descriptor, dict):
+        raise ValueError("Module descriptor must be a JSON object")
+    science = shared_science_runtime(component_root, descriptor)
+    if science is None and not _within(Path(sys.executable).resolve(), component_root):
         raise ValueError("Scientific Python must belong to the isolated component root")
     cellpose = require_absolute_real_path(models / "cpsam_v2", "Cellpose model")
     if not cellpose.is_file():

@@ -2,9 +2,11 @@
 
 [中文](README_中文.md) · [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) · [User guide](docs/guide.en.md) · [Methods](docs/methods.en.md)
 
-Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. Version **1.1.0** runs as the **Astrocyte Fluorescence Intensity Measurement** module in Project Leap. Import a multichannel TIFF, choose its image series and time point when prompted, and assign the channel roles. The application prepares single-channel working images, runs the established analysis, opens Fiji for ROI review, and saves six result files. The original TIFF stays unchanged in its original location.
+Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. The current documentation covers the **1.1.1 candidate** of the **Astrocyte Fluorescence Intensity Measurement** module in Project Leap. Import a multichannel TIFF, choose its image series and time point when prompted, and assign the channel roles. The application prepares single-channel working images, runs the established analysis, opens Fiji for ROI review, and saves six result files. The original TIFF stays unchanged in its original location.
 
-This repository contains the module source and documentation. This release provides module v1.1.0 for installation and maintenance through Project Leap. The main application download remains in preparation; see the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for application availability.
+Version **1.1.1 is not yet released**. This candidate addresses how the module locates the shared scientific runtime and recognizes component descriptor formats; analysis algorithms, models, and parameters remain unchanged. Implementation and validation are in progress. The modular workflow, automatic channel splitting, and final ROI archive were introduced in **v1.1.0**.
+
+This repository contains the module source and documentation. Project Leap manages module installation and maintenance. The main application download remains in preparation; see the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for application availability.
 
 ## Use the module
 
@@ -18,7 +20,7 @@ The current Project Leap application targets **Apple Silicon Macs running macOS 
 
 The [user guide](docs/guide.en.md) explains each control, the expected feedback, and how to handle rejected edits. Image metadata is checked automatically; channel identity and cell boundaries require your judgment. GFAP-only analysis supports mature astrocytes only.
 
-## What changes in v1.1.0
+## Workflow changes introduced in v1.1.0
 
 | Area | v1.1.0 module |
 |---|---|

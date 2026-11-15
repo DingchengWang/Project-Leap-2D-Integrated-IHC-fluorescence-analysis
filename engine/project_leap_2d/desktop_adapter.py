@@ -15,7 +15,8 @@ from pathlib import Path
 from .desktop_events import DesktopEvents, active_events, atomic_json
 from .desktop_paths import (AnalysisAlreadyRunning, analysis_worker_lock, component_usage_lock,
                             configure_worker_paths, fiji_process_environment,
-                            reject_protected_path, require_absolute_real_path, validate_request_paths)
+                            reject_protected_path, require_absolute_real_path,
+                            shared_science_runtime, validate_request_paths)
 
 
 ROI_ARCHIVE_FILENAME = "IHC_2D_ROI_Archive.zip"
@@ -41,6 +42,7 @@ def runtime_provenance(request: dict, paths: dict) -> dict:
     content_manifest_path = component_root / "content-manifest.json"
     descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
     component_manifest = json.loads(content_manifest_path.read_text(encoding="utf-8"))
+    science = shared_science_runtime(component_root, descriptor)
     model_root = require_absolute_real_path(os.environ.get("PROJECT_LEAP_MODEL_ROOT", component_root), "Model component root")
     reject_protected_path(model_root, "Model component root")
     cellpose = require_absolute_real_path(Path(os.environ["CELLPOSE_LOCAL_MODELS_PATH"]) / "cpsam_v2", "Cellpose model")
@@ -49,7 +51,7 @@ def runtime_provenance(request: dict, paths: dict) -> dict:
     shared_model = None
     if model_root != component_root:
         dependency = SHARED_CELLPOSE_DEPENDENCY
-        if descriptor.get("schema_version") != 3 or descriptor.get("model_component") != dependency:
+        if descriptor.get("schema_version") not in (3, 4) or descriptor.get("model_component") != dependency:
             raise ValueError("Module does not declare the pinned shared Cellpose dependency")
         model_descriptor_path = require_absolute_real_path(model_root / "runtime.json", "Model descriptor")
         model_manifest_path = require_absolute_real_path(model_root / "content-manifest.json", "Model manifest")
@@ -105,6 +107,8 @@ def runtime_provenance(request: dict, paths: dict) -> dict:
     }
     if shared_model:
         payload["runtime"]["cellpose_model"] = shared_model
+    if science:
+        payload["runtime"]["science_runtime"] = science
     fiji_root = Path(os.environ.get("PROJECT_LEAP_FIJI_ROOT", component_root))
     if fiji_root != component_root:
         payload["runtime"]["fiji"] = {
