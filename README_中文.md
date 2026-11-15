@@ -4,7 +4,7 @@
 
 Project Leap 2D 在星形胶质细胞的整细胞、胞体和突起区域内测量指定通道的荧光强度。**1.1.0** 版作为 Project Leap 的“**星形胶质细胞荧光强度分析**”模块运行：导入多通道 TIFF，按提示选择图像组和时间点，再指定通道角色。软件自动生成单通道工作副本，运行既有分析流程，打开 Fiji 供你审核 ROI，最后保存六个结果文件。原始 TIFF 保持原位置，内容不变。
 
-本仓库提供模块源码和文档，由 Project Leap 主程序负责安装与维护。目前正在准备 v1.1.0 公开发布，新版主程序下载和模块目录尚未上线；发布情况将通过 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)提供。
+本仓库提供模块源码和文档。本次提供 v1.1.0 模块，由 Project Leap 主程序负责安装与维护。主程序下载仍在准备中，下载状态见 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)。
 
 ## 使用模块
 

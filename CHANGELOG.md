@@ -1,14 +1,14 @@
 # Changelog / 版本记录
 
-## 1.1.0 — release preparation / 准备发布
+## 1.1.0 — Project Leap module / Project Leap 功能模块
 
-Project Leap integration adds multichannel TIFF import with explicit series/time selection and channel mapping, automatic single-channel working copies, read-only original-image handling, application-managed installation and task history, and the final `IHC_2D_ROI_Archive.zip` output. The module is installed through Project Leap; the public application download and component catalog are not yet published.
+Project Leap integration adds multichannel TIFF import with explicit series/time selection and channel mapping, automatic single-channel working copies, read-only original-image handling, application-managed installation and task history, and the final `IHC_2D_ROI_Archive.zip` output. This release provides the module package for installation through Project Leap. The main application download remains in preparation.
 
-Scientific rules remain version **1.0.1**. Existing Z selection, segmentation, age-profile rules, Fiji edits including Trim Processes, and raw-grayscale measurements are retained. No accuracy or speed improvement is claimed.
+Scientific rules remain version **1.0.1**. Existing Z selection, segmentation, age-profile rules, Fiji edits including Trim Processes, and raw-grayscale measurements are retained.
 
-集成到 Project Leap 后，用户可导入多通道 TIFF，明确选择图像组、时间点并映射通道；程序自动生成单通道工作副本，原图只读，安装和任务历史由主程序管理，并新增最终 `IHC_2D_ROI_Archive.zip` 输出。模块通过 Project Leap 安装，公开主程序下载和组件目录尚未发布。
+集成到 Project Leap 后，用户可导入多通道 TIFF，明确选择图像组、时间点并映射通道；程序自动生成单通道工作副本，原图只读，安装和任务历史由主程序管理，并新增最终 `IHC_2D_ROI_Archive.zip` 输出。本次提供通过 Project Leap 安装的模块包，主程序公开下载仍在准备中。
 
-科学规则仍为 **1.0.1**：沿用 Z 选择、分割、年龄配置、包含 Trim Processes 的 Fiji 编辑和原始灰度测量，不宣称准确率或速度提升。
+科学规则仍为 **1.0.1**：沿用 Z 选择、分割、年龄配置、包含 Trim Processes 的 Fiji 编辑和原始灰度测量。
 
 ## 1.0.1 — preserved standalone package / 保留的独立脚本包
 

@@ -4,7 +4,7 @@
 
 Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. Version **1.1.0** runs as the **Astrocyte Fluorescence Intensity Measurement** module in Project Leap. Import a multichannel TIFF, choose its image series and time point when prompted, and assign the channel roles. The application prepares single-channel working images, runs the established analysis, opens Fiji for ROI review, and saves six result files. The original TIFF stays unchanged in its original location.
 
-This repository contains the module source and documentation. The Project Leap application provides installation and maintenance. The v1.1.0 public release is being prepared; the new application download and module catalog are not yet published. Release availability will be announced through the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/).
+This repository contains the module source and documentation. This release provides module v1.1.0 for installation and maintenance through Project Leap. The main application download remains in preparation; see the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) for application availability.
 
 ## Use the module
 
