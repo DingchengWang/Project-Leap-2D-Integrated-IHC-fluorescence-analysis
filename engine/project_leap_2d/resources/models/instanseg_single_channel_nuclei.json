@@ -1,0 +1,31 @@
+{
+  "name": "single_channel_nuclei",
+  "version": "0.1.0",
+  "format": "TorchScript",
+  "format_version": "0.5.6",
+  "pytorch_export_version": "2.0.0",
+  "sha256": "118066231fb7753ffb048bcd2164186397bcc5c8fc4ad7f826efe928b515794c",
+  "pixel_size_um": 0.5,
+  "input": "single-channel fluorescence nuclei, including DAPI",
+  "license": "Apache-2.0",
+  "source": "https://github.com/instanseg/instanseg/releases/tag/instanseg_models_v0.1.2",
+  "citation_doi": "10.1101/2024.09.04.611150",
+  "training_datasets": [
+    {
+      "name": "cpdmi_2023",
+      "license": "CC BY 4.0",
+      "url": "https://www.nature.com/articles/s41597-023-02108-z"
+    },
+    {
+      "name": "dsb_2018",
+      "license": "CC0",
+      "url": "https://bbbc.broadinstitute.org/BBBC038"
+    },
+    {
+      "name": "bsst265",
+      "license": "CC0",
+      "url": "https://www.ebi.ac.uk/biostudies/bioimages/studies/S-BSST265"
+    }
+  ],
+  "role": "DAPI nucleus candidate generation only; astrocyte identity and 3D ownership remain Project Leap 2D responsibilities"
+}

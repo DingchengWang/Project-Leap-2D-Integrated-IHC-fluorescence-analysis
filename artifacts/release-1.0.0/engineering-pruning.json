@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "baseline_sha256": "606ff719a8c74e0be446b36691fa415ce02855e65c4dfbd2b589d7015407597d",
+  "changes": {
+    "engine/project_leap_2d/__main__.py": {
+      "before_sha256": "e0feddd2b46736aad74fde9553270eec8eb9ab7244f22b246158ec4d908400a9",
+      "after_sha256": null,
+      "rationale": "Remove the superseded standalone workspace entry point; the desktop application runs project_leap_2d.desktop_adapter.",
+      "removed_paths": [
+        "python -m project_leap_2d standalone workspace launcher"
+      ]
+    },
+    "engine/project_leap_2d/analysis_controller.py": {
+      "before_sha256": "4d09f1e3beedd70f6c26f35d1931e3a1378c8d383798edfad42ef024b04ee805",
+      "after_sha256": "af1cc45bf479904c48ae46ad4263d5ef24b7d2d85813633a958db12d28bf60d1",
+      "rationale": "Remove CLI-triggered Cellpose bypass, workload-only early exit and debug output branch. The default workload failure diagnostic, limit enforcement, 90-candidate calculation, raw-channel projection, Fiji review and publication remain.",
+      "removed_paths": [
+        "args.disable_cellpose",
+        "args.dapi_fragment_workload_preflight_only",
+        "args.skip_fiji",
+        "args.fiji_auto_continue"
+      ]
+    },
+    "engine/project_leap_2d/analysis_modes/gfap_only/gfap_only_pipeline.py": {
+      "before_sha256": "c7ec146cabee73124d49987f5768563014cfdf37b5f0483c2ca49f431adc59b3",
+      "after_sha256": "bdd2f566bce6abb05c3037635afaf814d4b75dca671e9cdf496a0a9f12dca889",
+      "rationale": "Remove debug-only returns and detector/analyzer substitution arguments with no production caller. Call the existing default InstanSeg detector and GFAP analyzer directly; preserve scientific configurations, quality checks and actual handoff callbacks.",
+      "removed_paths": [
+        "skip_fiji",
+        "debug",
+        "debug_handler",
+        "nucleus_detector",
+        "analyzer",
+        "GFAPOnlyPipelineResult.skip_fiji",
+        "GFAPOnlyPipelineResult.debug_result"
+      ]
+    },
+    "engine/project_leap_2d/analysis_workflow.py": {
+      "before_sha256": "84182eae7141f1d77db75db830ed69652e8372b9c378f171b3b3d0f9031c242b",
+      "after_sha256": "4108e162ef5a8a8e71a39aa1a8edce55bc8a39878daeb0a3d7056e30436d0d4f",
+      "rationale": "Remove GFAP debug preview generation and forwarding of bypass flags. Preserve GFAP route validation, compartment evidence, selected measurement loading, Fiji editing and publication.",
+      "removed_paths": [
+        "debug_handler",
+        "_draw_gfap_contours",
+        "_write_gfap_debug_outputs",
+        "Skipped report branch",
+        "args.fiji_auto_continue"
+      ]
+    },
+    "engine/project_leap_2d/command_line.py": {
+      "before_sha256": "870a9f467ca77be2531084b79f0133c81d4ab9af5644a6ca781700851a07222f",
+      "after_sha256": "714d0ca663ba2efde600acd0a6c3160ec25950e310c0d17c2cd3f608a40b6d61",
+      "rationale": "Remove nonproduction CLI options and their dedicated diagnostic-path override; retain input/output, Fiji launcher, and review timeout.",
+      "removed_paths": [
+        "--disable-cellpose",
+        "--skip-fiji",
+        "--fiji-auto-continue",
+        "--dapi-fragment-workload-preflight-only",
+        "--dapi-fragment-workload-json"
+      ]
+    },
+    "engine/project_leap_2d/desktop_adapter.py": {
+      "before_sha256": "9e3cc857350d7f679369c289285eb736e8d0d4d03e4c5f6d6cb1c35bc84c9ef0",
+      "after_sha256": "a50ae1b582c61f2eb6853dcf0e85888ad554100b8f290950ccd8c81bbe3e4806",
+      "rationale": "Remove automatic review bypass and test workflow injection. The entry point always invokes the existing scientific workflow; tests patch the module externally.",
+      "removed_paths": [
+        "request.auto_measure",
+        "run_request(workflow=...)"
+      ]
+    },
+    "engine/project_leap_2d/fiji_review/resources/astrocyte_roi_reviewer.groovy": {
+      "before_sha256": "2b48e95571db7385277c0d80019343cae1e0d516fe2a270605c08694e90f925a",
+      "after_sha256": "89c06145e73e69fbe68b80f75376fd9272f1a925d7e43415eafe6bc3535028f3",
+      "rationale": "Require the existing chooseAction dialog in every review iteration. All review actions, linked editing, raw measurements and final ROI serialization remain byte-identical.",
+      "removed_paths": [
+        "cfg.auto_continue conditional measure bypass"
+      ]
+    },
+    "engine/project_leap_2d/fiji_review/review_protocol.py": {
+      "before_sha256": "49753f169afcae2b68decb8ab5d2e348b475d4482e715d1cae8a767f949c916d",
+      "after_sha256": "4b9c146d8da3856f78ca951c2c8dfa3dbc4394460623e47a6a6524b0547530c6",
+      "rationale": "Remove automatic-continue protocol parameter and manifest field; retain ROI partition validation, projections, calibration and manual-review outputs.",
+      "removed_paths": [
+        "auto_continue"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/bootstrap_macos.sh": {
+      "before_sha256": "9a15fbe0c22573ef67437ab486becdb155dd4f812fa32644810d82fadaf6e9df",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/component_manifest.sh": {
+      "before_sha256": "36b6e2a421f301e17ee3a4d42240d7f70ea8642ec1c72009ce3c5762f1631974",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/environment_contract.txt": {
+      "before_sha256": "d93a370168848e0caddc39207c6689c976873c3251f000f1a7f4213879bd8acb",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/environment_doctor.py": {
+      "before_sha256": "727cdbe82826237e792330227eb13035a9bc8e0a5c0abadb76d850324ed946ef",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/environment_doctor.sh": {
+      "before_sha256": "e585fb85de8f03468ff7e8301567a060ac1cc41c2a0db7f2fbb2cd5dea023f98",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/environment_installer.sh": {
+      "before_sha256": "05ed8ca92f7c25e7fce1e10a6cda4a6ed4151c7bce7e8b204ece8b953f65e4e9",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/fiji_tree_integrity.json": {
+      "before_sha256": "dd4d945b5db14642d0bf734979fe41afc50d64034fa681c0414b806f9cf0a7e5",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/installer_integrity_manifest.sh": {
+      "before_sha256": "43ccb31721ae9d6bc64404c9ca7eaebec4da9121772c1af2f5989d79882ea5d4",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/manage_environment.command": {
+      "before_sha256": "ae7db278bfc00833dda30e07182b21765633f28eeda23fe1ca7f36985104b219",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/managed_python_integrity.json": {
+      "before_sha256": "f4b612f2e410142f53c93d8099069affb915686cdd01bc8c5a0cdb748973c987",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/python_wheel_integrity.json": {
+      "before_sha256": "5c2987fccb41781cc0bc35d563027e8fd44ec5fdf873db47fb664301fde4d52d",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/repair_package.pl": {
+      "before_sha256": "554aa2d19992242c8b907cceff21663bc1a7288c8613f5388302fd2c22294af1",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/maintenance/requirements_macos_arm64.lock.txt": {
+      "before_sha256": "48c59884b99fc75622d207b18704bc8014377eb2c3df03cb931cf6f3102aa536",
+      "after_sha256": null,
+      "rationale": "Remove the obsolete standalone environment maintenance/install chain. Current runtime seed preparation reads the external validated runtime and uses app.leap_desktop.maintenance; no retained source imports or reads this file.",
+      "removed_paths": [
+        "standalone maintenance chain"
+      ]
+    },
+    "engine/project_leap_2d/nuclei/dapi_3d_inventory.py": {
+      "before_sha256": "7e1fb64a861a63411fb866c698ec425a66e96ba63031f2e996445bba6432ced8",
+      "after_sha256": "cdbf3846f626bd46351b8217c0366f783ebd10710f67a31e792eba1c70ac276b",
+      "rationale": "Remove workload-only parameter and early exits. Keep the default enforce mode, resource-limit thresholds, diagnostic writer, object reconstruction/evaluation and ownership calculations.",
+      "removed_paths": [
+        "preflight_only",
+        "preflight_completed returns"
+      ]
+    },
+    "engine/project_leap_2d/nuclei/instanseg_nucleus_detection.py": {
+      "before_sha256": "5df5791460e080075c73e52e5e1116a826f5629c6ecf35f2d91957e63174558d",
+      "after_sha256": "aee8964ac8bf460748c818bfce4dddf32283faeb7ed4321420624dcc00b712d8",
+      "rationale": "Remove the explicitly test-only cache reset function. Preserve every model resource, metadata/hash verification, inference setting, loading/cache operation and nucleus detection function.",
+      "removed_paths": [
+        "clear_instanseg_model_cache"
+      ]
+    },
+    "engine/project_leap_2d/runtime_manifest.py": {
+      "before_sha256": "90bbe09a6d6cdedf1b51542790c0c03a17856b74614142c3db77680b388a677f",
+      "after_sha256": "9924050f4d76b0ac194db2df0f4b07b06f87e06d23c7df9da642c267425f8d22",
+      "rationale": "Update only the integrity hash of the reviewer resource after removing its automatic review bypass. Keep module order, required symbols, canonical source identifier and trim-resource hash.",
+      "removed_paths": [
+        "old GROOVY_RESOURCE_SHA256"
+      ]
+    },
+    "engine/project_leap_2d/settings.py": {
+      "before_sha256": "1a4c9c4f6db946c22b42bc958b53205edfe1f430dcbacb87574363764cbe3274",
+      "after_sha256": "0ec5af3f79273ee1906e1660a7cabb19721f65233476b10c798e6a43501e2d04",
+      "rationale": "Remove only five filenames used exclusively by deleted debug outputs. All scientific constants, thresholds, resource limits and production output names remain unchanged.",
+      "removed_paths": [
+        "DEBUG_WHOLE_OVERLAY_FILENAME",
+        "DEBUG_SOMA_OVERLAY_FILENAME",
+        "DEBUG_PROCESS_OVERLAY_FILENAME",
+        "DEBUG_REPORT_FILENAME",
+        "DEBUG_STATE_FILENAME"
+      ]
+    },
+    "engine/project_leap_2d/workspace/input_cleanup.py": {
+      "before_sha256": "d2727364dc705ea19daf19a53ad368d15fc8143cc59cc275c8035ba6b1d449e7",
+      "after_sha256": null,
+      "rationale": "Remove input-to-Trash utilities consumed only by the deleted standalone workspace launcher/recovery chain. Desktop tasks retain their working inputs.",
+      "removed_paths": [
+        "legacy standalone source-to-Trash cleanup"
+      ]
+    },
+    "engine/project_leap_2d/workspace/input_cleanup_recovery.py": {
+      "before_sha256": "5bdbc05671d8e49b18e184de0dea82d75947c11a8f2d2b9f4ca8492fd7d4ecc5",
+      "after_sha256": null,
+      "rationale": "Remove the source-to-Trash recovery chain consumed only by the deleted standalone launcher. Retain production publication recovery and workspace validation.",
+      "removed_paths": [
+        "legacy standalone input Trash transaction/recovery"
+      ]
+    },
+    "engine/project_leap_2d/workspace_launcher.py": {
+      "before_sha256": "45ab3b0949eba67b3dadde6410287c7d24ff756098cf619b0500ba5d358a5a36",
+      "after_sha256": null,
+      "rationale": "Remove the superseded standalone workspace execution and source-to-Trash workflow. Desktop execution and publication use desktop_adapter and the retained workspace transaction modules.",
+      "removed_paths": [
+        "main",
+        "_run_workspace",
+        "_contains_path_override"
+      ]
+    }
+  },
+  "reviewed_by": "root",
+  "evidence": [
+    "tests/test_fluorescence_production.py",
+    "tests/test_engine_adapter.py"
+  ],
+  "verification": {
+    "production_tests": 7,
+    "adapter_tests": 26,
+    "unchanged_top_level_functions_and_classes_in_modified_files": 58,
+    "default_path_ast_equivalent_after_removed_false_test_options": [
+      "analysis_controller.py:_main_locked",
+      "nuclei/dapi_3d_inventory.py:build_dapi_object_inventory_3d"
+    ],
+    "scope": "Static source comparison, synthetic workflow/control tests, and actual packaged InstanSeg resource integrity; no biological image inference or live Fiji run."
+  }
+}

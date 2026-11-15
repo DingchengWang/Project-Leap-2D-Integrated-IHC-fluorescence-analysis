@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "baseline_sha256": "606ff719a8c74e0be446b36691fa415ce02855e65c4dfbd2b589d7015407597d",
+  "changes": {
+    "engine/project_leap_2d/desktop_paths.py": {
+      "before_sha256": "6a07a5de2d0db06b6b88b6efdd035ee84f5d1ea6c0aabd47fdada5482bc6a7f3",
+      "after_sha256": "ba8cdb702d613aba63cb32e1c8ac395f47b74be077479ab8432bc7dae37df1fb",
+      "rationale": "Allow a separately managed Cellpose model root while preserving the isolated Python and Fiji path requirements."
+    },
+    "engine/project_leap_2d/desktop_adapter.py": {
+      "before_sha256": "be9d6c2fc8753f2cd2f397b8a71b7e0f0f92c4021b833a90975ee3724bfa1358",
+      "after_sha256": "9e3cc857350d7f679369c289285eb736e8d0d4d03e4c5f6d6cb1c35bc84c9ef0",
+      "rationale": "Validate the pinned shared Cellpose component and record its actual model provenance without changing scientific analysis."
+    }
+  },
+  "reviewed_by": "root",
+  "evidence": [
+    "artifacts/prototype-c/baseline/engineering-adapter.diff",
+    "tests/test_engine_adapter.py",
+    "artifacts/prototype-c/IMPLEMENTATION_CONTRACT.md"
+  ]
+}

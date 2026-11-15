@@ -1,0 +1,22 @@
+{
+  "reason": "Initial baseline collector included Python/JSON but omitted retained non-Python scientific resources. Missing resources verified against immutable Prototype B delivery manifest before completing exact baseline.",
+  "b_report": "/Users/dingchengwang/Documents/ChatGPT/Astrocyte ROI 2D-4/artifacts/refinement-20261018/final/build-report.json",
+  "b_report_sha256": "c25b1ed5feee98d94dd6a4bd4879b9352aa85c4caf4aad11e53e80e2c2d3be05",
+  "added": {
+    "engine/project_leap_2d/fiji_review/resources/astrocyte_roi_reviewer.groovy": "2b48e95571db7385277c0d80019343cae1e0d516fe2a270605c08694e90f925a",
+    "engine/project_leap_2d/fiji_review/resources/desktop-preferences.jar": "4312e684668576ca7f9d92ef30a8850f549c297d79a59c5c31757e0ff6c5d7f6",
+    "engine/project_leap_2d/fiji_review/resources/java/org/projectleap/desktop/TaskPreferencesFactory.java": "a403d0ac4affcc05e20cef5ff95621f0cc47534b7dab816513180abf98cf10c7",
+    "engine/project_leap_2d/fiji_review/resources/processes_trim.groovy": "99109296aed706167baabe69f36e455d11f9ea368ccc0bc6b9483a896a328cf7",
+    "engine/project_leap_2d/maintenance/bootstrap_macos.sh": "9a15fbe0c22573ef67437ab486becdb155dd4f812fa32644810d82fadaf6e9df",
+    "engine/project_leap_2d/maintenance/component_manifest.sh": "36b6e2a421f301e17ee3a4d42240d7f70ea8642ec1c72009ce3c5762f1631974",
+    "engine/project_leap_2d/maintenance/environment_contract.txt": "d93a370168848e0caddc39207c6689c976873c3251f000f1a7f4213879bd8acb",
+    "engine/project_leap_2d/maintenance/environment_doctor.sh": "e585fb85de8f03468ff7e8301567a060ac1cc41c2a0db7f2fbb2cd5dea023f98",
+    "engine/project_leap_2d/maintenance/environment_installer.sh": "05ed8ca92f7c25e7fce1e10a6cda4a6ed4151c7bce7e8b204ece8b953f65e4e9",
+    "engine/project_leap_2d/maintenance/installer_integrity_manifest.sh": "43ccb31721ae9d6bc64404c9ca7eaebec4da9121772c1af2f5989d79882ea5d4",
+    "engine/project_leap_2d/maintenance/manage_environment.command": "ae7db278bfc00833dda30e07182b21765633f28eeda23fe1ca7f36985104b219",
+    "engine/project_leap_2d/maintenance/repair_package.pl": "554aa2d19992242c8b907cceff21663bc1a7288c8613f5388302fd2c22294af1",
+    "engine/project_leap_2d/maintenance/requirements_macos_arm64.lock.txt": "48c59884b99fc75622d207b18704bc8014377eb2c3df03cb931cf6f3102aa536",
+    "engine/project_leap_2d/resources/models/instanseg_single_channel_nuclei.pt": "118066231fb7753ffb048bcd2164186397bcc5c8fc4ad7f826efe928b515794c"
+  },
+  "scientific_files": 95
+}

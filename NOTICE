@@ -1,7 +1,11 @@
-Project Leap 2D
+Project Leap
 Copyright 2026 Dingcheng Wang
+Designed by Dingcheng Wang | The Ohio State University.
+
+Original Project Leap code is licensed under the Apache License, Version 2.0.
+Third-party software and models retain their respective licenses and copyright notices.
+See the distributed third-party notices for their terms and attribution.
 
 This product includes the InstanSeg single_channel_nuclei model. The model,
 its upstream license, source, training-data notices, and scientific citations
 are documented in THIRD_PARTY_NOTICES.md and LICENSES/.
-

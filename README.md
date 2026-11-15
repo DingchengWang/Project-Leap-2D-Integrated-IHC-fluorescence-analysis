@@ -1,118 +1,48 @@
 # Project Leap 2D — Integrated IHC fluorescence analysis
 
-[中文说明](README_中文.md)
+[中文](README_中文.md) · [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) · [User guide](docs/guide.en.md) · [Methods](docs/methods.en.md)
 
-Project Leap 2D analyzes split, single-channel immunohistochemistry (IHC)
-fluorescence Z-stacks on Apple Silicon Macs. The program creates regions of
-interest (ROIs) for the whole cell (Whole Cell), cell body (Soma), and cell
-processes (Processes), which you review in Fiji. It measures the selected
-fluorescence channel from untouched grayscale data and produces overlays, an
-analysis report, and an Excel workbook.
+Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. Version **1.1.0** runs as the **Astrocyte Fluorescence Intensity Measurement** module in Project Leap. Import a multichannel TIFF, choose its image series and time point when prompted, and assign the channel roles. The application prepares single-channel working images, runs the established analysis, opens Fiji for ROI review, and saves six result files. The original TIFF stays unchanged in its original location.
 
-The application is in
-[`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>).
-Distribution tools and documentation are in the repository root.
+This repository contains the module source and documentation. The Project Leap application provides installation and maintenance. The v1.1.0 public release is being prepared; the new application download and module catalog are not yet published. Release availability will be announced through the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/).
 
-## First installation
+## Use the module
 
-This version supports Apple Silicon Macs running macOS 11 or later. Setting up
-the dependencies for the first time requires internet access. You do not need
-to preinstall Python, Cellpose, or Fiji.
+The current Project Leap application targets **Apple Silicon Macs running macOS 27 or later**. In **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement** and wait for **Module ready**. The application manages the module, scientific runtime, models, and Fiji; there is no separate manual module installer.
 
-1. Download [Project-Leap-2D-V1.0.1.zip](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip).
-2. Double-click the ZIP to extract it. Keep the extracted files and folders in
-   their original layout.
-3. Open `Project Leap 2D V1.0.1 Distribution` and double-click
-   `install_macos.command`.
+1. Import a supported `.tif` or `.tiff` with DAPI, eGFP and/or GFAP, and one target: KCNN1, KCNN2, KCNN3, or KCNJ10.
+2. Select the image series/time point when required, confirm the channel mapping, and choose **Sample Age**.
+3. Click **Start analysis**. The application splits the selected channels into working copies and runs the analysis.
+4. Review the proposed regions in Fiji, make any needed corrections, and finish the review.
+5. Open **View results** after **Completed** to inspect the overlays, report, measurements, and final ROI archive.
 
-Terminal opens automatically to show installation progress; you do not need to
-type any commands. The installer checks the bundled program files, copies the
-working package to `~/Desktop/Project Leap 2D V1.0.1`, and then sets up or checks
-the shared dependency environment. When it reports `INSTALLATION COMPLETE`,
-use `Run Analysis.command` in the Desktop package.
+The [user guide](docs/guide.en.md) explains each control, the expected feedback, and how to handle rejected edits. Image metadata is checked automatically; channel identity and cell boundaries require your judgment. GFAP-only analysis supports mature astrocytes only.
 
-The ZIP does not need to be in Downloads. You can extract it in another location
-where the files are readable and scripts can run. Keep the installer and its
-accompanying files together. If the destination already exists, the installer
-stops and leaves it intact.
+## What changes in v1.1.0
 
-The dependencies are stored in `~/Applications/Project Leap 2D Support`.
-Installation details and advanced options, including alternative destinations,
-are in the Release ZIP's `INSTALL_English.md`.
+| Area | v1.1.0 module |
+|---|---|
+| Input preparation | Import one multichannel TIFF; select a series/time point and map source channels in the application. Single-channel working copies are generated automatically. |
+| Original images | Read-only source TIFFs remain in place; working copies live in a separate task directory. |
+| Installation and results | Project Leap manages components, task status, result files, and history. |
+| Final ROI retention | Adds `IHC_2D_ROI_Archive.zip` to the five existing outputs, preserving final geometry and its correspondence to measurements. |
 
-## Daily use and repair
+The scientific rules remain version **1.0.1**. Z selection, automatic segmentation, age-profile selection, Fiji editing including Trim Processes, and raw-grayscale measurement were already part of the earlier workflow. See [Methods](docs/methods.en.md) and [CHANGELOG](CHANGELOG.md).
 
-Inside the installed working package:
+## Legacy v1.0.1 script package
 
-1. Place one batch of backed-up, split single-channel Z-stack TIFF files in
-   `Sample Image`.
-2. Double-click `Run Analysis.command`, then follow the prompts for Fiji review.
-   Results are written to `Result`.
-3. If files are missing or damaged, or startup checks fail, double-click
-   `Repair.command`. It checks this version's program files, restores them if
-   needed, and then checks the dependency environment and rebuilds it if needed.
+The standalone script package remains available for its existing users. Its installation, input handling, and system requirements are described in its own documentation:
 
-Before each analysis, the program runs a quick check of the local environment
-without accessing the network. Every repair needs network access to retrieve
-and verify `Project-Leap-2D-V1.0.1.manifest.json` from the published `v1.0.1`
-Release. It downloads and verifies `Project-Leap-2D-V1.0.1.zip` only when
-program files need restoration. If repair cannot retrieve or verify the
-required release information or files, it stops before checking or rebuilding
-the environment.
+- [v1.0.1 Release](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/tag/v1.0.1), [installation ZIP](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip), and [repair manifest](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.manifest.json).
+- [Installation instructions](distribution/INSTALL_English.md) and [legacy application manual](<Project Leap 2D V1.0.1/README/README EN.md>).
+- [`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>) retains `Run Analysis.command`, `Repair.command`, and `Manual Command.txt`. The legacy `Repair.command` uses the exact v1.0.1 Release and its matching assets.
 
-Repair restores damaged or missing program files from the same version and preserves
-`Sample Image`, `Result`, and `Analysis Package/Run State`. It does not upgrade
-the program or fix bugs already present in that version. If the repair script
-itself is missing or cannot start, download it again from the same release.
+The legacy package requires backed-up, presplit input copies in `Sample Image` and moves successfully processed inputs to macOS Trash. Follow that package's manual when using it. GitHub's **Code → Download ZIP** is a source snapshot, not an application installer.
 
-Input requirements, analysis routes, Fiji editing, and output descriptions are
-in the [English application manual](<Project Leap 2D V1.0.1/README/README EN.md>).
-`Manual Command.txt` inside the working package provides Terminal commands for
-running the analysis and repair scripts.
+## Source and attribution
 
-## Input backups and run state
+Current module code is in [`engine/project_leap_2d/`](engine/project_leap_2d/), with module tests in [`tests/`](tests/). The [Project Leap repository](https://github.com/DingchengWang/Project-Leap) contains the desktop interface and component management. The preserved legacy package and its distribution tools remain separate from the current module.
 
-Work from a copy of each input batch and keep an independent backup. TIFF files
-used by the analysis move to macOS Trash only after Fiji completes, all
-validation passes, and the five output files have been successfully saved
-together in `Result`. The input files stay in place if a safety check stops the
-run, you cancel, an exception occurs, or the output files cannot be saved.
+Dingcheng Wang defined the scientific criteria, workflow decisions, and review requirements. AI assisted software implementation, debugging, and packaging.
 
-The program stores run locks and recovery records in
-`Analysis Package/Run State`; do not clear this folder manually. Git excludes
-these runtime files, input images, and analysis results.
-
-## Repository clone, Code ZIP, and Release ZIP
-
-A Git clone contains tracked source files and Git history. GitHub's
-**Code → Download ZIP** and automatically generated **Source code** archives
-contain source snapshots. They do not include the complete
-installation package or empty working directories that Git does not track.
-Use the versioned Release ZIP for installation.
-
-For source inspection or development, run `./prepare_workspace.command` from
-the repository root after cloning or extracting a source archive. It creates
-`Sample Image`, `Result`, and `Analysis Package/Run State` inside the working
-package, preserves existing contents, and rejects redirected or invalid target
-directories. This command prepares the working folders; it does not install
-dependencies.
-
-## Supported system and scientific scope
-
-V1.0.1 is designed for Apple Silicon Macs running macOS 11 or later. See the
-application manual for the required channels and calibration. GFAP-only
-analysis supports mature astrocytes: a missing age marker or an explicit
-`mature` marker uses the mature configuration; a recognized `neonatal` marker
-or conflicting age markers stops analysis.
-
-Passing software integrity and automated checks does not establish biological
-validity across tissues, ages, staining protocols, disease models, microscopes,
-or laboratories. Use appropriate reference samples to validate the analysis
-for your imaging conditions.
-
-## License and third-party software
-
-Original project code is licensed under the [Apache License 2.0](LICENSE).
-Third-party software and models remain subject to their own terms. Their
-licenses, sources, training-data notices, and requested citations are recorded in
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`LICENSES/`](LICENSES/).
+Original project code uses the [Apache License 2.0](LICENSE). Third-party software and models retain their own terms; sources, licenses, and requested citations are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`LICENSES/`](LICENSES/).

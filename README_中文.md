@@ -1,94 +1,48 @@
 # Project Leap 2D——IHC 荧光图像综合分析
 
-[English](README.md)
+[English](README.md) · [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/) · [使用指南](docs/guide.zh.md) · [分析方法](docs/methods.zh.md)
 
-Project Leap 2D 用于在 Apple Silicon Mac 上分析拆分后的单通道免疫组织化学
-（IHC）荧光 Z-stack 图像。程序构建 Whole Cell（整细胞）、Soma（胞体）和
-Processes（突起）三类感兴趣区域（ROI），由你在 Fiji 中复核。程序从未经改动
-的灰度数据测量指定荧光通道，并生成叠加图、分析报告和 Excel 工作簿。
+Project Leap 2D 在星形胶质细胞的整细胞、胞体和突起区域内测量指定通道的荧光强度。**1.1.0** 版作为 Project Leap 的“**星形胶质细胞荧光强度分析**”模块运行：导入多通道 TIFF，按提示选择图像组和时间点，再指定通道角色。软件自动生成单通道工作副本，运行既有分析流程，打开 Fiji 供你审核 ROI，最后保存六个结果文件。原始 TIFF 保持原位置，内容不变。
 
-程序位于 [`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>)
-文件夹中，仓库根目录存放分发工具和说明。
+本仓库提供模块源码和文档，由 Project Leap 主程序负责安装与维护。目前正在准备 v1.1.0 公开发布，新版主程序下载和模块目录尚未上线；发布情况将通过 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)提供。
 
-## 首次安装
+## 使用模块
 
-本版本适用于运行 macOS 11 或更新版本的 Apple Silicon Mac。首次建立依赖环境
-需要联网，无需预先安装 Python、Cellpose 或 Fiji。
+当前 Project Leap 主程序面向 **macOS 27 或更新版本的 Apple Silicon Mac**。在“**功能与维护**”中安装“**星形胶质细胞荧光强度分析**”，等待显示“**模块已就绪**”。主程序管理模块、科学计算环境、模型和 Fiji，无需单独手动安装模块包。
 
-1. 下载 [Project-Leap-2D-V1.0.1.zip](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip)。
-2. 双击 ZIP 解压，保持解压后的文件和文件夹结构不变。
-3. 打开 `Project Leap 2D V1.0.1 Distribution` 文件夹，双击其中的
-   `install_macos.command`。
+1. 导入受支持的 `.tif` 或 `.tiff`，其中包含 DAPI、eGFP 和／或 GFAP，以及 KCNN1、KCNN2、KCNN3、KCNJ10 中的一个待测标记物。
+2. 按提示选择图像组和时间点，确认通道映射，设置“**图像年龄**”。
+3. 点击“**开始分析**”。软件将所选通道拆分为工作副本，并自动分析。
+4. 在 Fiji 中检查拟定的细胞区域，按需修改，再结束审核。
+5. 主程序显示“**已完成**”后，点击“**查看分析结果**”，检查叠加图、报告、测量表和最终 ROI 归档。
 
-Terminal 会自动打开并显示安装进度，无需手动输入命令。安装器会检查随附的
-程序文件，将工作包复制到 `~/Desktop/Project Leap 2D V1.0.1`，再建立或检查
-共享依赖环境。显示 `INSTALLATION COMPLETE` 后，即可使用桌面工作包中的
-`Run Analysis.command`。
+[使用指南](docs/guide.zh.md)逐步说明控件位置、操作反馈和编辑被拒绝时的处理方法。图像元数据由程序自动检查；通道身份和细胞边界需要你判断。GFAP-only 路径仅支持成熟星形胶质细胞。
 
-ZIP 不必保存在“下载”文件夹；在其他可读取文件并正常运行脚本的位置解压也可以。
-请将安装器与随附文件保留在一起。如果目标路径已存在，安装器会停止并保留原有内容。
+## v1.1.0 的变化
 
-依赖保存在 `~/Applications/Project Leap 2D Support`。详细安装步骤和其他安装位置
-等高级选项见 Release ZIP 中的 `INSTALL_中文.md`。
+| 环节 | v1.1.0 模块 |
+|---|---|
+| 输入准备 | 直接导入一个多通道 TIFF，在界面中选择图像组、时间点和源通道；软件自动生成单通道工作副本。 |
+| 原图保留 | 原始 TIFF 只读且保留原位置；工作副本写入独立任务目录。 |
+| 安装与结果管理 | Project Leap 统一管理组件、任务状态、结果文件和历史记录。 |
+| 最终 ROI 保留 | 在原有五个结果之外新增 `IHC_2D_ROI_Archive.zip`，保存最终区域形状及其与测量结果的对应关系。 |
 
-## 日常运行与修复
+科学规则版本仍为 **1.0.1**。Z 范围选择、自动分割、年龄配置选择、包含 Trim Processes 的 Fiji 编辑和原始灰度测量均沿用既有流程。详见[分析方法](docs/methods.zh.md)和[版本记录](CHANGELOG.md)。
 
-在已安装的工作包中：
+## 保留的 v1.0.1 独立脚本包
 
-1. 将一批已经独立备份、拆分为单通道的 Z-stack TIFF 放入 `Sample Image`。
-2. 双击 `Run Analysis.command`，按提示完成 Fiji 复核；结果写入 `Result`。
-3. 程序文件缺失、损坏或启动检查失败时，双击 `Repair.command`。
-   它先检查本版本程序文件，必要时恢复；随后检查依赖环境，必要时重建环境。
+旧脚本包继续供已有用户使用。其安装方式、输入处理和系统要求以旧版文档为准：
 
-每次分析开始前，程序会快速检查本地环境，不访问网络。每次修复都需要联网，
-从正式 `v1.0.1` Release 获取并验证文件清单
-`Project-Leap-2D-V1.0.1.manifest.json`；需要恢复程序文件时，才下载并验证
-`Project-Leap-2D-V1.0.1.zip`。如果无法获取或验证所需的发布信息及文件，
-修复便会停止，不再检查或重建环境。
+- [v1.0.1 Release](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/tag/v1.0.1)、[安装 ZIP](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.zip)和[修复清单](https://github.com/DingchengWang/Project-Leap-2D-Integrated-IHC-fluorescence-analysis/releases/download/v1.0.1/Project-Leap-2D-V1.0.1.manifest.json)。
+- [安装说明](distribution/INSTALL_中文.md)和[旧版使用说明](<Project Leap 2D V1.0.1/README/README CN.md>)。
+- [`Project Leap 2D V1.0.1/`](<Project Leap 2D V1.0.1/>) 中保留 `Run Analysis.command`、`Repair.command` 和 `Manual Command.txt`。旧版 `Repair.command` 依赖固定的 v1.0.1 Release 及对应附件。
 
-修复会恢复同一版本的程序文件，保留 `Sample Image`、`Result` 和
-`Analysis Package/Run State` 中的内容。它不会自动升级，也不能修复该版本
-本身已有的程序错误。如果修复脚本缺失或无法启动，请从同一 Release 重新下载。
+旧包要求将已备份、预先拆分的输入副本放入 `Sample Image`，成功处理后会将实际使用的输入移入 macOS 废纸篓。使用旧包时请遵循其说明。GitHub 的“**Code → Download ZIP**”提供源码快照，不能当作应用安装器。
 
-输入要求、分析路径、Fiji 编辑和输出说明见
-[中文使用说明](<Project Leap 2D V1.0.1/README/README CN.md>)。
-工作包内的 `Manual Command.txt` 提供通过 Terminal 运行分析和修复脚本的命令。
+## 源码与贡献
 
-## 输入备份与运行状态
+当前模块代码位于 [`engine/project_leap_2d/`](engine/project_leap_2d/)，模块测试位于 [`tests/`](tests/)；桌面界面和组件管理位于 [Project Leap 主仓库](https://github.com/DingchengWang/Project-Leap)。旧脚本包及其分发工具与当前模块分别保留。
 
-每批输入都应使用工作副本，并保留独立备份。只有 Fiji 完成、全部验证通过且
-五个结果文件一起成功保存到 `Result` 后，本次实际使用的 TIFF 才会移入 macOS
-Trash。如果安全检查使程序停止、用户取消、发生异常或结果文件保存失败，
-输入文件会保留。
+Dingcheng Wang 负责科学判定标准、流程决策和审核要求；AI 辅助代码实现、调试与打包。
 
-程序将运行锁和恢复记录保存在 `Analysis Package/Run State` 中，请不要手动清空
-这个文件夹。Git 不跟踪这些运行文件、输入图像和分析结果。
-
-## 仓库克隆、Code ZIP 与 Release ZIP
-
-Git 克隆包含受版本控制的源码和 Git 历史。GitHub 的
-**Code → Download ZIP** 以及自动生成的 **Source code** 压缩包是源码快照，
-不包含完整安装包，也不包含 Git 未跟踪的空工作目录。
-安装时应使用指定版本的 Release ZIP。
-
-如需查看源码或开发，克隆或解压源码后可在仓库根目录运行
-`./prepare_workspace.command`。它在工作包内建立 `Sample Image`、
-`Result` 和 `Analysis Package/Run State`，保留已有内容，并拒绝符号链接
-或类型不正确的目标目录。该命令只准备工作目录，不安装依赖。
-
-## 支持的系统与科学适用范围
-
-V1.0.1 面向运行 macOS 11 或更新版本的 Apple Silicon Mac。
-所需通道和物理标定要求见使用说明。GFAP-only 分析支持成熟星形胶质细胞：
-没有年龄标记或明确标记为 `mature` 时使用成熟配置；识别到 `neonatal`
-或互相冲突的年龄标记时停止分析。
-
-通过软件完整性与自动化检查，并不代表分析方法已在不同组织、年龄、染色方案、
-疾病模型、显微镜或实验室条件下得到生物学验证。请使用适当的参考样本，
-验证分析方法是否适用于你的成像条件。
-
-## 许可证与第三方组件
-
-本项目原创代码采用 [Apache License 2.0](LICENSE)。第三方软件和模型继续遵循
-各自条款；相关许可证、来源、训练数据说明和引用要求见
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [`LICENSES/`](LICENSES/)。
+本项目原创代码采用 [Apache License 2.0](LICENSE)。第三方软件和模型遵循各自条款；来源、许可证和引用要求见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [`LICENSES/`](LICENSES/)。
