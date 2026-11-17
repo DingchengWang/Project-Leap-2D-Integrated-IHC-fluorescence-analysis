@@ -6,6 +6,13 @@ Project Leap 2D 结合开源分割模型与 Project Leap 原创的细胞框选�
 
 本仓库提供“**星形胶质细胞荧光强度分析**”模块 **v1.1.1** 的源码和文档。请从 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)下载 **Project Leap v1.0.0**，再在主程序中安装模块。各版本的变化见[版本记录](CHANGELOG.md)。
 
+<!-- leap-media:start whole-cell-result -->
+<p align="center">
+  <a href="docs/images/whole-cell-overlay.png"><img src="docs/images/whole-cell-overlay-preview.png" width="880" alt="这张示例叠加图显示整细胞边界和细胞编号。"></a>
+</p>
+<p align="center"><em>这张示例叠加图显示整细胞边界和细胞编号。</em></p>
+<!-- leap-media:end whole-cell-result -->
+
 ## 准备图像与安装模块
 
 使用 **macOS 27 或更新版本的 Apple Silicon Mac**。打开 Project Leap 的“**功能与维护**”，安装“**星形胶质细胞荧光强度分析**”，等待显示“**模块已就绪**”。主程序会一并安装所需的科学计算环境、模型和 Fiji。

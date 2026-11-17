@@ -20,6 +20,13 @@
 
 在“**通道映射**”中确认预填选项，或将 C1、C2 等源通道分别指定为 **DAPI**、**eGFP** 和 **GFAP**。缺失的标记物选择“**未包含**”；必须包含 DAPI 以及 eGFP／GFAP 中至少一个。对“**待测通道**”，分别选择标记物名称和实际源通道。每个已选源通道只能对应一种标记物，未指定的源通道会被忽略。
 
+<!-- leap-media:start channel-mapping -->
+<p align="center">
+  <a href="images/channel-mapping.png"><img src="images/channel-mapping.png" width="880" alt="图中显示 DAPI、eGFP、GFAP 和待测标记物的通道分配。"></a>
+</p>
+<p align="center"><em>图中选择 KCNN2 作为待测标记物。</em></p>
+<!-- leap-media:end channel-mapping -->
+
 软件可依据通道名称预填选项，但染色身份仍需你确认。显示颜色不能用来识别标记物；不确定时应向图像提供者确认。
 
 存在 eGFP 时，“**图像年龄**”中的“**自动**”依据图像形态选择处理配置。已知样本类别时，可直接选择 **Mature** 或 **Neonatal**。结构通道仅含 GFAP、没有 eGFP 的分支仅适用于**成熟样本**，对应选择“自动”或 Mature。导入另一张图像后，年龄选项会重置为“自动”。
@@ -30,6 +37,13 @@
 
 若无法开始，查看模块状态、必需的图像组／时间点选择、通道分配和 GFAP-only 年龄设置。分析期间保持 Project Leap 和 Fiji 打开。主程序显示“**等待 Fiji 审核**”后，点击“**前往 Fiji 审核**”将其窗口置于前台。
 
+<!-- leap-media:start awaiting-fiji-review -->
+<p align="center">
+  <a href="images/awaiting-fiji-review.png"><img src="images/awaiting-fiji-review.png" width="280" alt="Project Leap 正在等待 Fiji 审核。"></a>
+</p>
+<p align="center"><em>Project Leap 正在等待 Fiji 审核。</em></p>
+<!-- leap-media:end awaiting-fiji-review -->
+
 ## 4. 在 Fiji 中选择直接测量或审核区域
 
 在 **Astrocyte ROI Reviewer** 对话框中选择后续操作：
@@ -39,6 +53,13 @@
 - **Cancel Analysis**：取消运行；关闭这个初始对话框也会取消。
 
 选择 **Review ROIs** 后，打开三个管理器：**Whole Astrocyte Cell ROI Manager** 管理整细胞，**Astrocyte Soma ROI Manager** 管理胞体，**Astrocyte Processes ROI Manager** 管理突起。每个管理器对应一幅 Composite 合成图和一幅 Raw Grayscale 原始灰度图，共六个视图。**Astrocyte ROI Reviewer-Waiting** 窗口提供结束审核和撤销等控件。
+
+<!-- leap-media:start fiji-roi-managers -->
+<p align="center">
+  <a href="images/fiji-roi-managers.png"><img src="images/fiji-roi-managers.png" width="880" alt="Fiji 在合成图旁显示整细胞、胞体和突起的 ROI 管理器。"></a>
+</p>
+<p align="center"><em>Fiji 在合成图旁显示三个联动的 ROI 管理器。</em></p>
+<!-- leap-media:end fiji-roi-managers -->
 
 点击任一管理器中的细胞行，可在各视图中高亮该细胞；**Show ROI Images** 将对应的两幅图置于前台。在活动图像中按 **+** 或 **−** 缩放，按住 **Space** 并拖动可平移。多选时先点击第一行，再按住 Command 点击其他行。
 
@@ -61,11 +82,25 @@
 3. **Clear Cell Draft** 清除当前选中受影响 ID 的草稿；**Undo** 撤销一步草稿操作；**Cancel** 放弃整个未确认草稿。
 4. 等待当前预览完成，再点击 **Confirm Trim**。程序从整细胞和突起区域中同步删除接受的像素，胞体保持不变。预览过期、未删除任何突起像素、某个细胞的突起将被全部删除，或保留的突起将与胞体产生新的断连时，程序会阻止确认；按提示修改草稿。
 
+<!-- leap-media:start trim-processes-preview -->
+<p align="center">
+  <a href="images/trim-processes-preview.png"><img src="images/trim-processes-preview.png" width="880" alt="Trim Processes 显示草稿影响的细胞编号和编辑控件。"></a>
+</p>
+<p align="center"><em>Trim Processes 显示草稿影响的细胞编号。</em></p>
+<!-- leap-media:end trim-processes-preview -->
+
 出现 **Cell Edit: ready** 时，计算已结束。阅读操作结果消息并检查边界；被拒绝的尝试会保留此前 ROI。要停止 Split 或 Enlarge，点击 **Cancel Cell Edit** 并等待取消完成。要撤销已应用的修改，先关闭 Trim，等待当前计算结束，再在 Waiting 窗口点击 **Revert**。连续点击会按逆序撤销已应用的编辑；一次确认的 Trim 会整体撤销。Trim 中的 Undo 仅作用于尚未确认的草稿。
 
 ## 6. 完成测量并查看结果
 
 如果选择了 **Review ROIs**，先结束区域编辑。若 Trim 仍打开，使用 **Confirm Trim** 应用有效草稿，或用 **Cancel** 关闭；空草稿也用 Cancel。等待计算或取消操作结束后，在 **Astrocyte ROI Reviewer-Waiting** 中点击 **Finish Review and Measure**。
+
+<!-- leap-media:start finish-review-and-measure -->
+<p align="center">
+  <a href="images/finish-review-and-measure.png"><img src="images/finish-review-and-measure.png" width="880" alt="Waiting 窗口提供结束审核并测量以及撤销修改的按钮。"></a>
+</p>
+<p align="center"><em>Waiting 窗口提供结束审核并测量以及撤销修改的按钮。</em></p>
+<!-- leap-media:end finish-review-and-measure -->
 
 选择 **Measure Now** 或 **Finish Review and Measure** 后，Project Leap 都会自动继续。显示“**已完成**”后点击“**查看分析结果**”。
 

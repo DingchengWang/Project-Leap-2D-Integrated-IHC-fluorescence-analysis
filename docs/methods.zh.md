@@ -45,6 +45,18 @@ Soma ∩ Processes = ∅
 Processes = Whole Cell − Soma
 ```
 
+<!-- leap-media:start compartment-overlays -->
+<table>
+  <tr><th>Whole Cell</th><th>Soma</th><th>Processes</th></tr>
+  <tr>
+    <td><a href="images/whole-cell-overlay.png"><img src="images/whole-cell-overlay-preview.png" width="280" alt="整细胞叠加图显示区域边界和细胞编号。"></a></td>
+    <td><a href="images/soma-overlay.png"><img src="images/soma-overlay-preview.png" width="280" alt="胞体叠加图显示区域边界和细胞编号。"></a></td>
+    <td><a href="images/processes-overlay.png"><img src="images/processes-overlay-preview.png" width="280" alt="突起叠加图显示区域边界和细胞编号。"></a></td>
+  </tr>
+</table>
+<p><em>这三张叠加图显示同一视野的整细胞、胞体和突起区域。</em></p>
+<!-- leap-media:end compartment-overlays -->
+
 Fiji 初始对话框提供 **Measure Now** 和 **Review ROIs**：前者直接测量自动生成的区域，后者进入人工审核流程。审核后，点击 **Finish Review and Measure** 测量最终区域。`Manual_Review_Used` 记录是否进入审核流程，**Review Audit** 单独记录已应用和已撤销的编辑，供读者区分直接测量与人工审核后的测量结果。
 
 Fiji 将区域分别叠加在结构合成图和目标通道原始灰度投影上。用户检查拟定边界，按需使用联动的 Delete、Merge、Split、Enlarge 或 Trim Processes。编辑会同步更新三类区域。Split 和 Enlarge 依据局部证据计算，可拒绝依据不足的修改；Merge 要求所选胞体边界能以不超过 **1.0 µm** 的相邻间距连成一组；Trim 保留胞体，并检查是否使保留的突起产生新的断连。具体控件及操作条件见[使用指南](guide.zh.md)。

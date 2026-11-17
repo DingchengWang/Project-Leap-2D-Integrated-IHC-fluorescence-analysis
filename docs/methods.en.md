@@ -45,6 +45,18 @@ Soma ∩ Processes = ∅
 Processes = Whole Cell − Soma
 ```
 
+<!-- leap-media:start compartment-overlays -->
+<table>
+  <tr><th>Whole Cell</th><th>Soma</th><th>Processes</th></tr>
+  <tr>
+    <td><a href="images/whole-cell-overlay.png"><img src="images/whole-cell-overlay-preview.png" width="280" alt="The Whole Cell overlay shows region outlines and cell IDs."></a></td>
+    <td><a href="images/soma-overlay.png"><img src="images/soma-overlay-preview.png" width="280" alt="The Soma overlay shows cell body outlines and cell IDs."></a></td>
+    <td><a href="images/processes-overlay.png"><img src="images/processes-overlay-preview.png" width="280" alt="The Processes overlay shows process outlines and cell IDs."></a></td>
+  </tr>
+</table>
+<p><em>These overlays show Whole Cell, Soma, and Processes regions in the same field of view.</em></p>
+<!-- leap-media:end compartment-overlays -->
+
 The initial Fiji dialog offers **Measure Now**, which measures the automatically generated regions directly, and **Review ROIs**, which opens the manual review workflow. After review, **Finish Review and Measure** measures the final regions. `Manual_Review_Used` records whether the review workflow was entered; **Review Audit** separately records applied and reverted edits. This distinguishes direct measurement from measurement after manual review in the saved results.
 
 Fiji shows these regions over composite structural displays and separate raw target-channel projections. The user checks the proposed boundaries and applies linked Delete, Merge, Split, Enlarge, or Trim Processes edits where needed. Editing updates the three regions together. Split and Enlarge use local evidence and can reject an unsupported change. Merge requires the selected Soma boundaries to form a proximity chain with gaps no greater than **1.0 µm**. Trim preserves Soma and checks that retained processes are not newly disconnected. The [user guide](guide.en.md) explains each control and its conditions.

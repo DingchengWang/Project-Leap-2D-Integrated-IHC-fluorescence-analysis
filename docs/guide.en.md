@@ -20,6 +20,13 @@ The application displays image dimensions, channel and Z-plane counts, data type
 
 Under **Channel mapping**, confirm any prefilled choices or assign C1, C2, and the other source channels to **DAPI**, **eGFP**, and **GFAP**. Choose **Not included** for an absent marker. Include DAPI and at least one of eGFP/GFAP. For **Target channel**, choose both its marker and its source channel. Assign each selected source channel to only one marker; unassigned channels are ignored.
 
+<!-- leap-media:start channel-mapping -->
+<p align="center">
+  <a href="images/channel-mapping.png"><img src="images/channel-mapping.png" width="880" alt="The controls show the source channels assigned to DAPI, eGFP, GFAP, and the target marker."></a>
+</p>
+<p align="center"><em>KCNN2 is selected as the target marker in this example.</em></p>
+<!-- leap-media:end channel-mapping -->
+
 Channel names can prefill a choice, but you must confirm what was stained. Display colors do not identify markers. Consult the image provider if a channel's identity is unknown.
 
 With eGFP, **Automatic** under **Sample Age** selects a processing profile from image morphology. If the sample category is known, you can choose **Mature** or **Neonatal**. The route with GFAP as the sole structural channel is for **mature samples only**, using either Automatic or Mature. Importing another image resets the selection to Automatic.
@@ -30,6 +37,13 @@ Click **Start analysis** in the analysis-status panel. The application creates c
 
 If Start analysis is unavailable, check the displayed module status, required series/time selection, channel assignments, and GFAP-only age setting. During analysis, keep Project Leap and Fiji open. When the status becomes **Awaiting Fiji review**, click **Review in Fiji** to bring Fiji forward.
 
+<!-- leap-media:start awaiting-fiji-review -->
+<p align="center">
+  <a href="images/awaiting-fiji-review.png"><img src="images/awaiting-fiji-review.png" width="280" alt="Project Leap is waiting for review in Fiji."></a>
+</p>
+<p align="center"><em>Project Leap is waiting for review in Fiji.</em></p>
+<!-- leap-media:end awaiting-fiji-review -->
+
 ## 4. Choose direct measurement or ROI review in Fiji
 
 In **Astrocyte ROI Reviewer**, choose how to proceed:
@@ -39,6 +53,13 @@ In **Astrocyte ROI Reviewer**, choose how to proceed:
 - **Cancel Analysis**, or closing this initial dialog, cancels the run.
 
 With **Review ROIs**, three managers open: **Whole Astrocyte Cell ROI Manager**, **Astrocyte Soma ROI Manager**, and **Astrocyte Processes ROI Manager**. These control whole-cell regions, cell bodies, and processes. Each has a Composite view and a Raw Grayscale view, giving six views of the same image. **Astrocyte ROI Reviewer-Waiting** contains the completion and recovery controls.
+
+<!-- leap-media:start fiji-roi-managers -->
+<p align="center">
+  <a href="images/fiji-roi-managers.png"><img src="images/fiji-roi-managers.png" width="880" alt="Fiji displays the composite image beside the Whole Cell, Soma, and Processes ROI managers."></a>
+</p>
+<p align="center"><em>Fiji displays the composite image beside the three linked ROI managers.</em></p>
+<!-- leap-media:end fiji-roi-managers -->
 
 Click a cell's row in any manager to highlight it across the views. **Show ROI Images** brings that manager's paired images forward. In an active image, press **+** or **−** to zoom; hold **Space** and drag to pan. For multiple selection, click the first row and Command-click additional rows.
 
@@ -61,11 +82,25 @@ To trim processes:
 3. Use **Clear Cell Draft** to remove the selected affected ID's draft, or **Undo** to reverse a draft action. **Cancel** discards the entire open draft.
 4. Wait for the current preview, then click **Confirm Trim**. The program removes the accepted pixels from Whole Cell and Processes together, leaving Soma unchanged. It blocks a stale preview, a draft that removes no process pixels, removal of all Processes from an affected cell, or a new disconnection of retained processes from Soma. Adjust the draft if it is rejected.
 
+<!-- leap-media:start trim-processes-preview -->
+<p align="center">
+  <a href="images/trim-processes-preview.png"><img src="images/trim-processes-preview.png" width="880" alt="Trim Processes shows the affected cell ID and the draft controls."></a>
+</p>
+<p align="center"><em>Trim Processes lists the cell affected by the draft.</em></p>
+<!-- leap-media:end trim-processes-preview -->
+
 When **Cell Edit: ready** appears, processing has ended. Read the outcome message and inspect the regions; rejected attempts retain the prior ROIs. To stop Split or Enlarge processing, click **Cancel Cell Edit** and wait for cancellation to finish. To undo an applied edit, close Trim, wait for any processing to end, and click **Revert** in the Waiting window. Repeated clicks undo applied edits in reverse order; one confirmed Trim session is reverted as a whole. Trim's Undo operates only on its open draft.
 
 ## 6. Complete measurement and read the results
 
 If you entered **Review ROIs**, finish any editing first. If Trim is open, apply a valid draft with **Confirm Trim** or close it with **Cancel**; use Cancel for an empty draft. Wait for processing or cancellation to finish, then click **Finish Review and Measure** in **Astrocyte ROI Reviewer-Waiting**.
+
+<!-- leap-media:start finish-review-and-measure -->
+<p align="center">
+  <a href="images/finish-review-and-measure.png"><img src="images/finish-review-and-measure.png" width="880" alt="The Waiting window has buttons to finish review and measure, or revert edits."></a>
+</p>
+<p align="center"><em>The Waiting window has buttons to finish review and measure, or revert edits.</em></p>
+<!-- leap-media:end finish-review-and-measure -->
 
 After either **Measure Now** or **Finish Review and Measure**, Project Leap continues automatically. Wait for **Completed**, then click **View results**.
 

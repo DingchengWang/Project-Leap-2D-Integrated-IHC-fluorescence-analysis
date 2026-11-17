@@ -6,6 +6,13 @@ Project Leap 2D delineates whole-cell, soma, and process regions in multichannel
 
 This repository contains source and documentation for **v1.1.1** of the **Astrocyte Fluorescence Intensity Measurement** module. Install it through **Project Leap v1.0.0**, available from the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/). Version changes are recorded in [CHANGELOG.md](CHANGELOG.md).
 
+<!-- leap-media:start whole-cell-result -->
+<p align="center">
+  <a href="docs/images/whole-cell-overlay.png"><img src="docs/images/whole-cell-overlay-preview.png" width="880" alt="This example overlay shows Whole Cell outlines and cell IDs."></a>
+</p>
+<p align="center"><em>This example overlay shows Whole Cell outlines and cell IDs.</em></p>
+<!-- leap-media:end whole-cell-result -->
+
 ## Prepare an image and install the module
 
 Use an **Apple Silicon Mac running macOS 27 or later**. In Project Leap, open **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement**, and wait for **Module ready**. The application installs the scientific runtime, models, and Fiji with the module.
