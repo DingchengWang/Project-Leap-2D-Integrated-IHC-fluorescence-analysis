@@ -1,4 +1,6 @@
-# Install Project Leap 2D V1.0.1
+# Install the standalone Project Leap 2D V1.0.1 package
+
+These instructions apply to the preserved standalone script package. To install the current fluorescence module in the Project Leap desktop application, use the [current module guide](../docs/guide.en.md).
 
 This release supports Apple Silicon Macs running macOS 11 or later. The first
 installation needs internet access to set up Python, Cellpose, Fiji, and the
@@ -65,12 +67,15 @@ the dependencies are installed or that analysis can run.
 
 ## After installation
 
-Open the installed working package, place one image batch in `Sample Image`,
-and double-click `Run Analysis.command`. The program checks the environment
+Open the installed working package, place backed-up copies of one batch of
+presplit single-channel Z-stack TIFFs in `Sample Image`, and double-click
+`Run Analysis.command`. The program checks the environment
 briefly at startup; daily analysis does not access the network. See
 `README/README EN.md` in the package for input requirements, Fiji review steps,
 and outputs. To start either entry from Terminal, use the corresponding command
-in `Manual Command.txt`.
+in `Manual Command.txt`. The input TIFFs used in the analysis move to macOS Trash
+only after Fiji completes, all validation passes, and the final outputs are
+saved successfully.
 
 If program files are missing or damaged, or startup checks fail, double-click
 `Repair.command`. It first uses macOS system tools to check this version's

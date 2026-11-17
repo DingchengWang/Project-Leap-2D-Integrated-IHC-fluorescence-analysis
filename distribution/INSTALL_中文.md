@@ -1,4 +1,6 @@
-# 安装 Project Leap 2D V1.0.1
+# 安装 Project Leap 2D V1.0.1 独立脚本包
+
+本文适用于保留的独立脚本包。如需在 Project Leap 桌面程序中安装当前荧光模块，请按[当前模块使用指南](../docs/guide.zh.md)操作。
 
 本版本适用于运行 macOS 11 或更新版本的 Apple Silicon Mac。首次安装需要联网，
 安装器会准备 Python、Cellpose、Fiji 和其他依赖。无需预先安装 Homebrew、pip 或
@@ -53,10 +55,12 @@ Python 3.9、科学计算依赖、Cellpose 模型和 Fiji 均使用固定版本�
 
 ## 安装后使用
 
-打开已安装的工作包，将一批图像放入 `Sample Image`，然后双击
-`Run Analysis.command`。程序启动时会快速检查环境，日常分析不联网。
+打开已安装的工作包，将一批已备份、预先拆分的单通道 Z-stack TIFF 副本放入
+`Sample Image`，然后双击 `Run Analysis.command`。程序启动时会快速检查环境，日常分析不联网。
 输入要求、Fiji 复核步骤和输出说明见包内的 `README/README CN.md`。
 需要从 Terminal 启动时，可使用 `Manual Command.txt` 中与两个入口对应的命令。
+只有 Fiji 完成、全部验证通过且最终输出成功保存后，分析实际使用的输入 TIFF
+才会移入 macOS 废纸篓。
 
 如果程序文件缺失、损坏或启动检查失败，双击 `Repair.command`。它先使用
 macOS 自带工具联网核对本版本的程序文件；需要恢复文件时，会自动下载并校验

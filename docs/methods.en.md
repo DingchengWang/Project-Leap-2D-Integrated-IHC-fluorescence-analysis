@@ -2,7 +2,7 @@
 
 [中文](methods.zh.md) · [Overview](../README.md) · [User guide](guide.en.md)
 
-Project Leap 2D uses a calibrated Z-stack to select analysis depth and associate astrocyte structures with nuclei, then measures one target channel within two-dimensional cell regions. This document covers module **v1.1.1**, with scientific rules version **1.0.1**. Software changes are listed in [CHANGELOG.md](../CHANGELOG.md).
+Project Leap 2D combines open-source segmentation models with its original method for associating nuclear and structural evidence to delineate astrocyte regions. It uses a calibrated Z-stack to select analysis depth and identify cells, then measures one target channel within the resulting two-dimensional regions. This document explains the region definitions and measurement scope of module **v1.1.1**. Software changes are listed in [CHANGELOG.md](../CHANGELOG.md).
 
 ## Input data and channel roles
 
@@ -45,13 +45,13 @@ Soma ∩ Processes = ∅
 Processes = Whole Cell − Soma
 ```
 
-Fiji shows these regions over composite structural displays and separate raw target-channel projections. The user checks the proposed boundaries and applies linked Delete, Merge, Split, Enlarge, or Trim Processes edits where needed. Editing updates the three regions together. Split and Enlarge use local evidence and can reject an unsupported change. Merge requires the selected Soma boundaries to form a proximity chain with gaps no greater than **1.0 µm**. Trim preserves Soma and checks that retained processes are not newly disconnected. The [user guide](guide.en.md) explains each control and its conditions.
+The initial Fiji dialog offers **Measure Now**, which measures the automatically generated regions directly, and **Review ROIs**, which opens the manual review workflow. After review, **Finish Review and Measure** measures the final regions. `Manual_Review_Used` records whether the review workflow was entered; **Review Audit** separately records applied and reverted edits. This distinguishes direct measurement from measurement after manual review in the saved results.
 
-The initial Fiji dialog offers **Review ROIs** and **Measure Now**. The guide uses Review ROIs to inspect the proposed regions before measurement. `Manual_Review_Used` records whether this review workflow was entered; **Review Audit** separately records applied and reverted edits. Boundary acceptance remains the user's decision during review.
+Fiji shows these regions over composite structural displays and separate raw target-channel projections. The user checks the proposed boundaries and applies linked Delete, Merge, Split, Enlarge, or Trim Processes edits where needed. Editing updates the three regions together. Split and Enlarge use local evidence and can reject an unsupported change. Merge requires the selected Soma boundaries to form a proximity chain with gaps no greater than **1.0 µm**. Trim preserves Soma and checks that retained processes are not newly disconnected. The [user guide](guide.en.md) explains each control and its conditions.
 
 ## Measure fluorescence and save the results
 
-Fiji forms a **two-dimensional maximum-intensity projection** of the target channel over the selected Z range. At each XY position, the projection retains the maximum source intensity within that range; the final ROI determines which projected pixels are measured. Target intensities retain their original grayscale scale, with **no background subtraction or intensity normalization**. Composite colors and display contrast affect viewing only. Processing of the structural channels for region construction is separate from target-intensity measurement.
+Fiji forms a **two-dimensional maximum-intensity projection** of the target channel over the selected Z range. At each XY position, the projection retains the maximum source intensity within that range; the final ROI determines which projected pixels are measured. Target intensities retain their original grayscale scale and background signal, with **no background subtraction or intensity normalization**. Composite colors and display contrast affect viewing only. Processing of the structural channels for region construction is separate from target-intensity measurement.
 
 The workbook has Whole Cell, Soma, and Processes sheets containing area, mean, median, minimum, maximum, integrated density, and raw integrated density. It also records the target channel, projection, Z bounds, age profile, and review history. Area describes the region in the selected 2D projection, and intensity statistics describe its projected pixels. Z-stack evidence supports cell identification and region selection; these outputs quantify projected regions rather than 3D cell volume.
 

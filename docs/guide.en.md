@@ -2,13 +2,13 @@
 
 [中文](guide.zh.md) · [Overview](../README.md) · [Methods](methods.en.md)
 
-Use this guide to measure one target fluorescence channel within astrocyte regions of interest (ROIs). It assumes familiarity with fluorescence images; programming and prior Fiji experience are not required. The instructions describe module **v1.1.1** in Project Leap.
+This guide covers image import, automatic generation of regions of interest (ROIs), the choice to measure directly or review regions in Fiji, and the resulting fluorescence measurements. It is written for laboratory users familiar with fluorescence images and describes module **v1.1.1** in Project Leap.
 
 ## Before starting
 
 Download **Project Leap v1.0.0** from the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) and install it on an Apple Silicon Mac running macOS 27 or later. Open **Modules & Maintenance**, install **Astrocyte Fluorescence Intensity Measurement**, and wait for **Module ready**. The application installs the required scientific runtime, models, and Fiji. The control names below follow the English interface; choose English under **Settings → Interface language** if needed.
 
-Have one multichannel TIFF containing separate DAPI, eGFP and/or GFAP channels, plus one target: KCNN1, KCNN2, KCNN3, or KCNJ10. A merged RGB picture is unsuitable. The TIFF must retain its depth axis and physical pixel/slice spacing; the program reads these automatically. Exact supported layouts are listed under [Input data](methods.en.md#input-data-and-channel-roles).
+Have one multichannel TIFF containing separate DAPI, eGFP and/or GFAP channels, plus one target: KCNN1, KCNN2, KCNN3, or KCNJ10. Project Leap splits these channels into working images automatically; use the multichannel TIFF as input. A merged RGB picture is unsuitable. The TIFF must retain its depth axis and physical pixel/slice spacing; the program reads these automatically. Exact supported layouts are listed under [Input data](methods.en.md#input-data-and-channel-roles).
 
 ## 1. Import the image
 
@@ -30,9 +30,15 @@ Click **Start analysis** in the analysis-status panel. The application creates c
 
 If Start analysis is unavailable, check the displayed module status, required series/time selection, channel assignments, and GFAP-only age setting. During analysis, keep Project Leap and Fiji open. When the status becomes **Awaiting Fiji review**, click **Review in Fiji** to bring Fiji forward.
 
-## 4. Inspect the proposed ROIs in Fiji
+## 4. Choose direct measurement or ROI review in Fiji
 
-In **Astrocyte ROI Reviewer**, click **Review ROIs**. Closing this initial dialog cancels the run. Three managers open: **Whole Astrocyte Cell ROI Manager**, **Astrocyte Soma ROI Manager**, and **Astrocyte Processes ROI Manager**. These control whole-cell regions, cell bodies, and processes. Each has a Composite view and a Raw Grayscale view, giving six views of the same image. **Astrocyte ROI Reviewer-Waiting** contains the completion and recovery controls.
+In **Astrocyte ROI Reviewer**, choose how to proceed:
+
+- **Measure Now** measures the automatically generated ROIs without entering the editing workflow. The program then validates and saves the results; continue to step 6 to read them.
+- **Review ROIs** opens the linked views and editing controls described below.
+- **Cancel Analysis**, or closing this initial dialog, cancels the run.
+
+With **Review ROIs**, three managers open: **Whole Astrocyte Cell ROI Manager**, **Astrocyte Soma ROI Manager**, and **Astrocyte Processes ROI Manager**. These control whole-cell regions, cell bodies, and processes. Each has a Composite view and a Raw Grayscale view, giving six views of the same image. **Astrocyte ROI Reviewer-Waiting** contains the completion and recovery controls.
 
 Click a cell's row in any manager to highlight it across the views. **Show ROI Images** brings that manager's paired images forward. In an active image, press **+** or **−** to zoom; hold **Space** and drag to pan. For multiple selection, click the first row and Command-click additional rows.
 
@@ -57,13 +63,15 @@ To trim processes:
 
 When **Cell Edit: ready** appears, processing has ended. Read the outcome message and inspect the regions; rejected attempts retain the prior ROIs. To stop Split or Enlarge processing, click **Cancel Cell Edit** and wait for cancellation to finish. To undo an applied edit, close Trim, wait for any processing to end, and click **Revert** in the Waiting window. Repeated clicks undo applied edits in reverse order; one confirmed Trim session is reverted as a whole. Trim's Undo operates only on its open draft.
 
-## 6. Finish review and read the results
+## 6. Complete measurement and read the results
 
-If Trim is open, apply a valid draft with **Confirm Trim** or close it with **Cancel**; use Cancel for an empty draft. Wait for processing or cancellation to finish, then click **Finish Review and Measure** in **Astrocyte ROI Reviewer-Waiting**. Project Leap continues automatically. Wait for **Completed**, then click **View results**.
+If you entered **Review ROIs**, finish any editing first. If Trim is open, apply a valid draft with **Confirm Trim** or close it with **Cancel**; use Cancel for an empty draft. Wait for processing or cancellation to finish, then click **Finish Review and Measure** in **Astrocyte ROI Reviewer-Waiting**.
+
+After either **Measure Now** or **Finish Review and Measure**, Project Leap continues automatically. Wait for **Completed**, then click **View results**.
 
 Open `IHC_2D_Fluorescence_Results.xlsx` and choose **Whole Cell**, **Soma**, or **Processes**. Each row contains one cell's measurements in that region. `Astrocyte_ID` matches the overlay label. `Mean` is the average pixel intensity in the ROI; `Median` is its middle pixel intensity. `Manual_Review_Used` records whether **Review ROIs** was entered. **Review Audit** records the edits applied and reverted during that workflow.
 
-Measurements use the target channel's raw grayscale values in a two-dimensional maximum-intensity projection of the selected Z range. The target intensities receive no background subtraction or intensity normalization; display colors do not alter them. The workbook records the projection and Z range.
+Measurements use the target channel's raw grayscale values, including background signal, in a two-dimensional maximum-intensity projection of the selected Z range. The target intensities receive no background subtraction or intensity normalization; display colors do not alter them. The workbook records the projection and Z range.
 
 The program validates and saves these six files together:
 

@@ -2,7 +2,7 @@
 
 [中文](README_中文.md) · [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/) · [User guide](docs/guide.en.md) · [Methods](docs/methods.en.md)
 
-Project Leap 2D measures a target fluorescence channel within astrocyte whole-cell, soma, and process regions. The module uses DAPI plus eGFP and/or GFAP to select analysis depth and cell regions. After ROI review in Fiji, the module measures the target channel's raw grayscale values in a two-dimensional maximum-intensity projection of the selected Z range.
+Project Leap 2D delineates whole-cell, soma, and process regions in multichannel immunohistochemistry (IHC) images of astrocytes. It combines open-source segmentation models with Project Leap's original method for defining regions of interest (ROIs). A customized Fiji (ImageJ) workflow then measures multiple target-channel fluorescence metrics within these regions. Researchers can measure the automatically generated regions directly or review and edit them before measurement.
 
 This repository contains source and documentation for **v1.1.1** of the **Astrocyte Fluorescence Intensity Measurement** module. Install it through **Project Leap v1.0.0**, available from the [Project Leap website](https://dingchengwang.github.io/Project-Leap/en/). Version changes are recorded in [CHANGELOG.md](CHANGELOG.md).
 
@@ -14,11 +14,13 @@ Prepare one multichannel `.tif` or `.tiff` with separate DAPI, eGFP and/or GFAP 
 
 ## Analyze and review
 
-Automatic analysis produces linked whole-cell, soma, and process regions for review in Fiji. The [user guide](docs/guide.en.md) explains how to inspect and adjust these regions, complete measurement, and open the results. [Methods](docs/methods.en.md) describes how the regions and measurements are calculated.
+The module uses DAPI plus eGFP and/or GFAP to select analysis depth and generate linked whole-cell, soma, and process regions. Project Leap prepares the single-channel working images automatically, so you can import the multichannel TIFF directly. In Fiji, choose **Measure Now** to measure the proposed regions or **Review ROIs** to inspect and adjust them first.
+
+The [user guide](docs/guide.en.md) covers image preparation, analysis, ROI editing, and results. [Methods](docs/methods.en.md) explains how the regions and measurements are calculated.
 
 ## Read and retain the results
 
-Each completed run saves three PNG overlays, a TXT report, an XLSX workbook, and `IHC_2D_ROI_Archive.zip`. The workbook reports area and fluorescence measurements for Whole Cell, Soma, and Processes, together with cell IDs, the selected Z range, and the review record. The target intensities retain the source grayscale scale, without background subtraction or intensity normalization.
+Each completed run saves three PNG overlays, a TXT report, an XLSX workbook, and `IHC_2D_ROI_Archive.zip`. The workbook reports area and fluorescence measurements for Whole Cell, Soma, and Processes, together with cell IDs, the selected Z range, and the review record. Measurements use the target channel's two-dimensional maximum-intensity projection over the selected Z range. They retain the source grayscale scale, including background signal, without background subtraction or intensity normalization.
 
 The ROI archive preserves final label masks, ImageJ ROIs, and their correspondence to the measurements for inspection or extraction. Keep the result folder with the original TIFF.
 
@@ -36,6 +38,6 @@ The legacy package requires backed-up, presplit input copies in `Sample Image` a
 
 Current module code is in [`engine/project_leap_2d/`](engine/project_leap_2d/), with module tests in [`tests/`](tests/). The [Project Leap repository](https://github.com/DingchengWang/Project-Leap) contains the desktop interface and component management. The preserved legacy package and its distribution tools remain separate from the current module.
 
-Dingcheng Wang defined the scientific criteria, workflow decisions, and review requirements. AI assisted software implementation, debugging, and packaging.
+Dingcheng Wang developed the original research requirements, biological interpretations, analysis methods, and cell parameters. GPT-5.6 Sol / GPT-6 Astra assisted with code implementation, debugging, packaging, and documentation. See [About Project Leap](https://dingchengwang.github.io/Project-Leap/en/about/) for the research context and the roles of upstream tools.
 
 Original project code uses the [Apache License 2.0](LICENSE). Third-party software and models retain their own terms; sources, licenses, and requested citations are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`LICENSES/`](LICENSES/).

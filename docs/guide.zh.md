@@ -2,13 +2,13 @@
 
 [English](guide.en.md) · [项目说明](../README_中文.md) · [分析方法](methods.zh.md)
 
-本指南说明如何在星形胶质细胞的感兴趣区域（ROI）内测量一个目标通道的荧光强度，适合熟悉荧光图像、初次使用 Project Leap 和 Fiji 的实验室成员，无需编程经验。以下操作对应 Project Leap 中的模块 **v1.1.1**。
+本指南说明图像导入、自动生成感兴趣区域（ROI）、直接测量或在 Fiji 中审核区域，以及结果查看的操作，适合熟悉荧光图像的实验室成员。以下操作对应 Project Leap 中的模块 **v1.1.1**。
 
 ## 开始前
 
 从 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)下载 **Project Leap v1.0.0**，安装到运行 macOS 27 或更新版本的 Apple Silicon Mac。在“**功能与维护**”中安装“**星形胶质细胞荧光强度分析**”，等待显示“**模块已就绪**”。主程序会安装所需的科学计算环境、模型和 Fiji。下文主程序控件使用中文名称；Fiji 控件保留其英文原名。
 
-准备一个多通道 TIFF，分别包含 DAPI、eGFP 和／或 GFAP，以及 KCNN1、KCNN2、KCNN3、KCNJ10 中的一个待测标记物。合并后的 RGB 彩色图不适用。TIFF 需要保留深度轴及像素、切片间距，程序会自动读取。具体格式见[输入数据](methods.zh.md#输入数据与通道作用)。
+准备一个多通道 TIFF，分别包含 DAPI、eGFP 和／或 GFAP，以及 KCNN1、KCNN2、KCNN3、KCNJ10 中的一个待测标记物。Project Leap 会自动将这些通道拆分为工作图像，可直接导入多通道 TIFF。合并后的 RGB 彩色图不适用。TIFF 需要保留深度轴及像素、切片间距，程序会自动读取。具体格式见[输入数据](methods.zh.md#输入数据与通道作用)。
 
 ## 1. 导入图像
 
@@ -16,7 +16,7 @@
 
 软件会显示图像尺寸、通道数、Z 层数、数据类型和体素标定。程序会自动检查这些元数据。若提示缺少标定或格式不受支持，按报错向图像提供者获取正确导出的 TIFF，再重新导入。
 
-## 2. 确认通道和图像年龄
+## 2. 确认通道和样本年龄
 
 在“**通道映射**”中确认预填选项，或将 C1、C2 等源通道分别指定为 **DAPI**、**eGFP** 和 **GFAP**。缺失的标记物选择“**未包含**”；必须包含 DAPI 以及 eGFP／GFAP 中至少一个。对“**待测通道**”，分别选择标记物名称和实际源通道。每个已选源通道只能对应一种标记物，未指定的源通道会被忽略。
 
@@ -30,9 +30,15 @@
 
 若无法开始，查看模块状态、必需的图像组／时间点选择、通道分配和 GFAP-only 年龄设置。分析期间保持 Project Leap 和 Fiji 打开。主程序显示“**等待 Fiji 审核**”后，点击“**前往 Fiji 审核**”将其窗口置于前台。
 
-## 4. 在 Fiji 中检查拟定区域
+## 4. 在 Fiji 中选择直接测量或审核区域
 
-在 **Astrocyte ROI Reviewer** 对话框中点击 **Review ROIs**；关闭这个初始对话框会取消运行。随后打开三个管理器：**Whole Astrocyte Cell ROI Manager** 管理整细胞，**Astrocyte Soma ROI Manager** 管理胞体，**Astrocyte Processes ROI Manager** 管理突起。每个管理器对应一幅 Composite 合成图和一幅 Raw Grayscale 原始灰度图，共六个视图。**Astrocyte ROI Reviewer-Waiting** 窗口提供结束审核和撤销等控件。
+在 **Astrocyte ROI Reviewer** 对话框中选择后续操作：
+
+- **Measure Now**：直接测量自动生成的 ROI，无需进入编辑流程。程序随后验证并保存结果，按第 6 步查看。
+- **Review ROIs**：打开下文介绍的关联视图和编辑控件。
+- **Cancel Analysis**：取消运行；关闭这个初始对话框也会取消。
+
+选择 **Review ROIs** 后，打开三个管理器：**Whole Astrocyte Cell ROI Manager** 管理整细胞，**Astrocyte Soma ROI Manager** 管理胞体，**Astrocyte Processes ROI Manager** 管理突起。每个管理器对应一幅 Composite 合成图和一幅 Raw Grayscale 原始灰度图，共六个视图。**Astrocyte ROI Reviewer-Waiting** 窗口提供结束审核和撤销等控件。
 
 点击任一管理器中的细胞行，可在各视图中高亮该细胞；**Show ROI Images** 将对应的两幅图置于前台。在活动图像中按 **+** 或 **−** 缩放，按住 **Space** 并拖动可平移。多选时先点击第一行，再按住 Command 点击其他行。
 
@@ -57,13 +63,15 @@
 
 出现 **Cell Edit: ready** 时，计算已结束。阅读操作结果消息并检查边界；被拒绝的尝试会保留此前 ROI。要停止 Split 或 Enlarge，点击 **Cancel Cell Edit** 并等待取消完成。要撤销已应用的修改，先关闭 Trim，等待当前计算结束，再在 Waiting 窗口点击 **Revert**。连续点击会按逆序撤销已应用的编辑；一次确认的 Trim 会整体撤销。Trim 中的 Undo 仅作用于尚未确认的草稿。
 
-## 6. 结束审核并查看结果
+## 6. 完成测量并查看结果
 
-若 Trim 仍打开，使用 **Confirm Trim** 应用有效草稿，或用 **Cancel** 关闭；空草稿也用 Cancel。等待计算或取消操作结束后，在 **Astrocyte ROI Reviewer-Waiting** 中点击 **Finish Review and Measure**。Project Leap 会自动继续，显示“**已完成**”后点击“**查看分析结果**”。
+如果选择了 **Review ROIs**，先结束区域编辑。若 Trim 仍打开，使用 **Confirm Trim** 应用有效草稿，或用 **Cancel** 关闭；空草稿也用 Cancel。等待计算或取消操作结束后，在 **Astrocyte ROI Reviewer-Waiting** 中点击 **Finish Review and Measure**。
+
+选择 **Measure Now** 或 **Finish Review and Measure** 后，Project Leap 都会自动继续。显示“**已完成**”后点击“**查看分析结果**”。
 
 打开 `IHC_2D_Fluorescence_Results.xlsx`，选择 **Whole Cell**、**Soma** 或 **Processes** 工作表。每行对应一个细胞在该区域的测量值，`Astrocyte_ID` 与叠加图编号对应；`Mean` 是 ROI 内像素强度的平均值，`Median` 是中位数。`Manual_Review_Used` 记录是否进入 **Review ROIs**；**Review Audit** 单独记录在该流程中已应用和已撤销的编辑。
 
-测量使用目标通道在所选 Z 范围内的二维最大强度投影，保留原始灰度，未做背景扣除或强度归一化。显示颜色不影响测量值，工作簿会记录所用投影和 Z 范围。
+测量使用目标通道在所选 Z 范围内的二维最大强度投影，保留原始灰度及其中的背景信号，未做背景扣除或强度归一化。显示颜色不影响测量值，工作簿会记录所用投影和 Z 范围。
 
 程序完成验证后，将以下六个文件一起保存：
 

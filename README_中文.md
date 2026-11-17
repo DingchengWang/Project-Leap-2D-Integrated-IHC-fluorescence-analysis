@@ -2,7 +2,7 @@
 
 [English](README.md) · [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/) · [使用指南](docs/guide.zh.md) · [分析方法](docs/methods.zh.md)
 
-Project Leap 2D 用于测量星形胶质细胞整细胞、胞体和突起区域内的目标通道荧光强度。程序依据 DAPI 及 eGFP 和／或 GFAP 选择分析深度、构建细胞区域；用户在 Fiji 中审核 ROI 后，程序在所选 Z 范围的二维最大强度投影上测量目标通道的原始灰度。
+Project Leap 2D 结合开源分割模型与 Project Leap 原创的细胞框选方法，在多通道免疫组化（IHC）荧光图像中描绘星形胶质细胞的感兴趣区域（ROI）。定制的 Fiji（ImageJ）流程分别测量整细胞、胞体和突起区域内的多项目标通道荧光指标。研究者可以直接测量自动生成的区域，也可以先检查和编辑区域，再完成测量。
 
 本仓库提供“**星形胶质细胞荧光强度分析**”模块 **v1.1.1** 的源码和文档。请从 [Project Leap 网站](https://dingchengwang.github.io/Project-Leap/zh/)下载 **Project Leap v1.0.0**，再在主程序中安装模块。各版本的变化见[版本记录](CHANGELOG.md)。
 
@@ -14,11 +14,13 @@ Project Leap 2D 用于测量星形胶质细胞整细胞、胞体和突起区域�
 
 ## 分析与审核
 
-自动分析生成整细胞、胞体和突起三类关联区域，供研究者在 Fiji 中检查和修正。[使用指南](docs/guide.zh.md)说明区域审核、完成测量和查看结果的操作；[分析方法](docs/methods.zh.md)解释区域和测量值的计算依据。
+程序依据 DAPI 及 eGFP 和／或 GFAP 选择分析深度，生成相互关联的整细胞、胞体和突起区域。Project Leap 会自动准备单通道工作图像，因此可直接导入多通道 TIFF。在 Fiji 中，选择 **Measure Now** 可直接测量拟定区域，选择 **Review ROIs** 则先检查和修正区域。
+
+[使用指南](docs/guide.zh.md)说明图像准备、分析、区域编辑和结果查看；[分析方法](docs/methods.zh.md)解释区域和测量值的计算依据。
 
 ## 查看与保存结果
 
-每次完成的任务保存三幅 PNG 叠加图、一份 TXT 报告、一份 XLSX 工作簿及 `IHC_2D_ROI_Archive.zip`。工作簿分别记录整细胞、胞体和突起的面积与荧光测量值，并保留细胞编号、所选 Z 范围和审核记录。目标通道强度保留源图的灰度尺度，未做背景扣除或强度归一化。
+每次完成的任务保存三幅 PNG 叠加图、一份 TXT 报告、一份 XLSX 工作簿及 `IHC_2D_ROI_Archive.zip`。工作簿分别记录整细胞、胞体和突起的面积与荧光测量值，并保留细胞编号、所选 Z 范围和审核记录。测量基于所选 Z 范围内目标通道的二维最大强度投影，保留源图的灰度尺度及其中的背景信号，未做背景扣除或强度归一化。
 
 ROI 归档保存最终标签图、ImageJ ROI 及其与测量结果的对应关系，可解压查看或提取。请将结果文件夹与原始 TIFF 一并保留。
 
@@ -36,6 +38,6 @@ ROI 归档保存最终标签图、ImageJ ROI 及其与测量结果的对应关�
 
 当前模块代码位于 [`engine/project_leap_2d/`](engine/project_leap_2d/)，模块测试位于 [`tests/`](tests/)；桌面界面和组件管理位于 [Project Leap 主仓库](https://github.com/DingchengWang/Project-Leap)。旧脚本包及其分发工具与当前模块分别保留。
 
-Dingcheng Wang 负责科学判定标准、流程决策和审核要求；AI 辅助代码实现、调试与打包。
+研究需求、生物学解释、内部分析方法和细胞参数由 Dingcheng Wang 原创设计；GPT-5.6 Sol / GPT-6 Astra 辅助代码实现、调试、打包和文档编写。研究背景及上游工具的具体作用见[关于 Project Leap](https://dingchengwang.github.io/Project-Leap/zh/about/)。
 
 本项目原创代码采用 [Apache License 2.0](LICENSE)。第三方软件和模型遵循各自条款；来源、许可证和引用要求见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [`LICENSES/`](LICENSES/)。
