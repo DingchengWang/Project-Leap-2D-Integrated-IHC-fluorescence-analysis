@@ -4,11 +4,11 @@
 
 This release fixes an analysis startup error: the module now correctly uses the shared analysis environment installed by Project Leap. Analysis algorithms, models, and parameters remain unchanged.
 
-[Project Leap v1.0.0](https://github.com/DingchengWang/Project-Leap/releases/tag/v1.0.0) is publicly available. Install or update **Astrocyte Fluorescence Intensity Measurement** through the application's **Modules & Maintenance** page.
+Install **Astrocyte Fluorescence Intensity Measurement** from **Modules & Maintenance** in [Project Leap v1.0.0](https://github.com/DingchengWang/Project-Leap/releases/tag/v1.0.0). To update an installed module, go to **Settings → Software updates → Check for Updates**.
 
 本版修复了分析启动错误：模块现在能正确使用由 Project Leap 安装的共享分析环境。分析算法、模型和参数保持不变。
 
-[Project Leap v1.0.0](https://github.com/DingchengWang/Project-Leap/releases/tag/v1.0.0) 已公开下载。请在主程序的“**功能与维护**”中安装或更新“**星形胶质细胞荧光强度分析**”。
+请在 [Project Leap v1.0.0](https://github.com/DingchengWang/Project-Leap/releases/tag/v1.0.0) 的“**功能与维护**”中安装“**星形胶质细胞荧光强度分析**”。更新已安装的模块时，请进入“**设置 → 软件更新 → 检查更新**”。
 
 ## 1.1.0 — Project Leap module / Project Leap 功能模块
 
